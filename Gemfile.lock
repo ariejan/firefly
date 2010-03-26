@@ -1,14 +1,22 @@
 --- 
 dependencies: 
+  dm-more: 
+    group: 
+    - :default
+    version: ">= 0"
   rspec: 
     group: 
     - :test
     version: ">= 0"
-  thin: 
+  valerii: 
     group: 
     - :default
     version: ">= 0"
   dm-core: 
+    group: 
+    - :default
+    version: ">= 0"
+  thin: 
     group: 
     - :default
     version: ">= 0"
@@ -25,8 +33,18 @@ dependencies:
     - :default
     version: ">= 0"
 specs: 
+- ZenTest: 
+    version: 4.2.1
+- RubyInline: 
+    version: 3.8.4
+- sexp_processor: 
+    version: 3.0.3
+- ParseTree: 
+    version: 3.0.4
 - addressable: 
     version: 2.1.1
+- bcrypt-ruby: 
+    version: 2.1.2
 - daemons: 
     version: 1.0.10
 - data_objects: 
@@ -34,6 +52,62 @@ specs:
 - extlib: 
     version: 0.9.14
 - dm-core: 
+    version: 0.10.2
+- dm-adjust: 
+    version: 0.10.2
+- dm-aggregates: 
+    version: 0.10.2
+- dm-ar-finders: 
+    version: 0.10.2
+- dm-cli: 
+    version: 0.10.2
+- dm-constraints: 
+    version: 0.10.2
+- dm-is-list: 
+    version: 0.10.2
+- dm-is-nested_set: 
+    version: 0.10.2
+- dm-is-remixable: 
+    version: 0.10.2
+- dm-is-searchable: 
+    version: 0.10.2
+- dm-is-state_machine: 
+    version: 0.10.2
+- dm-is-tree: 
+    version: 0.10.2
+- dm-is-versioned: 
+    version: 0.10.2
+- dm-migrations: 
+    version: 0.10.2
+- dm-observer: 
+    version: 0.10.2
+- fastercsv: 
+    version: 1.5.3
+- json_pure: 
+    version: 1.2.3
+- dm-serializer: 
+    version: 0.10.2
+- dm-rest-adapter: 
+    version: 0.10.2
+- randexp: 
+    version: 0.1.5
+- dm-sweatshop: 
+    version: 0.10.2
+- dm-validations: 
+    version: 0.10.2
+- dm-tags: 
+    version: 0.10.2
+- dm-timestamps: 
+    version: 0.10.2
+- stringex: 
+    version: 1.1.0
+- uuidtools: 
+    version: 2.1.1
+- dm-types: 
+    version: 0.10.2
+- rails_datamapper: 
+    version: 0.10.2
+- dm-more: 
     version: 0.10.2
 - do_sqlite3: 
     version: 0.10.1.1
@@ -49,7 +123,9 @@ specs:
     version: "1.0"
 - thin: 
     version: 1.2.7
-hash: d50a19f5c43be753c9467f3602f470623f568812
+- valerii: 
+    version: 1.1.0
+hash: bcc27b0dd30f67e7d476aab8b3fc89aa763e14b7
 sources: 
 - Rubygems: 
     uri: http://gemcutter.org
