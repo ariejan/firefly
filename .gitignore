@@ -1,1 +1,3 @@
 .bundle
+*.sqlite3
+config.ru
