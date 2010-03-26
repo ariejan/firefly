@@ -13,4 +13,5 @@ describe "FireFly" do
     get '/'
     last_response.should be_ok
   end
+  
 end
