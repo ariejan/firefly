@@ -11,7 +11,6 @@ require 'rubygems'
 require 'sinatra'
 require 'dm-core'
 require 'dm-aggregates'
-require 'valerii'
 
 set :sessions, false
 
@@ -22,6 +21,31 @@ end
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3")
 
 module FireFly
+  class B62
+    
+    CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
+    BASE = 62
+    
+    def self.encode(value)
+      s = []
+      while value > BASE
+        value, rem = value.divmod(BASE)
+        s << CHARS[rem]
+      end
+      s << CHARS[value]
+      s.reverse.to_s
+    end
+
+    def self.decode(str)
+      str = str.split('').reverse
+      total = 0
+      str.each_with_index do |v,k|
+        total += (CHARS.index(v) * (BASE ** k))
+      end
+      total
+    end
+  end
+  
   class Url
     include DataMapper::Resource
 
@@ -37,7 +61,7 @@ module FireFly
     
       if @result.nil?
         @result = self.create(:url => url)
-        @result.update(:code => Valerii.encode(@result.id.to_i))
+        @result.update(:code => FireFly::B62.encode(@result.id.to_i))
       end
     
       return @result.code
