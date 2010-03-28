@@ -19,7 +19,7 @@ module FireFly
     
     def self.encode(value)
       s = []
-      while value > BASE
+      while value >= BASE
         value, rem = value.divmod(BASE)
         s << CHARS[rem]
       end
