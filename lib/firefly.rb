@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'dm-core'
-require 'dm-aggregates'
 
 set :sessions, false
 
