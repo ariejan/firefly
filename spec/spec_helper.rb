@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', 'firefly.rb')
+require File.join(File.dirname(__FILE__), '..', 'lib', 'firefly.rb')
 
 require 'rubygems'
 require 'sinatra'
