@@ -108,6 +108,6 @@ get '/:code' do
     status 404
     "Sorry, that code is unknown."
   else
-    redirect url
+    redirect url, 301
   end
 end
