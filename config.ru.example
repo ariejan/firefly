@@ -1,15 +1,19 @@
 require 'rubygems'
 require 'firefly'
 
-root_dir = File.dirname(__FILE__)
-
-set :hostname,    'localhost:3000'
-set :api_key,     'test'
-
-set :environment, ENV['RACK_ENV'].to_sym
-set :root,        root_dir
-set :app_file,    File.join(root_dir, 'app.rb')
-
 disable :run
 
-run Sinatra::Application
+app = Firefly::Server.new do
+  set :hostname,    "localhost:3000"
+  set :api_key,     "test"
+  
+  # Use Sqlite3 by default
+  set :database,    "sqlite3://#{Dir.pwd}/firefly.sqlite3"
+  
+  # You can use MySQL as well. 
+  # Make sure to install the do_mysql gem:
+  #    sudo gem install do_mysql
+  # set :database,    "mysql://root@localhost/firefly"
+end
+
+run app
