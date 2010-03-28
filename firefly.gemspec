@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/ariejan/firefly}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{firefly}
   s.rubygems_version = %q{1.3.5}
   s.summary = %q{FireFly is a simple URL shortner for personal use}
   s.test_files = [

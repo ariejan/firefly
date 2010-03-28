@@ -10,7 +10,7 @@ begin
     gemspec.email = "ariejan@ariejan.net"
     gemspec.homepage = "http://github.com/ariejan/firefly"
     gemspec.authors = ["Ariejan de Vroom"]
-    
+    gemspec.rubyforge_project = 'firefly'
     gemspec.add_dependency('sinatra', '>= 1.0')
     gemspec.add_dependency('dm-core', '>= 0.10.2')
     gemspec.add_dependency('dm-more', '>= 0.10.2')
