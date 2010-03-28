@@ -51,7 +51,8 @@ module FireFly
   end
 end
 
-DataMapper.auto_migrate!
+# Upgrade the database is necessary. 
+DataMapper.auto_upgrade!
 
 get '/' do
   "Hello world!"
