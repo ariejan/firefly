@@ -13,6 +13,12 @@ set :run, false
 set :raise_errors, true
 set :logging, false
 
+@@app = Firefly::Server.new do
+  set :hostname,    "test.host"
+  set :api_key,     "test"
+  set :database,    "sqlite3://#{Dir.pwd}/firefly_test.sqlite3"
+end
+
 Spec::Runner.configure do |config|
   config.after(:each) do
       repository do |r|

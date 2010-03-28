@@ -6,12 +6,7 @@ describe "Firefly" do
   include Rack::Test::Methods
 
   def app
-    # @app ||= Firefly::Server
-    
-    @app = Firefly::Server.new do
-      set :hostname,    "test.host"
-      set :api_key,     "test"
-    end
+    @@app
   end
   
   describe "/" do

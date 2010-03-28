@@ -10,11 +10,7 @@ if ENV['RACK_ENV'] == 'development'
   DataMapper::Logger.new($stdout, :debug)
 end
 
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3")
-
 require 'firefly/config'
 require 'firefly/base62'
 require 'firefly/url'
 require 'firefly/server'
-
-DataMapper.auto_upgrade!
