@@ -85,7 +85,7 @@ end
 # POST /add?url=http://ariejan.net
 #
 # Returns the shortened URL
-post '/add' do
+post '/api/add' do
   if params[:api_key] != settings.api_key
     status 401
     return "Permission denied: Invalid API key." 

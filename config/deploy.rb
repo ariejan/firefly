@@ -32,6 +32,7 @@ namespace :deploy do
     run "#{try_sudo} ln -sf #{shared_path}/firefly_#{rails_env}.sqlite3 #{release_path}/firefly_#{rails_env}.sqlite3"
   end  
   task :bundle do
+    run "#{try_sudo} rm -rf #{release_path}/.bundle"
     run "cd #{release_path} ; #{try_sudo} bundle install"
     run "#{try_sudo} chown -R www-data:www-data #{release_path}/.bundle"
   end

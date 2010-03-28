@@ -9,3 +9,7 @@ FireFly is a simple URL shortner for personal use.
     bundle lock
     thin start -R config.ru
     
+# Usage
+
+    curl -d "url=http://ariejan.net&api_key=test" http://localhost:3000/api/add
+    
