@@ -9,7 +9,11 @@ if ENV['RACK_ENV'] == 'development'
   DataMapper::Logger.new($stdout, :debug)
 end
 
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3")
+if ENV['FIREFLY_DB']
+  DataMapper.setup(:default, ENV['FIREFLY_DB'])
+else
+  DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3")
+end
 
 module FireFly
   class B62
