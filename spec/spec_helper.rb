@@ -13,9 +13,6 @@ set :run, false
 set :raise_errors, true
 set :logging, false
 
-set :hostname, 'test.host'
-set :api_key,  'test'
-
 Spec::Runner.configure do |config|
   config.after(:each) do
       repository do |r|

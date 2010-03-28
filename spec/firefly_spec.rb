@@ -2,11 +2,16 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
 require File.dirname(__FILE__) + '/spec_helper'
 
-describe "FireFly" do
+describe "Firefly" do
   include Rack::Test::Methods
 
   def app
-    @app ||= Sinatra::Application
+    # @app ||= Firefly::Server
+    
+    @app = Firefly::Server.new do
+      set :hostname,    "test.host"
+      set :api_key,     "test"
+    end
   end
   
   describe "/" do
@@ -27,18 +32,18 @@ describe "FireFly" do
       last_response.status.should eql(401)
     end
   
-    it "should create a new FireFly::Url" do
+    it "should create a new Firefly::Url" do
       lambda {
         post '/api/add', :url => 'http://example.org', :api_key => 'test'
-      }.should change(FireFly::Url, :count).by(1)
+      }.should change(Firefly::Url, :count).by(1)
     end
   
-    it "should not create the same FireFly::Url twice" do
+    it "should not create the same Firefly::Url twice" do
       post '/api/add', :url => 'http://example.org', :api_key => 'test'
     
       lambda {
         post '/api/add', :url => 'http://example.org', :api_key => 'test'
-      }.should_not change(FireFly::Url, :count).by(1)    
+      }.should_not change(Firefly::Url, :count).by(1)    
     end
   end
   
@@ -53,18 +58,18 @@ describe "FireFly" do
       [200000000, "dxb8s"]
     ].each do |input, output|
       it "should encode #{input} correctly to #{output}" do
-        FireFly::B62.encode(input).should eql(output)
+        Firefly::Base62.encode(input).should eql(output)
       end
       
       it "should decode correctly" do
-        FireFly::B62.decode(output).should eql(input)
+        Firefly::Base62.decode(output).should eql(input)
       end
     end
   end
   
   describe "redirecting" do
     it "should redirect to the original URL" do
-      fake = FireFly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
     
       get '/alpha'
       follow_redirect!
@@ -73,7 +78,7 @@ describe "FireFly" do
     end
   
     it "should redirect with a 301 Permanent redirect" do
-      fake = FireFly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
     
       get '/alpha'
     
