@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{firefly}
-  s.version = "0.0.2"
+  s.version = "0.1.0.pre1"
 
-  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
+  s.required_rubygems_version = Gem::Requirement.new("> 1.3.1") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ariejan de Vroom"]
-  s.date = %q{2010-03-27}
+  s.date = %q{2010-03-28}
   s.description = %q{FireFly is a simple URL shortner for personal use. It's powered by Sinatra and can be run with any Rack-capable web server.}
   s.email = %q{ariejan@ariejan.net}
   s.extra_rdoc_files = [
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   ]
   s.files = [
     ".gitignore",
+     "HISTORY",
      "LICENSE",
      "README.md",
      "Rakefile",
@@ -25,6 +26,10 @@ Gem::Specification.new do |s|
      "config.ru.example",
      "firefly.gemspec",
      "lib/firefly.rb",
+     "lib/firefly/base62.rb",
+     "lib/firefly/config.rb",
+     "lib/firefly/server.rb",
+     "lib/firefly/url.rb",
      "spec/firefly_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb"
@@ -47,14 +52,14 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<sinatra>, [">= 1.0"])
       s.add_runtime_dependency(%q<dm-core>, [">= 0.10.2"])
-      s.add_runtime_dependency(%q<dm-more>, [">= 0.10.2"])
+      s.add_runtime_dependency(%q<dm-aggregates>, [">= 0.10.2"])
       s.add_runtime_dependency(%q<do_sqlite3>, [">= 0.10.1.1"])
       s.add_development_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_development_dependency(%q<rack-test>, [">= 0.5.3"])
     else
       s.add_dependency(%q<sinatra>, [">= 1.0"])
       s.add_dependency(%q<dm-core>, [">= 0.10.2"])
-      s.add_dependency(%q<dm-more>, [">= 0.10.2"])
+      s.add_dependency(%q<dm-aggregates>, [">= 0.10.2"])
       s.add_dependency(%q<do_sqlite3>, [">= 0.10.1.1"])
       s.add_dependency(%q<rspec>, [">= 1.3.0"])
       s.add_dependency(%q<rack-test>, [">= 0.5.3"])
@@ -62,7 +67,7 @@ Gem::Specification.new do |s|
   else
     s.add_dependency(%q<sinatra>, [">= 1.0"])
     s.add_dependency(%q<dm-core>, [">= 0.10.2"])
-    s.add_dependency(%q<dm-more>, [">= 0.10.2"])
+    s.add_dependency(%q<dm-aggregates>, [">= 0.10.2"])
     s.add_dependency(%q<do_sqlite3>, [">= 0.10.1.1"])
     s.add_dependency(%q<rspec>, [">= 1.3.0"])
     s.add_dependency(%q<rack-test>, [">= 0.5.3"])

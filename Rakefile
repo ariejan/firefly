@@ -13,7 +13,8 @@ begin
     gemspec.rubyforge_project = 'firefly'
     gemspec.add_dependency('sinatra', '>= 1.0')
     gemspec.add_dependency('dm-core', '>= 0.10.2')
-    gemspec.add_dependency('dm-more', '>= 0.10.2')
+    # gemspec.add_dependency('dm-more', '>= 0.10.2')
+    gemspec.add_dependency('dm-aggregates', '>= 0.10.2')
     gemspec.add_dependency('do_sqlite3', '>= 0.10.1.1')
     
     gemspec.add_development_dependency('rspec', '>= 1.3.0')
