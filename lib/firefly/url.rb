@@ -3,8 +3,8 @@ module Firefly
     include DataMapper::Resource
 
     property :id,           Serial
-    property :url,          String,     :index => true
-    property :code,         String,     :index => true
+    property :url,          String,     :index => true, :length => 255
+    property :code,         String,     :index => true, :length => 255
     property :created_at,   DateTime
   
     # Encode a URL and return the encoded ID

@@ -1,3 +1,7 @@
+= HEAD
+
+ * Changed Firefly::Url String properties to a length of 255 instead of the default of 50. [ariejan]
+
 = 0.1 / 2010-03-28
 
- * First official release
+ * First official release [ariejan]
