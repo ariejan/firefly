@@ -5,7 +5,7 @@ module Firefly
     property :id,           Serial
     property :url,          String,     :index => true, :length => 255
     property :code,         String,     :index => true, :length => 255
-    property :visits,       BigDecimal, :default => 0
+    property :visits,       Integer,    :default => 0
     property :created_at,   DateTime,   :default => Time.now
     
     # Increase the visits counter by 1

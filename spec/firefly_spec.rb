@@ -82,6 +82,38 @@ describe "Firefly" do
     end
   end
   
+  describe "getting information" do
+    before(:each) do
+      @created_at = Time.now
+      @url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha', :visits => 69, :created_at => @created_at)
+    end
+    
+    it "should work" do
+      get '/api/info/alpha', :api_key => "test"
+      last_response.should be_ok
+    end
+    
+    it "should show the visit count" do
+      get '/api/info/alpha', :api_key => "test"
+      last_response.body.should match(/69/)
+    end
+        
+    it "should show the short URL" do
+      get '/api/info/alpha', :api_key => "test"
+      last_response.body.should match(/alpha/)
+    end
+    
+    it "should show the full URL" do
+      get '/api/info/alpha', :api_key => "test"
+      last_response.body.should match(/http:\/\/example.com\/123/)
+    end
+    
+    it "should validate API permissions" do
+      get '/api/info/alpha', :api_key => false
+      last_response.status.should be(401)
+    end
+  end
+  
   describe "redirecting" do
     it "should redirect to the original URL" do
       fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')

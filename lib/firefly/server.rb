@@ -20,6 +20,13 @@ module Firefly
       end
     end
     
+    def validate_api_permission
+      if params[:api_key] != config[:api_key]
+        status 401
+        return "Permission denied: Invalid API key." 
+      end
+    end
+    
     get '/' do
       "Hello world!"
     end
@@ -28,10 +35,7 @@ module Firefly
     #
     # Returns the shortened URL
     post '/api/add' do
-      if params[:api_key] != config[:api_key]
-        status 401
-        return "Permission denied: Invalid API key." 
-      end
+      validate_api_permission
 
       if params[:url].nil? || params[:url] == ""
         "Invalid or no URL specified" 
@@ -39,7 +43,29 @@ module Firefly
         "http://#{config[:hostname]}/#{Firefly::Url.encode(params[:url])}"
       end
     end
-
+    
+    # GET /b3d+
+    #
+    # Show info on the URL
+    get '/api/info/:code' do
+      validate_api_permission
+      
+      result = []
+      
+      url = Firefly::Url.decode(params[:code])
+      
+      if url.nil?
+        result << "Sorry, that code is unknown."
+      else
+        result << "URL: #{url.url}"
+        result << "Short URL: http://#{config[:hostname]}/#{url.code}"
+        result << "Created at: #{url.created_at.to_time.to_s}"
+        result << "Visits: #{url.visits}"
+      end
+      
+      return result.join("\n")
+    end
+    
     # GET /b3d
     #
     # Redirect to the shortened URL
