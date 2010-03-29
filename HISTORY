@@ -1,4 +1,4 @@
-= HEAD
+= 0.2.0 / 2010-03-29 
   
  * 2010-03-29 - Added some GUI sugar at '/'. [ariejan]
  * 2010-03-29 - Added /api/info/:code for basic stats on the specified URL. [ariejan]
