@@ -16,6 +16,13 @@ describe "Firefly" do
     end
   end
   
+  describe "Url" do
+    it "should set a created_at timestamp" do
+      url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      url.created_at.should_not be_nil
+    end
+  end
+  
   describe "adding a URL" do
     it "should be okay adding a new URL" do
       post '/api/add', :url => 'http://example.org', :api_key => 'test'

@@ -5,7 +5,7 @@ module Firefly
     property :id,           Serial
     property :url,          String,     :index => true, :length => 255
     property :code,         String,     :index => true, :length => 255
-    property :created_at,   DateTime
+    property :created_at,   DateTime,   :default => Time.now
   
     # Encode a URL and return the encoded ID
     def self.encode(url)
