@@ -1,8 +1,9 @@
 = HEAD
+  
+ * 2010-03-29 - Added some GUI sugar at '/'. [ariejan]
+ * 2010-03-29 - Added /api/info/:code for basic stats on the specified URL. [ariejan]
 
- * 2010-03-29 - Added /api/info/:code for basic stats on the specified URL
-
- * 2010-03-29 - Keep count of the number of visits to a given URL.
+ * 2010-03-29 - Keep count of the number of visits to a given URL. [ariejan]
 
  * 2010-03-29 - Fill in `created_at` for Firefly::Url. [ariejan]
  
