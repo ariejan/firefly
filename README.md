@@ -32,6 +32,8 @@ Next you can start your web server. You may try thin:
 
     thin start -R config.ru
 
+Now visit `http://:hostname/` and enter your `:api_key`. Happy URL shortening!
+
 # Configuration
 
 All configuration is done in `config.ru`. 
@@ -45,6 +47,12 @@ It's possible to use all kinds of backends with DataMapper. Sqlite3 and MySQL ha
 [1]: http://datamapper.org/
 
 # Usage
+
+Simply visit `http://:hostname/` and enter your `:api_key`. You can now shorten URLs.
+
+## Advanced usage
+
+You may also use the API to automate URL shortening. Here's how.
 
 Adding a URL is done by doing a simple POST request that includes the URL and your API key. 
 
