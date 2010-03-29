@@ -1,0 +1,16 @@
+%h1 http://#{@config[:hostname]}/#{@url.code}
+
+%table
+  %tr
+    %td.label Short URL
+    %td.value <a href="#{@short_url}">#{@short_url}</a>
+  %tr
+    %td.label Full URL
+    %td.value <a href="#{@url.url}">#{@url.url}</a>
+  %tr
+    %td.label Clicks
+    %td.value= @url.visits
+  %tr
+    %td.label Shortened at
+    %td.value= @url.created_at.strftime("%Y-%m-%d %H:%M")
+  

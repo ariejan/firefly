@@ -11,6 +11,7 @@ if ENV['RACK_ENV'] == 'development'
 end
 
 require 'firefly/config'
+require 'firefly/version'
 require 'firefly/base62'
 require 'firefly/url'
 require 'firefly/server'

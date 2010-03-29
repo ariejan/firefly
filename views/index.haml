@@ -1,0 +1,23 @@
+- if @authenticated
+  %h1 How about shortening a URL?
+
+  %form{ :action => '/api/add', :method => 'post' }
+    %input{ :type => "hidden", :name => "visual", :value => "1" }
+    %p
+      %label{ :for => 'url' } Long and ugly URL
+      %input{ :type => 'text', :name => 'url', :id => 'url' }
+    %p
+      %input{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Shorten this!" }
+
+- else
+  %h1 Please enter your API key
+  
+  %p
+    Please enter your API key below to make sure only you can shorten URLs here.
+  
+  %form{ :action => '/api/set', :method => 'post' }
+    %p
+      %label{ :for => 'api_key' } API Key
+      %input{ :type => 'password', :name => 'api_key', :id => 'api_key' }
+    %p
+      %input{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Let me in" }

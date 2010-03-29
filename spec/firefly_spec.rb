@@ -41,12 +41,20 @@ describe "Firefly" do
       post '/api/add', :url => 'http://example.org', :api_key => 'test'
       last_response.should be_ok
     end
-  
+    
+    it "should return the shortened URL" do
+      post '/api/add', :url => 'http://example.org', :api_key => 'test'
+      
+      url = Firefly::Url.first(:url => "http://example.org")
+      
+      last_response.body.should eql("http://test.host/#{url.code}")
+    end
+    
     it "should return a 401 on a wrong API key" do
       post '/api/add', :url => 'http://example.org', :api_key => 'false'
       last_response.status.should eql(401)
     end
-  
+    
     it "should create a new Firefly::Url" do
       lambda {
         post '/api/add', :url => 'http://example.org', :api_key => 'test'
@@ -101,6 +109,11 @@ describe "Firefly" do
     it "should show the short URL" do
       get '/api/info/alpha', :api_key => "test"
       last_response.body.should match(/alpha/)
+    end
+    
+    it "should show the shortened at time" do
+      get '/api/info/alpha', :api_key => "test"
+      last_response.body.should match(/#{@created_at.strftime("%Y-%m-%d %H:%M")}/)
     end
     
     it "should show the full URL" do
