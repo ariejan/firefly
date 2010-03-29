@@ -17,9 +17,22 @@ describe "Firefly" do
   end
   
   describe "Url" do
+    before(:each) do
+      @url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+    end
+    
     it "should set a created_at timestamp" do
-      url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
-      url.created_at.should_not be_nil
+      @url.created_at.should_not be_nil
+    end
+    
+    it "should have a visit count of 0 by default" do      
+      @url.visits.should eql(0)
+    end
+    
+    it "should increase visits when calling visit!" do
+      lambda {
+        @url.visit!
+      }.should change(@url, :visits).by(1)
     end
   end
   
@@ -78,7 +91,16 @@ describe "Firefly" do
     
       last_request.url.should eql('http://example.com/123')
     end
-  
+    
+    it "should increase the visits counter" do
+      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      Firefly::Url.should_receive(:decode).and_return(fake)
+      
+      lambda {
+        get '/alpha'
+      }.should change(fake, :visits).by(1)
+    end
+    
     it "should redirect with a 301 Permanent redirect" do
       fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
     

@@ -1,8 +1,10 @@
 = HEAD
 
- * Fill in `created_at` for Firefly::Url. [ariejan]
+ * 2010-03-29 - Keep count of the number of visits to a given URL.
+
+ * 2010-03-29 - Fill in `created_at` for Firefly::Url. [ariejan]
  
- * Changed Firefly::Url String properties to a length of 255 instead of the default of 50. [ariejan]
+ * 2010-03-29 - Changed Firefly::Url String properties to a length of 255 instead of the default of 50. [ariejan]
 
 = 0.1 / 2010-03-28
 

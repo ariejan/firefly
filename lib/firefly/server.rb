@@ -50,7 +50,8 @@ module Firefly
         status 404
         "Sorry, that code is unknown."
       else
-        redirect url, 301
+        url.visit!
+        redirect url.url, 301
       end
     end    
   end
