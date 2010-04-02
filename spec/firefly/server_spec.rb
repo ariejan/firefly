@@ -1,4 +1,4 @@
-require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Firefly" do
   include Rack::Test::Methods
@@ -11,26 +11,6 @@ describe "Firefly" do
     it "should respond ok" do
       get '/'
       last_response.should be_ok
-    end
-  end
-  
-  describe "Url" do
-    before(:each) do
-      @url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
-    end
-    
-    it "should set a created_at timestamp" do
-      @url.created_at.should_not be_nil
-    end
-    
-    it "should have a visit count of 0 by default" do      
-      @url.visits.should eql(0)
-    end
-    
-    it "should increase visits when calling visit!" do
-      lambda {
-        @url.visit!
-      }.should change(@url, :visits).by(1)
     end
   end
   
@@ -67,27 +47,7 @@ describe "Firefly" do
       }.should_not change(Firefly::Url, :count).by(1)    
     end
   end
-  
-  describe "Base62 encoding/decoding" do
-    [
-      [        1,     "1"],
-      [       10,     "a"],
-      [       61,     "Z"],
-      [       62,    "10"],
-      [       63,    "11"],
-      [      124,    "20"],
-      [200000000, "dxb8s"]
-    ].each do |input, output|
-      it "should encode #{input} correctly to #{output}" do
-        Firefly::Base62.encode(input).should eql(output)
-      end
-      
-      it "should decode correctly" do
-        Firefly::Base62.decode(output).should eql(input)
-      end
-    end
-  end
-  
+    
   describe "getting information" do
     before(:each) do
       @created_at = Time.now
