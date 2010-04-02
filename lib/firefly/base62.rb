@@ -11,7 +11,7 @@ module Firefly
         s << CHARS[rem]
       end
       s << CHARS[value]
-      s.reverse.to_s
+      s.reverse.join("")
     end
 
     def self.decode(str)

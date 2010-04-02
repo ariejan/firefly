@@ -1,6 +1,11 @@
+= HEAD
+
+ * 2010-04-02 - Added Ruby 1.9.x compatibility. [ariejan]
+
 = 0.2.0 / 2010-03-29 
   
  * 2010-03-29 - Added some GUI sugar at '/'. [ariejan]
+ 
  * 2010-03-29 - Added /api/info/:code for basic stats on the specified URL. [ariejan]
 
  * 2010-03-29 - Keep count of the number of visits to a given URL. [ariejan]
