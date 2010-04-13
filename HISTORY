@@ -1,3 +1,7 @@
+= 0.3.1 / 2010-04-13
+
+ * 2010-04-13 - Fixed issue with setting `created_at` timestamp. [ariejan]
+
 = 0.3.0 / 2010-04-13
 
  * 2010-04-13 - Added recent urls to dashboard [ariejan]

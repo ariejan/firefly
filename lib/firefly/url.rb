@@ -6,7 +6,7 @@ module Firefly
     property :url,          String,     :index => true, :length => 255
     property :code,         String,     :index => true, :length => 16
     property :clicks,       Integer,    :default => 0
-    property :created_at,   DateTime,   :default => Time.now
+    property :created_at,   DateTime,   :default => Proc.new{Time.now}
     
     # Increase the visits counter by 1
     def register_click!
