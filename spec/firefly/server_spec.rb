@@ -26,11 +26,11 @@ describe "Firefly" do
     
     it "should increase the visits counter" do
       fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
-      Firefly::Url.should_receive(:decode).and_return(fake)
+      Firefly::Url.should_receive(:first).and_return(fake)
       
       lambda {
         get '/alpha'
-      }.should change(fake, :visits).by(1)
+      }.should change(fake, :clicks).by(1)
     end
     
     it "should redirect with a 301 Permanent redirect" do

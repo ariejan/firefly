@@ -4,14 +4,9 @@ module Firefly
 
     property :id,           Serial
     property :url,          String,     :index => true, :length => 255
-    property :hash,         String,     :index => true, :length => 16
+    property :code,         String,     :index => true, :length => 16
     property :clicks,       Integer,    :default => 0
     property :created_at,   DateTime,   :default => Time.now
-    
-    # After create, generate the Base62 hash
-    after :create do
-      update(:hash => Firefly::Base62.encode(self.id.to_i))
-    end
     
     # Increase the visits counter by 1
     def register_click!
@@ -20,7 +15,9 @@ module Firefly
     
     # Shorten a long_url and return a new FireFly::Url
     def self.shorten(long_url)
-      Firefly::Url.first(:url => long_url) || Firefly::Url.create(:url => long_url)
+      the_url = Firefly::Url.first(:url => long_url) || Firefly::Url.create(:url => long_url)
+      the_url.update(:code => Firefly::Base62.encode(the_url.id.to_i)) if the_url.code.nil?
+      the_url
     end  
   end
 end

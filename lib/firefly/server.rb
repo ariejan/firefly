@@ -45,10 +45,11 @@ module Firefly
       end
       
       def generate_short_url(url = nil)
-        result, code = nil, nil
+        code, result = nil, nil
 
         if !url.nil? && url != ""
-          code    = Firefly::Url.encode(url)
+          ff_url  = Firefly::Url.shorten(url)
+          code    = ff_url.code
           result  = "http://#{config[:hostname]}/#{code}"
         end
         
@@ -76,12 +77,13 @@ module Firefly
       redirect '/'
     end
     
+    # GET /add?url=http://ariejan.net&api_key=test
     # POST /add?url=http://ariejan.net&api_key=test
     #
     # Returns the shortened URL
-    post '/api/add' do
+    api_add = lambda {
       validate_api_permission
-      @url    = params[:url]
+      @url           = params[:url]
       @code, @result = generate_short_url(@url)
       @result ||= "Invalid URL specified."
       
@@ -90,7 +92,10 @@ module Firefly
       else
         @result
       end
-    end
+    }
+    
+    get '/api/add', &api_add
+    post '/api/add', &api_add
     
     # GET /b3d+
     #
@@ -98,24 +103,29 @@ module Firefly
     get '/api/info/:code' do
       validate_api_permission
       
-      @url = Firefly::Url.decode(params[:code])
-      @short_url = "http://#{config[:hostname]}/#{@url.code}"
+      @url = Firefly::Url.first(:code => params[:code])
       
-      haml :info
+      if @url.nil?
+        status 404
+        "Sorry, that code is unknown."
+      else
+        @short_url = "http://#{config[:hostname]}/#{@url.code}"
+        haml :info
+      end
     end
     
     # GET /b3d
     #
     # Redirect to the shortened URL
     get '/:code' do
-      url = Firefly::Url.decode(params[:code])
+      @url = Firefly::Url.first(:code => params[:code])
 
-      if url.nil?
+      if @url.nil?
         status 404
         "Sorry, that code is unknown."
       else
-        url.visit!
-        redirect url.url, 301
+        @url.register_click!
+        redirect @url.url, 301
       end
     end
     

@@ -4,14 +4,14 @@ describe "Url" do
   
   describe "shortening" do
     
-    it "should generate a hash after create" do
+    it "should generate a code after create" do
       url = Firefly::Url.shorten("http://example.com/")
-      url.hash.should_not be_nil
+      Firefly::Url.first(:url => "http://example.com/").code.should_not be_nil
     end
     
     it "should set a clicks count of 0 for newly shortened urls" do
       url = Firefly::Url.shorten("http://example.com/")
-      url.clicks.should eql(0)
+      Firefly::Url.first(:url => "http://example.com/").clicks.should eql(0)
     end
     
     it "should create a new Firefly::Url with a new long_url" do
@@ -32,10 +32,10 @@ describe "Url" do
     before(:each) do
       Firefly::Url.create(
         :url => 'http://example.com/123', 
-        :hash => 'alpha', 
+        :code => 'alpha', 
         :clicks => 69
       )
-      @url = Firefly::Url.first(:hash => 'alpha')
+      @url = Firefly::Url.first(:code => 'alpha')
     end
     
     it "should increase the click count" do
