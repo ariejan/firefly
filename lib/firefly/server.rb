@@ -64,6 +64,7 @@ module Firefly
     before do
       @authenticated = has_valid_api_cookie?
       @config        = config
+      @title         = "Firefly &mdash; #{@config[:hostname]}"
     end
     
     get '/' do

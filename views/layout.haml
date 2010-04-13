@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title Firefly
+    %title #{@title}
     %meta(charset="UTF-8")
     %link{ :rel => "stylesheet", :href => u('reset.css') }
     %link{ :rel => "stylesheet", :href => u('style.css') }
@@ -10,7 +10,7 @@
     .header
       %ul.nav
         %li.current
-          %a{ :href => '/' } Firefly
+          %a{ :href => '/' } #{@title}
           
     #main
       = yield
