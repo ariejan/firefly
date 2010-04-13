@@ -36,12 +36,12 @@ describe "Firefly" do
   
   describe "adding a URL" do
     it "should be okay adding a new URL" do
-      post '/api/add', :url => 'http://example.org', :api_key => 'test'
+      get '/api/add', :url => 'http://example.org', :api_key => 'test'
       last_response.should be_ok
     end
     
     it "should return the shortened URL" do
-      post '/api/add', :url => 'http://example.org', :api_key => 'test'
+      get '/api/add', :url => 'http://example.org', :api_key => 'test'
       
       url = Firefly::Url.first(:url => "http://example.org")
       
@@ -49,21 +49,21 @@ describe "Firefly" do
     end
     
     it "should return a 401 on a wrong API key" do
-      post '/api/add', :url => 'http://example.org', :api_key => 'false'
+      get '/api/add', :url => 'http://example.org', :api_key => 'false'
       last_response.status.should eql(401)
     end
     
     it "should create a new Firefly::Url" do
       lambda {
-        post '/api/add', :url => 'http://example.org', :api_key => 'test'
+        get '/api/add', :url => 'http://example.org', :api_key => 'test'
       }.should change(Firefly::Url, :count).by(1)
     end
   
     it "should not create the same Firefly::Url twice" do
-      post '/api/add', :url => 'http://example.org', :api_key => 'test'
+      get '/api/add', :url => 'http://example.org', :api_key => 'test'
     
       lambda {
-        post '/api/add', :url => 'http://example.org', :api_key => 'test'
+        get '/api/add', :url => 'http://example.org', :api_key => 'test'
       }.should_not change(Firefly::Url, :count).by(1)    
     end
   end

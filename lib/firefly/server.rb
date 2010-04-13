@@ -76,10 +76,10 @@ module Firefly
       redirect '/'
     end
     
-    # POST /add?url=http://ariejan.net&api_key=test
+    # GET /add?url=http://ariejan.net&api_key=test
     #
     # Returns the shortened URL
-    post '/api/add' do
+    get '/api/add' do
       validate_api_permission
       @url    = params[:url]
       @code, @result = generate_short_url(@url)
