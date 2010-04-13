@@ -2,9 +2,10 @@ module Firefly
   class Config < Hash
     
     DEFAULTS = {
-      :hostname   => "localhost:3000",
-      :api_key    => "test",
-      :database   => "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3"
+      :hostname    => "localhost:3000",
+      :api_key     => "test",
+      :database    => "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3",
+      :recent_urls => 25
     }
     
     def initialize obj

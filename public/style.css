@@ -73,3 +73,12 @@ body { padding:0; margin:0; }
 #main p.pagination a.more { float:right;}
 
 #main form.clear-failed {float:right; margin-top:-10px;}
+
+#main input.big_url { font-size: 1.8em; padding: 0.2em; }
+
+#main h2 { color: #ce1212;}
+
+#main .sidebox { float: right; width: 320px; }
+
+#main .the_form { margin-bottom: 30px; }
+#main table tr td.label { font-weight: bold; }

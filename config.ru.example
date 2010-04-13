@@ -10,6 +10,9 @@ app = Firefly::Server.new do
   # Use Sqlite3 by default
   set :database,    "sqlite3://#{Dir.pwd}/firefly.sqlite3"
   
+  # Set number of recent urls to show
+  set :recent_urls, 10
+  
   # You can use MySQL as well. 
   # Make sure to install the do_mysql gem:
   #    sudo gem install do_mysql

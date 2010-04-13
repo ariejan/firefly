@@ -44,6 +44,10 @@ module Firefly
         end
       end
       
+      def short_url(url)
+        "http://#{config[:hostname]}/#{url.code}"
+      end
+      
       def generate_short_url(url = nil)
         code, result = nil, nil
 
@@ -63,6 +67,7 @@ module Firefly
     end
     
     get '/' do
+      @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ :created_at.desc ])
       haml :index
     end
     

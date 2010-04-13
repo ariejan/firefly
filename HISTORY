@@ -1,5 +1,9 @@
 = HEAD
 
+ * 2010-04-13 - Added recent urls to dashboard [ariejan]
+              - Added bookmarklet [ariejan]
+              - Split up Firefly codebase for better testing and maintainability [ariejan]
+
  * 2010-04-02 - Added Ruby 1.9.x compatibility. [ariejan]
 
 = 0.2.0 / 2010-03-29 

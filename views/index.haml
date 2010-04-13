@@ -1,20 +1,38 @@
 - if @authenticated
-  %h1 How about shortening a URL?
-
-  %form{ :action => '/api/add', :method => 'post' }
-    %input{ :type => "hidden", :name => "visual", :value => "1" }
-    %p
-      %label{ :for => 'url' } Long and ugly URL
-      %input{ :type => 'text', :name => 'url', :id => 'url' }
-    %p
-      %input{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Shorten this!" }
   
-  %h2 Bookmarklet
+  .sidebox
+    %h2 Bookmarklet
 
-  %p
-    Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
-  %p
-    %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key=#{@config[:api_key]}&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+    %p
+      Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
+    %p
+      %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key=#{@config[:api_key]}&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+      
+  %h1 How about shortening a URL?
+  
+  .the_form
+    %form{ :action => '/api/add', :method => 'post' }
+      %input{ :type => "hidden", :name => "visual", :value => "1" }
+      %p
+        %input.big_url{ :type => 'text', :name => 'url', :id => 'url', :size => 50 }
+      %p
+        %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
+      
+  %h2 Recently shortened
+  
+  %table
+    %tr
+      %td.label Short URL
+      %td.label Full URL
+      %td.label Clicks
+      %td.label Shortened at
+    - @urls.each do |url|
+      %tr
+        %td.value #{short_url(url)}
+        %td.value <a href="#{url.url}">#{url.url}</a>
+        %td.value= url.clicks
+        %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
+  
   
 - else
   %h1 Please enter your API key
