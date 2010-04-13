@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2010-04-13 - Added links to source and issues in footer. [ariejan]
+
 = 0.3.1 / 2010-04-13
 
  * 2010-04-13 - Fixed issue with setting `created_at` timestamp. [ariejan]
