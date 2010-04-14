@@ -14,7 +14,11 @@ After you have installed the Firefly gem you should create a `config.ru` file th
     disable :run
     
     app = Firefly::Server.new do
+      # The domain you use for shortening.
       set :hostname,    "localhost:3000"
+      # set :hostname,    "aj.gs"
+      
+      # Used for authenticating you.
       set :api_key,     "test"
       
       # Use Sqlite3 by default
@@ -24,6 +28,16 @@ After you have installed the Firefly gem you should create a `config.ru` file th
       # Make sure to install the do_mysql gem:
       #    sudo gem install do_mysql
       # set :database,    "mysql://root@localhost/firefly"
+      
+      # Set the number of recent urls to show in the overview.
+      # Defaults to 25
+      # set :recent_urls, 10
+      
+      # Set the tweet template.
+      # The tag %short_url% will be replaced with the actual url.
+      #
+      # Default: Check this out: %short_url%
+      # set :tweet,       "I loved this: %short_url% - Go check it out now!"
     end
     
     run app
@@ -41,8 +55,10 @@ All configuration is done in `config.ru`.
  * `:hostname` sets the hostname to use for shortened URLs. 
  * `:api_key` sets the API key. This key is required when posting new URLs
  * `:database` a database URI that [DataMapper][1] can understand.
+ * `:recent_urls` sets the number of URLs to show in the overview. Default: 25.
+ * `:tweet` set the template to use for tweets. Default: `"Check this out: %short_url%"`
 
-It's possible to use all kinds of backends with DataMapper. Sqlite3 and MySQL have been tested, but others like MongoDB may work as well. 
+It's possible to use all kinds of backends with DataMapper. Sqlite3 and MySQL have been tested, but others may work as well. 
 
 [1]: http://datamapper.org/
 

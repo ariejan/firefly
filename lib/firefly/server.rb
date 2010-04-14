@@ -64,6 +64,11 @@ module Firefly
         return false unless @highlight
         @highlight == url.code
       end
+      
+      # Format a tweet
+      def tweet(url)
+        config[:tweet].gsub('%short_url%', url)
+      end
     end
     
     before do

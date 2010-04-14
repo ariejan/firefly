@@ -26,6 +26,7 @@
       %td.label Full URL
       %td.label Clicks
       %td.label Shortened at
+      %td.label &nbsp;
     - @urls.each do |url|
       %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
@@ -33,7 +34,10 @@
         %td.value.fill <a href="#{url.url}">#{url.url}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
-  
+        %td.value
+          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(url))}" }
+            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
+          
   :javascript
     $(document).ready(function() {
       $('input.short_url').each(function(index) {
