@@ -28,12 +28,18 @@
       %td.label Shortened at
     - @urls.each do |url|
       %tr
-        %td.value #{short_url(url)}
-        %td.value <a href="#{url.url}">#{url.url}</a>
-        %td.value= url.clicks
+        %td.value
+          %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 21 }
+        %td.value.fill <a href="#{url.url}">#{url.url}</a>
+        %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
   
-  
+  :javascript
+    $(document).ready(function() {
+      $('input.short_url').each(function(index) {
+        $(this).mouseup(function() { $(this).select(); });
+      });  
+    });
 - else
   %h1 Please enter your API key
   

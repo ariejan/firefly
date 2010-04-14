@@ -1,5 +1,7 @@
 = HEAD
 
+ * 2010-04-14 - Made it easy to copy a short url from the overview. Closes #4 [ariejan]
+
  * 2010-04-13 - Added links to source and issues in footer. [ariejan]
               - Include domain name in page title. [ariejan]
 

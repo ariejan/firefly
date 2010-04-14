@@ -81,4 +81,10 @@ body { padding:0; margin:0; }
 #main .sidebox { float: right; width: 320px; }
 
 #main .the_form { margin-bottom: 30px; }
+
+#main table tr td.value { white-space: nowrap; }
+#main table tr td.value.fill { width: 100%; white-space: normal; }
+#main table tr td.value.center { text-align: center; }
 #main table tr td.label { font-weight: bold; }
+#main table tr td input.short_url { border: 1px solid #CCC; color: #666; font-family: Monaco, 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 11px; height: 16px; padding: 3px 5px 2px; width: 160px; }
+#main table tr td .clippy_tooltip { float: left; margin: 4px 0px 0px 5px; display: inline-block; padding: 0px;}

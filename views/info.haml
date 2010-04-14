@@ -6,14 +6,21 @@
 %table
   %tr
     %td.label Short URL
-    %td.value #{@short_url}
-  %tr
     %td.label Full URL
-    %td.value <a href="#{@url.url}">#{@url.url}</a>
-  %tr
     %td.label Clicks
-    %td.value= @url.clicks
-  %tr
     %td.label Shortened at
+  
+  %tr
+    %td.value
+      %input{ :type => "text", :value => short_url(@url), :class => 'short_url', :size => 21 }
+    %td.value.fill <a href="#{@url.url}">#{@url.url}</a>
+    %td.value.center= @url.clicks
     %td.value= @url.created_at.strftime("%Y-%m-%d %H:%M")
+
+:javascript
+  $(document).ready(function() {
+    $('input.short_url').each(function(index) {
+      $(this).mouseup(function() { $(this).select(); });
+    });  
+  });
   
