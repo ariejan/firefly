@@ -27,7 +27,7 @@
       %td.label Clicks
       %td.label Shortened at
     - @urls.each do |url|
-      %tr
+      %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
           %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 21 }
         %td.value.fill <a href="#{url.url}">#{url.url}</a>

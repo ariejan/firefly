@@ -59,15 +59,22 @@ module Firefly
         
         return code, result
       end
+      
+      def is_highlighted?(url)
+        return false unless @highlight
+        @highlight == url.code
+      end
     end
     
     before do
       @authenticated = has_valid_api_cookie?
       @config        = config
+      @highlight     = nil
       @title         = "Firefly &mdash; #{@config[:hostname]}"
     end
     
     get '/' do
+      @highlight ||= params[:highlight]
       @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ :created_at.desc ])
       haml :index
     end
@@ -94,7 +101,7 @@ module Firefly
       @result ||= "Invalid URL specified."
       
       if params[:visual]
-        redirect "/api/info/#{@code}"
+        redirect "/?highlight=#{@code}"
       else
         @result
       end

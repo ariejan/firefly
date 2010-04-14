@@ -83,6 +83,7 @@ body { padding:0; margin:0; }
 #main .the_form { margin-bottom: 30px; }
 
 #main table tr td.value { white-space: nowrap; }
+#main table tr.highlighted td.value { background-color: #ccffcc; }
 #main table tr td.value.fill { width: 100%; white-space: normal; }
 #main table tr td.value.center { text-align: center; }
 #main table tr td.label { font-weight: bold; }
