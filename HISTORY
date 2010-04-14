@@ -1,5 +1,7 @@
 = HEAD
 
+ * 2010-04-14 - Disable autocomplete and spellcheck for the big url input field. Closes #6 [ariejan]
+
  * 2010-04-14 - After shortening an URL highlight the url that was added in the overview. [ariejan]
 
  * 2010-04-14 - Made it easy to copy a short url from the overview. Closes #4 [ariejan]
