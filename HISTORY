@@ -1,3 +1,11 @@
+= HEAD
+
+ * 2010-04-15 - Show the highlighted URL separately. Closes #7. [ariejan]
+
+= 0.4.0.1 / 2010-04-14
+
+ * 2010-04-14 - Correct file permission of `public/images/twitter.png`. [ariejan]
+
 = 0.4.0 / 2010-04-14
 
  * 2010-04-14 - Added button to quickly tweet a URL. Closes #3 [ariejan]

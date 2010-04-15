@@ -79,7 +79,7 @@ module Firefly
     end
     
     get '/' do
-      @highlight ||= params[:highlight]
+      @highlight ||= Firefly::Url.first(:code => params[:highlight])
       @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ :created_at.desc ])
       haml :index
     end

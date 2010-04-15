@@ -18,6 +18,26 @@
       %p
         %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
       
+  - if @highlight
+    %h2 Your short URL
+    
+    %table
+      %tr
+        %td.label Short URL
+        %td.label Full URL
+        %td.label Clicks
+        %td.label Shortened at
+        %td.label &nbsp;
+      %tr.highlighted
+        %td.value
+          %input{ :type => "text", :value => short_url(@highlight), :class => 'short_url', :size => 21 }
+        %td.value.fill <a href="#{@highlight.url}">#{@highlight.url}</a>
+        %td.value.center= @highlight.clicks
+        %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
+        %td.value
+          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(@highlight))}" }
+            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
+
   %h2 Recently shortened
   
   %table
