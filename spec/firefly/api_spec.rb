@@ -10,13 +10,13 @@ describe "API" do
   [:post, :get].each do |verb|
     describe "adding a URL by #{verb.to_s.upcase}" do
       it "should be okay adding a new URL" do
-        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test'
+        self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test'
         last_response.should be_ok
       end
 
       it "should return the shortened URL" do
-        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test'
-        url = Firefly::Url.first(:url => "http://example.org")
+        self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test'
+        url = Firefly::Url.first(:url => "http://example.org/")
 
         last_response.body.should eql("http://test.host/#{url.code}")
       end
@@ -35,7 +35,7 @@ describe "API" do
       end
       
       it "should redirect to the highlighted URL when visual is enabled" do
-        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
+        self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test', :visual => "1"
         follow_redirect!
         
         last_request.path.should eql("/")
@@ -43,15 +43,15 @@ describe "API" do
       end
       
       it "should store the API key in the session with visual enabled" do
-        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
+        self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test', :visual => "1"
         follow_redirect!        
         
         last_response.body.should_not match(/API Key/)
       end
       
       it "should highlight the shortened URL" do
-        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
-        url = Firefly::Url.first(:url => "http://example.org")
+        self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test', :visual => "1"
+        url = Firefly::Url.first(:url => "http://example.org/")
         follow_redirect!        
         
         last_request.query_string.should match(/highlight=#{url.code}/)

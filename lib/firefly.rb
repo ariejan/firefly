@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'open-uri'
 require 'sinatra'
 require 'dm-core'
 require 'dm-aggregates'

@@ -25,6 +25,14 @@ describe "Url" do
         Firefly::Url.shorten("http://example.com/")
       }.should_not change(Firefly::Url, :count)
     end
+    
+    it "should normalize urls correctly" do
+      # Note the trailing '/'
+      Firefly::Url.shorten("http://example.com/")
+      lambda {
+        Firefly::Url.shorten("http://example.com")
+      }.should_not change(Firefly::Url, :count)      
+    end
   end
   
   describe "long url validation" do

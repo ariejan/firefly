@@ -19,12 +19,18 @@ module Firefly
     def self.shorten(long_url)
       return nil unless valid_url?(long_url)
       
+      long_url = normalize_url(long_url)
+      
       the_url = Firefly::Url.first(:url => long_url) || Firefly::Url.create(:url => long_url)
       the_url.update(:code => Firefly::Base62.encode(the_url.id.to_i)) if the_url.code.nil?
       the_url
     end  
     
     private
+      # Normalize the URL
+      def self.normalize_url(url)
+        URI.parse(url).normalize.to_s
+      end
       
       # Validates the URL to be a valid http or https one. 
       def self.valid_url?(url)
