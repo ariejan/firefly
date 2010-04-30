@@ -53,8 +53,13 @@ module Firefly
 
         if !url.nil? && url != ""
           ff_url  = Firefly::Url.shorten(url)
-          code    = ff_url.code
-          result  = "http://#{config[:hostname]}/#{code}"
+          if !ff_url.nil?
+            code    = ff_url.code
+            result  = "http://#{config[:hostname]}/#{code}"
+          else
+            code    = nil
+            result  = "ERROR: The URL you posted is invalid."
+          end
         end
         
         return code, result
@@ -85,7 +90,8 @@ module Firefly
     end
     
     get '/' do
-      @highlight ||= Firefly::Url.first(:code => params[:highlight])
+      @highlight = Firefly::Url.first(:code => params[:highlight])
+      @error     = params[:highlight] == "error"
       @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ :created_at.desc ])
       haml :index
     end
@@ -107,6 +113,7 @@ module Firefly
       
       if params[:visual]
         store_api_key(params[:api_key])
+        @code ||= "error"
         redirect "/?highlight=#{@code}"
       else
         @result

@@ -17,6 +17,12 @@
         %input.big_url{ :type => 'text', :name => 'url', :id => 'url', :size => 50, :autocomplete => "off", :spellcheck => 'false' }
       %p
         %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
+  
+  - if @error
+    %h2 Whoops!
+    
+    %p
+      The URL you posted is invalid. Please post a valid HTTP url, including the protocol (http://) prefix.
       
   - if @highlight
     %h2 Your short URL

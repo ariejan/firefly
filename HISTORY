@@ -1,5 +1,6 @@
 = HEAD
 
+ * 2010-04-30 - Validate URLs to be valid HTTP or HTTPS, don't accept others. [ariejan]
  * 2010-04-30 - Don't ask for the API key after shortening a URL with the bookmarklet. [ariejan]
  
  * 2010-04-15 - Show the highlighted URL separately. Closes #7. [ariejan]

@@ -16,10 +16,22 @@ describe "API" do
 
       it "should return the shortened URL" do
         self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test'
-
         url = Firefly::Url.first(:url => "http://example.org")
 
         last_response.body.should eql("http://test.host/#{url.code}")
+      end
+
+      it "should show an error when shortening an invalid URL" do
+        self.send verb, '/api/add', :url => 'ftp://example.org', :api_key => 'test'
+        
+        last_response.body.should match("The URL you posted is invalid")
+      end
+      
+      it "should show an error when shortening an invalid URL in visual mode" do
+        self.send verb, '/api/add', :url => 'ftp://example.org', :api_key => 'test', :visual => "1"
+        follow_redirect!
+        
+        last_response.body.should match("The URL you posted is invalid")
       end
       
       it "should redirect to the highlighted URL when visual is enabled" do
@@ -64,8 +76,8 @@ describe "API" do
         }.should_not change(Firefly::Url, :count).by(1)    
       end
     end
-  end
-    
+  end  
+  
   describe "getting information" do
     before(:each) do
       @created_at = Time.now

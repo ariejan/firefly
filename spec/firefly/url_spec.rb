@@ -3,7 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 describe "Url" do
   
   describe "shortening" do
-    
     it "should generate a code after create" do
       url = Firefly::Url.shorten("http://example.com/")
       Firefly::Url.first(:url => "http://example.com/").code.should_not be_nil
@@ -26,6 +25,29 @@ describe "Url" do
         Firefly::Url.shorten("http://example.com/")
       }.should_not change(Firefly::Url, :count)
     end
+  end
+  
+  describe "long url validation" do
+    [ "http://ariejan.net", 
+      "https://ariejan.net",
+      "http://ariejan.net/page/1",
+      "http://ariejan.net/page/1?q=x&p=123",
+      "http://ariejan.net:8080/"
+    ].each do |url|
+      it "should accept #{url}" do
+        Firefly::Url.shorten(url).should_not be_nil
+      end
+    end
+    
+    [ "ftp://ariejan.net", 
+      "irc://freenode.org/rails",
+      "skype:adevroom",
+      "ariejan.net",
+    ].each do |url|
+      it "should not accept #{url}" do
+        Firefly::Url.shorten(url).should be_nil
+      end
+    end    
   end
   
   describe "clicking" do
