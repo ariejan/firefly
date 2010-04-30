@@ -21,6 +21,29 @@ describe "API" do
 
         last_response.body.should eql("http://test.host/#{url.code}")
       end
+      
+      it "should redirect to the highlighted URL when visual is enabled" do
+        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
+        follow_redirect!
+        
+        last_request.path.should eql("/")
+        last_request.should be_get
+      end
+      
+      it "should store the API key in the session with visual enabled" do
+        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
+        follow_redirect!        
+        
+        last_response.body.should_not match(/API Key/)
+      end
+      
+      it "should highlight the shortened URL" do
+        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test', :visual => "1"
+        url = Firefly::Url.first(:url => "http://example.org")
+        follow_redirect!        
+        
+        last_request.query_string.should match(/highlight=#{url.code}/)
+      end
 
       it "should return a 401 on a wrong API key" do
         self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'false'

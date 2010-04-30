@@ -1,5 +1,7 @@
 = HEAD
 
+ * 2010-04-30 - Don't ask for the API key after shortening a URL with the bookmarklet. [ariejan]
+ 
  * 2010-04-15 - Show the highlighted URL separately. Closes #7. [ariejan]
 
 = 0.4.0.1 / 2010-04-14

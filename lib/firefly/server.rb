@@ -69,6 +69,12 @@ module Firefly
       def tweet(url)
         config[:tweet].gsub('%short_url%', url)
       end
+      
+      def store_api_key(key)
+        if key == config[:api_key]
+          set_api_cookie(config[:api_key])
+        end
+      end
     end
     
     before do
@@ -85,13 +91,7 @@ module Firefly
     end
     
     post '/api/set' do
-      if params[:api_key] == config[:api_key]
-        puts "MATCH!"
-        set_api_cookie(config[:api_key])
-      else
-        puts "NOT MATCH"
-      end
-      
+      store_api_key(params[:api_key])
       redirect '/'
     end
     
@@ -106,6 +106,7 @@ module Firefly
       @result ||= "Invalid URL specified."
       
       if params[:visual]
+        store_api_key(params[:api_key])
         redirect "/?highlight=#{@code}"
       else
         @result
