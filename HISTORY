@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2010-06-06 - Handle invalid API keys correctly.
+
 = 0.4.2 / 2010-06-06 
 
  * 2010-06-06 - Added a fix for MySQL users to update the `code` column to use the correct collation. Fixes #9 [ariejan]
@@ -5,11 +9,8 @@
 = 0.4.1 / 2010-04-30
 
  * 2010-04-30 - Normalize URLs before shortening them. This prevents false duplicates. [ariejan]
-
  * 2010-04-30 - Validate URLs to be valid HTTP or HTTPS, don't accept others. [ariejan]
- 
  * 2010-04-30 - Don't ask for the API key after shortening a URL with the bookmarklet. [ariejan]
- 
  * 2010-04-15 - Show the highlighted URL separately. Closes #7. [ariejan]
 
 = 0.4.0.1 / 2010-04-14
@@ -19,13 +20,9 @@
 = 0.4.0 / 2010-04-14
 
  * 2010-04-14 - Added button to quickly tweet a URL. Closes #3 [ariejan]
-
  * 2010-04-14 - Disable autocomplete and spellcheck for the big url input field. Closes #6 [ariejan]
-
  * 2010-04-14 - After shortening an URL highlight the url that was added in the overview. [ariejan]
-
  * 2010-04-14 - Made it easy to copy a short url from the overview. Closes #4 [ariejan]
-
  * 2010-04-13 - Added links to source and issues in footer. [ariejan]
               - Include domain name in page title. [ariejan]
 
@@ -38,19 +35,14 @@
  * 2010-04-13 - Added recent urls to dashboard [ariejan]
               - Added bookmarklet [ariejan]
               - Split up Firefly codebase for better testing and maintainability [ariejan]
-
  * 2010-04-02 - Added Ruby 1.9.x compatibility. [ariejan]
 
 = 0.2.0 / 2010-03-29 
   
  * 2010-03-29 - Added some GUI sugar at '/'. [ariejan]
- 
  * 2010-03-29 - Added /api/info/:code for basic stats on the specified URL. [ariejan]
-
  * 2010-03-29 - Keep count of the number of visits to a given URL. [ariejan]
-
  * 2010-03-29 - Fill in `created_at` for Firefly::Url. [ariejan]
- 
  * 2010-03-29 - Changed Firefly::Url String properties to a length of 255 instead of the default of 50. [ariejan]
 
 = 0.1 / 2010-03-28

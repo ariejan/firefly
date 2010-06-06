@@ -62,6 +62,11 @@ describe "API" do
         last_response.status.should eql(401)
       end
 
+			it "should not return a shortened URL on 401" do
+        self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'false'
+				last_response.body.should match(/Permission denied: Invalid API key/)
+			end
+
       it "should create a new Firefly::Url" do
         lambda {
           self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test'

@@ -40,7 +40,9 @@ module Firefly
       def validate_api_permission
         if !has_valid_api_cookie? && params[:api_key] != config[:api_key]
           status 401
-          return "Permission denied: Invalid API key." 
+          return false 
+				else
+					return true
         end
       end
       
@@ -106,7 +108,8 @@ module Firefly
     #
     # Returns the shortened URL
     api_add = lambda {
-      validate_api_permission
+      validate_api_permission or return "Permission denied: Invalid API key"
+
       @url           = params[:url]
       @code, @result = generate_short_url(@url)
       @result ||= "Invalid URL specified."
@@ -127,8 +130,8 @@ module Firefly
     #
     # Show info on the URL
     get '/api/info/:code' do
-      validate_api_permission
-      
+      validate_api_permission or return "Permission denied: Invalid API key"
+
       @url = Firefly::Url.first(:code => params[:code])
       
       if @url.nil?
