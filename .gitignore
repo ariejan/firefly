@@ -2,3 +2,4 @@
 config.ru
 pkg
 .rvmrc
+*.swp
