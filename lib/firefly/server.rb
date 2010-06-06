@@ -163,11 +163,40 @@ module Firefly
       begin
         DataMapper.setup(:default, @config[:database])
         DataMapper.auto_upgrade!
+        check_mysql_collation
       rescue
         puts "Error setting up database connection. Please check the `database` setting in config.ru"
+				puts $!
+				puts "-------"
+				puts $!.backtrace
         exit(1)
       end
     end
+
+		def check_mysql_collation(first_try = true)
+			# Make sure the 'code' column is case-sensitive. This hack is for
+			# MySQL only, other database systems don't have this problem. 
+			if DataMapper.repository(:default).adapter =~ "DataMapper::Adapters::MysqlAdapter"
+				query     = "SHOW FULL COLUMNS FROM firefly_urls WHERE Field='code';"
+				collation = DataMapper.repository(:default).adapter.select(query)[0][:collation]
+
+				if collation != "utf8_bin"
+					if first_try
+					  puts " ~ Your MySQL database is not using the 'utf8-bin' collation. Trying to fix..."
+				    DataMapper.repository(:default).adapter.execute("ALTER TABLE firefly_urls MODIFY `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin;")
+						return check_mysql_collation(false) 
+					else
+						puts " ~ Failed to set the collation for `code` in `firefly_urls`. Please see http://wiki.github.com/ariejan/firefly/faq for details."
+						return false
+					end
+				else
+					if !first_try
+					  puts " ~ Successfully fixed your database."
+					end
+				  return true
+				end
+			end
+		end
   end
 end
 
