@@ -2,6 +2,8 @@ require 'rubygems'
 require 'open-uri'
 require 'sinatra'
 require 'dm-core'
+require 'dm-migrations'
+require 'dm-transactions'
 require 'dm-aggregates'
 
 $:.unshift(File.dirname(__FILE__)) unless

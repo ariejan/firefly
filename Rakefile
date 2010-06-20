@@ -11,14 +11,16 @@ begin
     gemspec.homepage = "http://github.com/ariejan/firefly"
     gemspec.authors = ["Ariejan de Vroom"]
     gemspec.rubyforge_project = 'firefly'
-    gemspec.add_dependency('sinatra', '>= 1.0')
-    gemspec.add_dependency('dm-core', '>= 0.10.2')
-    gemspec.add_dependency('dm-aggregates', '>= 0.10.2')
-    gemspec.add_dependency('do_sqlite3', '>= 0.10.1.1')
-    gemspec.add_dependency('haml', '>= 2.2.22')
+    gemspec.add_dependency('sinatra', '~> 1.0')
+    gemspec.add_dependency('dm-core', '~> 1.0.0')
+    gemspec.add_dependency('dm-migrations', '~> 1.0.0')
+    gemspec.add_dependency('dm-transactions', '~> 1.0.0')
+    gemspec.add_dependency('dm-aggregates', '~> 1.0.0')
+    gemspec.add_dependency('dm-sqlite-adapter', '~> 1.0.0')
+    gemspec.add_dependency('haml', '~> 3.0.9')
     
-    gemspec.add_development_dependency('rspec', '>= 1.3.0')
-    gemspec.add_development_dependency('rack-test', '>= 0.5.3')
+    gemspec.add_development_dependency('rspec', '~> 1.3.0')
+    gemspec.add_development_dependency('rack-test', '~> 0.5.3')
   end
   Jeweler::GemcutterTasks.new
 rescue LoadError
