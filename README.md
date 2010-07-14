@@ -1,6 +1,14 @@
 # FireFly
 
-FireFly is a simple URL shortener for personal use.
+FireFly is a simple URL shortener for personal (or not so personal) use.
+
+# Quick-Start (2 minutes) with Heroku
+
+See the [screencast][1] or [written instructions][2] on how to setup Firefly within 2 minutes on [Heroku][3]
+
+[1]: http://ariejan.net/2010/07/12/screencast-firefly-url-shortener-in-less-than-25-minutes/
+[2]: http://ariejan.net/2010/06/06/setup-your-own-firefly-url-shortener-in-25-minutes/
+[3]: http://heroku.com
 
 # Installation
 
