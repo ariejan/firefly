@@ -6,9 +6,6 @@ FireFly is a simple URL shortener for personal (or not so personal) use.
 
 See the [screencast][1] or [written instructions][2] on how to setup Firefly within 2 minutes on [Heroku][3]
 
-[1]: http://ariejan.net/2010/07/12/screencast-firefly-url-shortener-in-less-than-25-minutes/
-[2]: http://ariejan.net/2010/06/06/setup-your-own-firefly-url-shortener-in-25-minutes/
-[3]: http://heroku.com
 
 # Installation
 
@@ -62,13 +59,11 @@ All configuration is done in `config.ru`.
 
  * `:hostname` sets the hostname to use for shortened URLs. 
  * `:api_key` sets the API key. This key is required when posting new URLs
- * `:database` a database URI that [DataMapper][1] can understand.
+ * `:database` a database URI that [DataMapper][4] can understand.
  * `:recent_urls` sets the number of URLs to show in the overview. Default: 25.
  * `:tweet` set the template to use for tweets. Default: `"Check this out: %short_url%"`
 
 It's possible to use all kinds of backends with DataMapper. Sqlite3 and MySQL have been tested, but others may work as well. 
-
-[1]: http://datamapper.org/
 
 # Usage
 
@@ -101,22 +96,25 @@ After you restart Terminal.app (or at least reload the `.profile` file) you can 
     
 # Bugs, Feature Requests, etc. 
 
- * [Source][2]
- * [Issue tracker][3]
-
-[2]: http://github.com/ariejan/firefly
-[3]: http://github.com/ariejan/firefly/issues
+ * [Source][5]
+ * [Issue tracker][6]
 
 Feel free to fork Firefly and create patches for it. Here are some basic instructions:
 
- * [Fork][4] Firefly 
+ * [Fork][7] Firefly 
  * Create a topic branch - `git checkout -b my_branch`
  * Push to your branch - `git push origin my_branch`
- * Create an [Issue][5] with a link to your branch
+ * Create an [Issue][8] with a link to your branch
  * That's it!
  
-[4]: http://help.github.com/forking/
-[5]: http://github.com/ariejan/firefly/issues
+[1]: http://ariejan.net/2010/07/12/screencast-firefly-url-shortener-in-less-than-25-minutes/
+[2]: http://ariejan.net/2010/06/06/setup-your-own-firefly-url-shortener-in-25-minutes/
+[3]: http://heroku.com
+[4]: http://datamapper.org/
+[5]: http://github.com/ariejan/firefly
+[6]: http://github.com/ariejan/firefly/issues
+[7]: http://help.github.com/forking/
+[8]: http://github.com/ariejan/firefly/issues
 
 # License
 
