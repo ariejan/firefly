@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{firefly}
-  s.version = "0.4.4"
+  s.version = "0.4.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ariejan de Vroom"]
-  s.date = %q{2010-06-20}
+  s.date = %q{2010-08-10}
   s.description = %q{FireFly is a simple URL shortner for personal use. It's powered by Sinatra and can be run with any Rack-capable web server.}
   s.email = %q{ariejan@ariejan.net}
   s.extra_rdoc_files = [
@@ -36,10 +36,14 @@ Gem::Specification.new do |s|
      "public/jquery-1.4.2.min.js",
      "public/reset.css",
      "public/style.css",
+     "spec/files/export.csv",
+     "spec/files/export.xml",
+     "spec/files/export.yml",
      "spec/firefly/api_spec.rb",
      "spec/firefly/base62_spec.rb",
      "spec/firefly/server_spec.rb",
      "spec/firefly/url_spec.rb",
+     "spec/fixtures/urls.yml",
      "spec/spec.opts",
      "spec/spec_helper.rb",
      "views/index.haml",
