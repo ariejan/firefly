@@ -134,6 +134,11 @@ describe "API" do
       get '/api/export.xml', :api_key => "test"
       last_response.body.should eql(spec_file('export.xml'))
     end
+
+    it "should export in YAML" do
+      get '/api/export.yml', :api_key => "test"
+      last_response.body.should eql(spec_file('export.yml'))
+    end
   end
 
   describe "api key" do

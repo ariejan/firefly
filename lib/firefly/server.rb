@@ -187,6 +187,28 @@ module Firefly
       output
     end
 
+    # GET /api/export.yml
+    #
+    # Download a YAML file with all shortened URLs
+    get '/api/export.yml' do
+      validate_api_permission or return "Permission denied: Invalid API key"
+
+      @urls = Firefly::Url.all(:order => [ :created_at.asc ])
+
+      output = {}
+      @urls.each do |url|
+        output[url.code] = { 'code' => url.code, 
+                'short_url' => short_url(url), 
+                'long_url' => url.url, 
+                'clicks' => url.clicks, 
+                'created_at' => url.created_at.strftime('%Y-%m-%d %H:%M:%S') }
+      end
+
+      attachment "firefly-export.yml"
+      content_type "text/yaml"
+      YAML::dump(output)
+    end
+
     # GET /b3d
     #
     # Redirect to the shortened URL

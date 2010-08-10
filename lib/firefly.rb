@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'open-uri'
 require 'cgi'
+require 'yaml'
 require 'sinatra'
 require 'dm-core'
 require 'dm-migrations'
