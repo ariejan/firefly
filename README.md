@@ -6,7 +6,6 @@ FireFly is a simple URL shortener for personal (or not so personal) use.
 
 See the [screencast][1] or [written instructions][2] on how to setup Firefly within 2 minutes on [Heroku][3]
 
-
 # Installation
 
     sudo gem install firefly

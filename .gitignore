@@ -1,4 +1,5 @@
 *.sqlite3
+sinatra.log
 config.ru
 pkg
 .rvmrc

@@ -6,6 +6,8 @@ module Firefly
   class Server < Sinatra::Base
     enable :sessions
     
+    enable :logging 
+    
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
     set :views,   "#{dir}/views"

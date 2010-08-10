@@ -6,7 +6,7 @@
     %p
       Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
     %p
-      %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key=#{@config[:api_key]}&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+      %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
       
   %h1 How about shortening a URL?
   
@@ -23,6 +23,8 @@
     
     %p
       The URL you posted is invalid. Please post a valid HTTP url, including the protocol (http://) prefix.
+
+    %p= @url
       
   - if @highlight
     %h2 Your short URL

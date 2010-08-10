@@ -69,7 +69,7 @@ describe "API" do
 
       it "should create a new Firefly::Url" do
         lambda {
-          self.send verb, '/api/add', :url => 'http://example.org', :api_key => 'test'
+          self.send verb, '/api/add', :url => 'http://example.org/', :api_key => 'test'
         }.should change(Firefly::Url, :count).by(1)
       end
 
@@ -117,6 +117,21 @@ describe "API" do
     it "should validate API permissions" do
       get '/api/info/alpha', :api_key => false
       last_response.status.should be(401)
+    end
+  end
+
+  describe "api key" do
+    def app
+      Firefly::Server.new do
+        set :hostname,    "test.host"
+        set :api_key,     "test#!"
+        set :database,    "sqlite3://#{Dir.pwd}/firefly_test.sqlite3"
+      end
+    end
+    
+    it "should be okay adding a new URL" do
+      self.send :get, '/api/add', :url => 'http://example.org/api_key_test', :api_key => 'test#!'
+      last_response.should be_ok
     end
   end
 end

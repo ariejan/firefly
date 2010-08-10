@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2010-08-10 - Updated bookmarklet JavaScript to escape URL-unsafe charachters in the API key. Fixes #17
+
 = 0.4.4 / 2010-06-20
 
  * 2010-06-20 - Updated gem dependencies for DataMapper 1.0.0
