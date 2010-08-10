@@ -147,6 +147,8 @@ module Firefly
     #
     # Download a CSV file with all shortened URLs
     get '/api/export.csv' do
+      validate_api_permission or return "Permission denied: Invalid API key"
+
       @urls = Firefly::Url.all(:order => [ :created_at.asc ])
 
       output = "\"Code\",\"Short URL\",\"Long URL\",\"Clicks\",\"Created at\"\n"
@@ -156,6 +158,32 @@ module Firefly
 
       attachment "firefly-export.csv"
       content_type "text/csv"
+      output
+    end
+
+    # GET /api/export.xml
+    #
+    # Download a XML file with all shortened URLs
+    get '/api/export.xml' do
+      validate_api_permission or return "Permission denied: Invalid API key"
+
+      @urls = Firefly::Url.all(:order => [ :created_at.asc ])
+
+      # I know, manual XML creation is ugly, at least you don't need nokogiri
+      output = "<urls>\n"
+      @urls.each do |url|
+        output += "  <url>\n"
+        output += "    <code>#{url.code}</code>\n"
+        output += "    <short_url>#{short_url(url)}</short_url>\n"
+        output += "    <long_url>#{url.url}</long_url>\n"
+        output += "    <clicks>#{url.clicks}</clicks>\n"
+        output += "    <created_at>#{url.created_at.strftime('%Y-%m-%d %H:%M:%S')}</created_at>\n"
+        output += "  </url>\n"
+      end
+      output += "</urls>\n"
+
+      attachment "firefly-export.xml"
+      content_type "text/xml"
       output
     end
 

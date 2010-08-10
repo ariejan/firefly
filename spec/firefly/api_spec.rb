@@ -129,6 +129,11 @@ describe "API" do
       get '/api/export.csv', :api_key => "test"
       last_response.body.should eql(spec_file('export.csv'))
     end
+
+    it "should export in XML" do
+      get '/api/export.xml', :api_key => "test"
+      last_response.body.should eql(spec_file('export.xml'))
+    end
   end
 
   describe "api key" do
