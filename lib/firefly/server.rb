@@ -6,8 +6,6 @@ module Firefly
   class Server < Sinatra::Base
     enable :sessions
     
-    enable :logging 
-    
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
     set :views,   "#{dir}/views"
@@ -144,7 +142,23 @@ module Firefly
         haml :info
       end
     end
-    
+   
+    # GET /api/export.csv
+    #
+    # Download a CSV file with all shortened URLs
+    get '/api/export.csv' do
+      @urls = Firefly::Url.all(:order => [ :created_at.asc ])
+
+      output = "\"Code\",\"Short URL\",\"Long URL\",\"Clicks\",\"Created at\"\n"
+      @urls.each do |url|
+        output += "\"#{url.code}\",\"#{short_url(url)}\",\"#{url.url}\",\"#{url.clicks}\",\"#{url.created_at.strftime('%Y-%m-%d %H:%M:%S')}\"\n" 
+      end
+
+      attachment "firefly-export.csv"
+      content_type "text/csv"
+      output
+    end
+
     # GET /b3d
     #
     # Redirect to the shortened URL

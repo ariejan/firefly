@@ -120,6 +120,17 @@ describe "API" do
     end
   end
 
+  describe "exports" do
+    before(:each) do
+      load_fixtures 
+    end
+
+    it "should export in CSV" do
+      get '/api/export.csv', :api_key => "test"
+      last_response.body.should eql(spec_file('export.csv'))
+    end
+  end
+
   describe "api key" do
     def app
       Firefly::Server.new do

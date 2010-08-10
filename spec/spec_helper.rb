@@ -6,6 +6,7 @@ require 'rack/test'
 require 'spec'
 require 'spec/autorun'
 require 'spec/interop/test'
+require 'yaml'
 
 # set test environment
 set :environment, :test
@@ -36,5 +37,17 @@ Spec::Runner.configure do |config|
         transaction.begin
         r.adapter.push_transaction(transaction)
       end
+  end
+
+  # Loads the urls.yml fixtures.
+  def load_fixtures
+    Firefly::Url.destroy
+    urls = YAML::load(File.open('spec/fixtures/urls.yml'))
+    urls.each { |key, url| Firefly::Url.create(url) }
+  end
+
+  # Load a spec file and return its contents
+  def spec_file(filename)
+    File.open('spec/files/'+filename) { |f| f.read }
   end
 end
