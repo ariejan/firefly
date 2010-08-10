@@ -1,5 +1,6 @@
 = HEAD
 
+ * 2010-08-10 - Added sorting of shortened URLs. Closes #12.
  * 2010-08-10 - Added CSV, XML and YAML export of all shortened URLs. Closes #11.
  * 2010-08-10 - Updated bookmarklet JavaScript to escape URL-unsafe charachters in the API key. Fixes #17
 
