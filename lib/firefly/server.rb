@@ -94,7 +94,12 @@ module Firefly
     get '/' do
       @highlight = Firefly::Url.first(:code => params[:highlight])
       @error     = params[:highlight] == "error"
-      @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ :created_at.desc ])
+
+      sort_column = params[:s] || 'created_at'
+      sort_order  = params[:d] || 'desc'
+
+      @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ sort_column.to_sym.send(sort_order.to_sym) ] )
+
       haml :index
     end
     

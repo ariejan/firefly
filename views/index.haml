@@ -50,10 +50,10 @@
   
   %table
     %tr
-      %td.label Short URL
-      %td.label Full URL
-      %td.label Clicks
-      %td.label Shortened at
+      %td.label(nowrap='nowrap') Short URL <a href="/?s=code&d=asc">▲</a> <a href="/?s=code&d=desc">▼</a>
+      %td.label(nowrap='nowrap') Full URL <a href="/?s=url&d=asc">▲</a> <a href="/?s=url&d=desc">▼</a>
+      %td.label(nowrap='nowrap') Clicks <a href="/?s=clicks&d=asc">▲</a> <a href="/?s=clicks&d=desc">▼</a>
+      %td.label(nowrap='nowrap') Shortened At <a href="/?s=created_at&d=asc">▲</a> <a href="/?s=created_at&d=desc">▼</a>
       %td.label &nbsp;
     - @urls.each do |url|
       %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
@@ -71,6 +71,18 @@
       $('input.short_url').each(function(index) {
         $(this).mouseup(function() { $(this).select(); });
       });  
+
+      if (window.location.search == "") {
+        var pathname = window.location.pathname + '?s=created_at&d=desc';
+      } else {
+        var pathname = window.location.pathname + window.location.search;
+      }
+
+      $('#main table tr td.label a').each(function(index) {
+        if ($(this).attr('href') == pathname) {
+          $(this).addClass('highlight');
+        }
+      });
     });
 - else
   %h1 Please enter your API key
