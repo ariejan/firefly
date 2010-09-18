@@ -33,6 +33,28 @@ describe "Url" do
         Firefly::Url.shorten("http://example.com")
       }.should_not change(Firefly::Url, :count)      
     end
+
+    it "should shortend urls containing spaces" do
+      lambda {
+        url = Firefly::Url.shorten("http://example.com/article with spaces.html")
+      }.should change(Firefly::Url, :count).by(1)
+    end
+
+    it "should escape urls with spaces" do
+      url = Firefly::Url.shorten("http://example.com/article with spaces.html")
+      url.url.should eql("http://example.com/article%20with%20spaces.html")
+    end
+
+    it "should shortend urls containing weird characters" do
+      lambda {
+        url = Firefly::Url.shorten("http://example.com/?a=\11\15")
+      }.should change(Firefly::Url, :count).by(1)
+    end
+
+    it "should escape urls with weird characters" do
+      url = Firefly::Url.shorten("http://example.com/?a=\11\15")
+      url.url.should eql("http://example.com/?a=%09%0D")
+    end
   end
   
   describe "long url validation" do
