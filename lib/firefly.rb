@@ -7,6 +7,8 @@ require 'dm-core'
 require 'dm-migrations'
 require 'dm-transactions'
 require 'dm-aggregates'
+require 'barby'
+require 'barby/outputter/png_outputter'
 
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))

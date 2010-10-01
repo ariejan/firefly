@@ -214,6 +214,23 @@ module Firefly
       YAML::dump(output)
     end
 
+    # GET /b3d.png
+    #
+    # Return a QR code image
+    get '/:code.png' do
+      @url = Firefly::Url.first(:code => params[:code])
+
+      if @url.nil?
+        status 404
+        "Sorry, that code is unknown."
+      else
+        qr = Barby::QrCode.new(short_url(@url))
+        content_type('image/png')
+        cache_control :public, :max_age => 2592000 # One month
+        body(qr.to_png(:xdim => 15, :margin => 30))
+      end
+    end
+
     # GET /b3d
     #
     # Redirect to the shortened URL
