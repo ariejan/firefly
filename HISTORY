@@ -1,4 +1,4 @@
-= HEAD
+= 1.1.0 / 2010-10-02
 
  * 2010-10-02 - Generate a QR Code image when accessing http://:host/:code.png
 
