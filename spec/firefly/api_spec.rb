@@ -21,6 +21,27 @@ describe "API" do
         last_response.body.should eql("http://test.host/#{url.code}")
       end
 
+      it "should permit including a requested short code" do
+        self.send verb, '/api/add', :url => "http://example.org", :short => 'orz', :api_key => 'test'
+        
+        last_response.should be_ok
+        last_response.body.should eql("http://test.host/orz")
+      end
+
+      it "should not permit too-short, too-long, or duplicate short codes" do
+        self.send verb, '/api/add', :url => "http://example.org", :short => 'orz', :api_key => 'test'
+        last_response.should be_ok
+        self.send verb, '/api/add', :url => "http://example.com", :short => 'orz', :api_key => 'test'
+        last_response.should_not be_ok
+        last_response.body.should match("The URL you posted is invalid")
+        self.send verb, '/api/add', :url => "http://example.org", :short => 'or', :api_key => 'test'
+        last_response.should_not be_ok
+        last_response.body.should match("The URL you posted is invalid")
+        self.send verb, '/api/add', :url => "http://example.org", :short => 'orz' * 37, :api_key => 'test'
+        last_response.should_not be_ok
+        last_response.body.should match("The URL you posted is invalid")
+      end
+
       it "should show an error when shortening an invalid URL" do
         self.send verb, '/api/add', :url => 'ftp://example.org', :api_key => 'test'
         

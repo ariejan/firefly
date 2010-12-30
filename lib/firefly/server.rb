@@ -50,11 +50,11 @@ module Firefly
         "http://#{config[:hostname]}/#{url.code}"
       end
       
-      def generate_short_url(url = nil)
+      def generate_short_url(url = nil, requested_code = nil)
         code, result = nil, nil
 
         if !url.nil? && url != ""
-          ff_url  = Firefly::Url.shorten(url)
+          ff_url  = Firefly::Url.shorten(url, requested_code)
           if !ff_url.nil?
             code    = ff_url.code
             result  = "http://#{config[:hostname]}/#{code}"
@@ -115,8 +115,10 @@ module Firefly
     api_add = lambda {
       validate_api_permission or return "Permission denied: Invalid API key"
 
-      @url           = params[:url]
-      @code, @result = generate_short_url(@url)
+      @url            = params[:url]
+      @requested_code = params[:short]
+      @code, @result = generate_short_url(@url, @requested_code)
+      invalid = @result =~ /you posted is invalid/
       @result ||= "Invalid URL specified."
       
       if params[:visual]
@@ -124,6 +126,7 @@ module Firefly
         @code ||= "error"
         redirect "/?highlight=#{@code}"
       else
+        head 422 if invalid
         @result
       end
     }
