@@ -1,3 +1,8 @@
+= 1.2.0 / 2011-01-26
+
+ * 2010-12-30 - Support for specifying one's own preferred short codes via the API. Also, invalid URL creations return a 422 code, not 200. 
+ * 2010-12-30 - Make Barby optional to save some gems for those of us who don't need QR code generation. [mboeh]
+
 = 1.1.0 / 2010-10-02
 
  * 2010-10-02 - Generate a QR Code image when accessing http://:host/:code.png
