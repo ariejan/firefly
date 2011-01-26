@@ -21,6 +21,14 @@ describe "API" do
         last_response.body.should eql("http://test.host/#{url.code}")
       end
 
+      it "should generate a short code if `short` is blank" do
+        self.send verb, '/api/add', :url => "http://example.org", :short => "", :api_key => 'test'
+        url = Firefly::Url.first(:url => "http://example.org/")
+
+        last_response.should be_ok
+        last_response.body.should eql("http://test.host/#{url.code}")
+      end
+
       it "should permit including a requested short code" do
         self.send verb, '/api/add', :url => "http://example.org", :short => 'orz', :api_key => 'test'
         

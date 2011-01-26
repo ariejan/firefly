@@ -18,6 +18,8 @@ module Firefly
     
     # Shorten a long_url and return a new FireFly::Url
     def self.shorten(long_url, code = nil)
+      code = nil if code !~ /\S/
+
       return nil unless valid_url?(long_url)
       return nil unless valid_code?(code)
 

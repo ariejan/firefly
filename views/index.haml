@@ -14,7 +14,9 @@
     %form{ :action => '/api/add', :method => 'post' }
       %input{ :type => "hidden", :name => "visual", :value => "1" }
       %p
-        %input.big_url{ :type => 'text', :name => 'url', :id => 'url', :size => 50, :autocomplete => "off", :spellcheck => 'false' }
+        %input.big_url{ :type => 'text', :placeholder => "Paste your long URL here...", :name => 'url', :id => 'url', :size => 40, :autocomplete => "off", :spellcheck => 'false' }
+        %span{ :style => "font-size: 1.8em;" }= '>' 
+        %input.big_url{ :type => 'text', :placeholder => "Optional short code", :name => 'short', :id => 'short', :size => 20, :autocomplete => "off", :spellcheck => 'false' }
       %p
         %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
   
