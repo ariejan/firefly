@@ -1,6 +1,8 @@
 require File.join(File.dirname(__FILE__), '..', 'lib', 'firefly.rb')
 
 require 'rubygems'
+require "bundler/setup"
+
 require 'sinatra'
 require 'rack/test'
 require 'spec'
