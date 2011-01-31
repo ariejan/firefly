@@ -51,14 +51,14 @@
     - @urls.each do |url|
       %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
-          %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 21 }
+          %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 31 }
         %td.value.fill <a href="#{url.url}">#{url.url}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
         %td.value
           %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(url))}" }
             %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
-          
+
   :javascript
     $(document).ready(function() {
       $('input.short_url').each(function(index) {

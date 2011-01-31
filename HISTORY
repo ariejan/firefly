@@ -1,5 +1,6 @@
 = HEAD
 
+ * 2011-02-01 Improved GUI [ariejan]
  * 2011-02-01 Improved error handling / reporting [ariejan]
  * 2011-01-31 Added a CodeFactory to generate unique short codes (and prevent collisions with custom short codes) [ariejan]
  * 2011-01-30 Use dm-mysql-adapater as default, dm-sqlite-adapter is optional [ariejan]

@@ -8,13 +8,11 @@
     %script{ :type => "text/javascript", :src => u('jquery-1.4.2.min.js') }
   %body
     .header
-      %ul.nav
-        %li.current
-          %a{ :href => '/' } #{@title}
-          
+      %h1= @title
+
     #main
       = yield
-    
+
     #footer
       %p
         Powered by <a href="http://github.com/ariejan/firefly">Firefly</a> v#{Firefly::VERSION} | <a href="http://github.com/ariejan/firefly/tree/v#{Firefly::VERSION}">Source</a> | <a href="http://github.com/ariejan/firefly/issues">Issues</a> | Export <a href="/api/export.csv">CSV</a>, <a href="/api/export.yml">YAML</a> or <a href="/api/export.xml">XML</a>

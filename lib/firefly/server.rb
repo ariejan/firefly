@@ -94,7 +94,7 @@ module Firefly
       @authenticated = has_valid_api_cookie?
       @config        = config
       @highlight     = nil
-      @title         = "Firefly &mdash; #{@config[:hostname]}"
+      @title         = "Firefly at http://#{@config[:hostname]}"
     end
 
     get '/' do
