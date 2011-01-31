@@ -1,7 +1,7 @@
 module Firefly
   class Url
     include DataMapper::Resource
-    
+
     VALID_URL_REGEX  = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
     VALID_CODE_REGEX = /^[a-z0-9\-_]{3,64}$/i
 
@@ -26,12 +26,26 @@ module Firefly
       long_url = normalize_url(long_url)
 
       the_url = Firefly::Url.first(:url => long_url) || Firefly::Url.create(:url => long_url)
-      code ||= Firefly::Base62.encode(the_url.id.to_i)
-      the_url.update(:code => code) if the_url.code.nil?
+      return the_url unless the_url.code.nil?
+
+      code ||= get_me_a_code
+      the_url.update(:code => code)
       the_url
     end
 
     private
+
+      # Generate a unique code, not already in use.
+      def self.get_me_a_code
+        code = Firefly::CodeFactory.next_code!
+
+        if Firefly::Url.count(:code => code) > 0 
+          code = get_me_a_code
+        end
+
+        code
+      end
+
       # Normalize the URL
       def self.normalize_url(url)
         URI.parse(URI.escape(url)).normalize.to_s

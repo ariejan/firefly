@@ -14,36 +14,34 @@ After you have installed the Firefly gem you should create a `config.ru` file th
 
     require 'rubygems'
     require 'firefly'
-    
+
     disable :run
-    
+
     app = Firefly::Server.new do
       # The domain you use for shortening.
-      set :hostname,    "localhost:3000"
+      set :hostname,    "localhost:9393"
       # set :hostname,    "aj.gs"
-      
+
       # Used for authenticating you.
-      set :api_key,     "test"
-      
-      # Use Sqlite3 by default
-      set :database,    "sqlite3://#{Dir.pwd}/firefly.sqlite3"
-      
-      # You can use MySQL as well. 
-      # Make sure to install the do_mysql gem:
-      #    sudo gem install do_mysql
-      # set :database,    "mysql://root@localhost/firefly"
-      
+      set :api_key,     "changeme"
+
+      # Default MySQL:
+      set :database,    "mysql://root:password@localhost/firefly"
+
+      # Use Sqlite3: gem install dm-sqlite-adapter
+      # set :database,    "sqlite3://#{Dir.pwd}/firefly.sqlite3"
+
       # Set the number of recent urls to show in the overview.
       # Defaults to 25
       # set :recent_urls, 10
-      
+
       # Set the tweet template.
       # The tag %short_url% will be replaced with the actual url.
       #
       # Default: Check this out: %short_url%
       # set :tweet,       "I loved this: %short_url% - Go check it out now!"
     end
-    
+
     run app
 
 Next you can start your web server. You may try thin:
@@ -90,17 +88,17 @@ If you're on a MacOSX you could add the following function to your  `~/.profile`
       URL=$1
       SHORT_URL=`curl -s -d "url=$URL&api_key=test" http://localhost:3000/api/add`
       echo $SHORT_URL | pbcopy
-      
+
       echo "-- $URL => $SHORT_URL"
       echo "Short URL copied to clipboard."
     }
-    
+
 After you restart Terminal.app (or at least reload the `.profile` file) you can use it like this:
 
     $ shorten http://ariejan.net
     -- http://ariejan.net => http://aj.gs/1
     Short URL copied to clipboard.
-    
+
 # Bugs, Feature Requests, etc. 
 
  * [Source][5]
@@ -110,10 +108,11 @@ Feel free to fork Firefly and create patches for it. Here are some basic instruc
 
  * [Fork][7] Firefly 
  * Create a topic branch - `git checkout -b my_branch`
+ * Write tests and code
  * Push to your branch - `git push origin my_branch`
- * Create an [Issue][8] with a link to your branch
+ * Create a GitHub Pull Request so I can merge your changes
  * That's it!
- 
+
 [1]: http://ariejan.net/2010/07/12/screencast-firefly-url-shortener-in-less-than-25-minutes/
 [2]: http://ariejan.net/2010/06/06/setup-your-own-firefly-url-shortener-in-25-minutes/
 [3]: http://heroku.com
@@ -131,7 +130,7 @@ Feel free to fork Firefly and create patches for it. Here are some basic instruc
 # License
 
     Copyright (c) 2009 Ariejan de Vroom
-    
+
     Permission is hereby granted, free of charge, to any person obtaining
     a copy of this software and associated documentation files (the
     "Software"), to deal in the Software without restriction, including
@@ -139,10 +138,10 @@ Feel free to fork Firefly and create patches for it. Here are some basic instruc
     distribute, sublicense, and/or sell copies of the Software, and to
     permit persons to whom the Software is furnished to do so, subject to
     the following conditions:
-    
+
     The above copyright notice and this permission notice shall be
     included in all copies or substantial portions of the Software.
-    
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
     MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND

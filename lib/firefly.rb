@@ -11,7 +11,6 @@ begin
   require 'barby'
   require 'barby/outputter/png_outputter'
 rescue LoadError
-   
 end
 
 $:.unshift(File.dirname(__FILE__)) unless
@@ -24,5 +23,6 @@ end
 require 'firefly/config'
 require 'firefly/version'
 require 'firefly/base62'
+require 'firefly/code_factory'
 require 'firefly/url'
 require 'firefly/server'

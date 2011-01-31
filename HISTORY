@@ -1,33 +1,38 @@
+= HEAD
+
+ * 2011-01-31 Added a CodeFactory to generate unique short codes (and prevent collisions with custom short codes) [ariejan]
+ * 2011-01-30 Use dm-mysql-adapater as default, dm-sqlite-adapter is optional [ariejan]
+
 = 1.2.1/1.2.2 / 2011-01-26
 
  * 2011-01-26 - Added GUI support for custom short codes. [ariejan]
 
 = 1.2.0 / 2011-01-26
 
- * 2010-12-30 - Support for specifying one's own preferred short codes via the API. Also, invalid URL creations return a 422 code, not 200. 
+ * 2010-12-30 - Support for specifying one's own preferred short codes via the API. Also, invalid URL creations return a 422 code, not 200. [ariejan]
  * 2010-12-30 - Make Barby optional to save some gems for those of us who don't need QR code generation. [mboeh]
 
 = 1.1.0 / 2010-10-02
 
- * 2010-10-02 - Generate a QR Code image when accessing http://:host/:code.png
+ * 2010-10-02 - Generate a QR Code image when accessing http://:host/:code.png [ariejan]
 
 = 1.0.0 / 2010-09-19
 
- * 2010-09-18 - Added better support for URLs with spaces and other special characters. Closes #19
+ * 2010-09-18 - Added better support for URLs with spaces and other special characters. Closes #19 [ariejan]
 
 = 0.4.5 / 2010-08-10
 
- * 2010-08-10 - Added sorting of shortened URLs. Closes #12.
- * 2010-08-10 - Added CSV, XML and YAML export of all shortened URLs. Closes #11.
- * 2010-08-10 - Updated bookmarklet JavaScript to escape URL-unsafe charachters in the API key. Fixes #17
+ * 2010-08-10 - Added sorting of shortened URLs. Closes #12. [ariejan]
+ * 2010-08-10 - Added CSV, XML and YAML export of all shortened URLs. Closes #11. [ariejan]
+ * 2010-08-10 - Updated bookmarklet JavaScript to escape URL-unsafe charachters in the API key. Fixes #17 [ariejan]
 
 = 0.4.4 / 2010-06-20
 
- * 2010-06-20 - Updated gem dependencies for DataMapper 1.0.0
+ * 2010-06-20 - Updated gem dependencies for DataMapper 1.0.0 [ariejan]
 
 = 0.4.3 / 2010-06-06 
 
- * 2010-06-06 - Handle invalid API keys correctly.
+ * 2010-06-06 - Handle invalid API keys correctly. [ariejan]
 
 = 0.4.2 / 2010-06-06 
 

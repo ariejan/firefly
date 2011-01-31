@@ -24,7 +24,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency("dm-migrations",     ["~> 1.0.2"])
   s.add_runtime_dependency("dm-transactions",   ["~> 1.0.2"])
   s.add_runtime_dependency("dm-aggregates",     ["~> 1.0.2"])
-  s.add_runtime_dependency("dm-sqlite-adapter", ["~> 1.0.2"])
+  s.add_runtime_dependency("dm-mysql-adapter",  ["~> 1.0.2"])
   s.add_runtime_dependency("haml",              ["~> 3.0.18"])
 
   s.add_development_dependency("rspec",         ["~> 1.3.0"])

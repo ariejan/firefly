@@ -19,7 +19,7 @@ set :logging, false
 @@app = Firefly::Server.new do
   set :hostname,    "test.host"
   set :api_key,     "test"
-  set :database,    "sqlite3://#{Dir.pwd}/firefly_test.sqlite3"
+  set :database,    "mysql://root@localhost/firefly_test"
 end
 
 Spec::Runner.configure do |config|
