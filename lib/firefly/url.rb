@@ -20,8 +20,8 @@ module Firefly
     def self.shorten(long_url, code = nil)
       code = nil if code !~ /\S/
 
-      return nil unless valid_url?(long_url)
-      return nil unless valid_code?(code)
+      raise Firefly::InvalidUrlError.new unless valid_url?(long_url)
+      raise Firefly::InvalidCodeError.new unless valid_code?(code)
 
       long_url = normalize_url(long_url)
 

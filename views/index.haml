@@ -1,5 +1,4 @@
 - if @authenticated
-  
   .sidebox
     %h2 Bookmarklet
 
@@ -7,9 +6,9 @@
       Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
     %p
       %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
-      
+
   %h1 How about shortening a URL?
-  
+
   .the_form
     %form{ :action => '/api/add', :method => 'post' }
       %input{ :type => "hidden", :name => "visual", :value => "1" }
@@ -19,18 +18,10 @@
         %input.big_url{ :type => 'text', :placeholder => "Optional short code", :name => 'short', :id => 'short', :size => 20, :autocomplete => "off", :spellcheck => 'false' }
       %p
         %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
-  
-  - if @error
-    %h2 Whoops!
-    
-    %p
-      The URL you posted is invalid. Please post a valid HTTP url, including the protocol (http://) prefix.
 
-    %p= @url
-      
   - if @highlight
     %h2 Your short URL
-    
+
     %table
       %tr
         %td.label Short URL

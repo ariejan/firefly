@@ -3,6 +3,12 @@ require 'haml'
 require 'digest/md5'
 
 module Firefly
+  class InvalidUrlError < StandardError
+  end
+
+  class InvalidCodeError < StandardError
+  end
+
   class Server < Sinatra::Base
     enable :sessions
 
@@ -53,15 +59,15 @@ module Firefly
       def generate_short_url(url = nil, requested_code = nil)
         code, result = nil, nil
 
-        if !url.nil? && url != ""
+        begin
           ff_url  = Firefly::Url.shorten(url, requested_code)
-          if !ff_url.nil?
-            code    = ff_url.code
-            result  = "http://#{config[:hostname]}/#{code}"
-          else
-            code    = nil
-            result  = "ERROR: The URL you posted is invalid."
-          end
+          code, result = ff_url.code, "http://#{config[:hostname]}/#{ff_url.code}"
+        rescue Firefly::InvalidUrlError
+          code, result = nil, "ERROR: The URL you posted is invalid."
+        rescue Firefly::InvalidCodeError
+          code, result = nil, "ERROR: The code is invalid or already exists."
+        rescue
+          code, result = nil, "ERROR: An unknown error occured"
         end
 
         return code, result
@@ -117,14 +123,12 @@ module Firefly
 
       @url            = params[:url]
       @requested_code = params[:short]
-      @code, @result = generate_short_url(@url, @requested_code)
-      invalid = @result =~ /you posted is invalid/
-      @result ||= "Invalid URL specified."
+      @code, @result  = generate_short_url(@url, @requested_code)
+      invalid = @code.nil?
 
       if params[:visual]
         store_api_key(params[:api_key])
-        @code ||= "error"
-        redirect "/?highlight=#{@code}"
+        @code.nil? ? haml(:error) : redirect("/?highlight=#{@code}")
       else
         head 422 if invalid
         @result

@@ -41,31 +41,25 @@ describe "API" do
         last_response.should be_ok
         self.send verb, '/api/add', :url => "http://example.com", :short => 'orz', :api_key => 'test'
         last_response.should_not be_ok
-        last_response.body.should match("The URL you posted is invalid")
       end
 
       it "should not allow short codes of size < 3" do
         self.send verb, '/api/add', :url => "http://example.org", :short => 'or', :api_key => 'test'
         last_response.should_not be_ok
-        last_response.body.should match("The URL you posted is invalid")
       end
 
       it "should not allow short codes of size > 64" do
         self.send verb, '/api/add', :url => "http://example.org", :short => 'x' * 65, :api_key => 'test'
         last_response.should_not be_ok
-        last_response.body.should match("The URL you posted is invalid")
       end
 
       it "should show an error when shortening an invalid URL" do
         self.send verb, '/api/add', :url => 'ftp://example.org', :api_key => 'test'
-
         last_response.body.should match("The URL you posted is invalid")
       end
 
       it "should show an error when shortening an invalid URL in visual mode" do
         self.send verb, '/api/add', :url => 'ftp://example.org', :api_key => 'test', :visual => "1"
-        follow_redirect!
-
         last_response.body.should match("The URL you posted is invalid")
       end
 

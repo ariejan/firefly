@@ -36,6 +36,7 @@ Spec::Runner.configure do |config|
   config.before(:each)  do
       repository do |r|
         transaction = DataMapper::Transaction.new(r)
+        Firefly::CodeFactory.first.update(:count => 0)
         transaction.begin
         r.adapter.push_transaction(transaction)
       end

@@ -9,7 +9,7 @@
     %td.label Full URL
     %td.label Clicks
     %td.label Shortened at
-  
+
   %tr
     %td.value
       %input{ :type => "text", :value => short_url(@url), :class => 'short_url', :size => 21 }
@@ -21,6 +21,6 @@
   $(document).ready(function() {
     $('input.short_url').each(function(index) {
       $(this).mouseup(function() { $(this).select(); });
-    });  
+    });
   });
-  
+

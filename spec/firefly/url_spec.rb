@@ -64,7 +64,6 @@ describe "Url" do
       url_correct = Firefly::Url.shorten("http://example.com/testit")
       url_correct.code.should_not eql(the_code)
       url_correct.code.should eql(the_code.next)
-
     end
   end
 
@@ -86,7 +85,9 @@ describe "Url" do
       "ariejan.net",
     ].each do |url|
       it "should not accept #{url}" do
-        Firefly::Url.shorten(url).should be_nil
+        lambda {
+          Firefly::Url.shorten(url).should be_nil
+        }.should raise_error(Firefly::InvalidUrlError)
       end
     end
   end
