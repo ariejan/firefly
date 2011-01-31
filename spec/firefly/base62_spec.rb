@@ -13,7 +13,7 @@ describe "Base62 encoding/decoding" do
     it "should encode #{input} correctly to #{output}" do
       Firefly::Base62.encode(input).should eql(output)
     end
-    
+
     it "should decode correctly" do
       Firefly::Base62.decode(output).should eql(input)
     end
