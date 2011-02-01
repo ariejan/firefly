@@ -1,3 +1,3 @@
 module Firefly
-  VERSION = "2.0.0.pre1"
+  VERSION = "1.3.0"
 end
