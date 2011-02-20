@@ -56,6 +56,16 @@ describe "Url" do
       url.url.should eql("http://example.com/?a=%09%0D")
     end
 
+    it "should not unescape invalid URL characters" do
+      url = Firefly::Url.shorten("http://example.com/?a=%09")
+      url.url.should eql("http://example.com/?a=%09")
+    end
+
+    it "should not escape already escaped URLs" do
+      url = Firefly::Url.shorten("http://en.wikipedia.org/wiki/Tarski%27s_circle-squaring_problem")
+      url.url.should eql("http://en.wikipedia.org/wiki/Tarski's_circle-squaring_problem")
+    end
+
     it "should automatically forward code to prevent duplicates" do
       url = Firefly::Url.shorten("http://example.com/")
       the_code = url.code.next

@@ -48,7 +48,8 @@ module Firefly
 
       # Normalize the URL
       def self.normalize_url(url)
-        URI.parse(URI.escape(url)).normalize.to_s
+        url = URI.escape(URI.unescape(url))
+        URI.parse(url).normalize.to_s
       end
 
       # Validates the URL to be a valid http or https one. 
