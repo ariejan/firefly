@@ -105,10 +105,11 @@ module Firefly
 
       # Format a tweet
       def tweet(url, message = nil)
-        if message.nil?
+        if message.nil? || message == ""
           config[:tweet].gsub('%short_url%', url)
         else
-          "#{message} #{url}"
+          max_length = 140-1-url.size
+          [message.strip.slice(0...max_length), url].join(' ')
         end
       end
 

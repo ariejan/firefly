@@ -60,6 +60,26 @@ describe "Sharing" do
           self.send verb, '/api/share', @params.merge(:target => 'facebook')
         }.should_not change(Firefly::Url, :count)
       end
+
+      it "should shorten long titles to fit within the 140 character limit" do
+        title = "This is a very long title that will never fit in the current one hundred and forty character limit enforce by twitter. Or does it?"
+        self.send verb, '/api/share', @params.merge(:title => title)
+        url = Firefly::Url.first(:url => @params[:url])
+
+        short_url = "http://test.host/#{url.code}"
+        expected  = title.slice(0...(140-1-short_url.length)) + ' ' + short_url
+
+        last_response['Location'].should include(URI.escape(expected))
+      end
+
+      it "should strip the title to remove any unnecessary white space" do
+        title = "      Test post        "
+        self.send verb, '/api/share', @params.merge(:title => title)
+        url = Firefly::Url.first(:url => @params[:url])
+
+        last_response['Location'].should include(URI.escape("Test post http://test.host/#{url.code}"))
+        last_response['Location'].should_not include(URI.escape(title))
+      end
     end
   end
 end
