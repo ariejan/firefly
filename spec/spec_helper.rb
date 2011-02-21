@@ -17,9 +17,13 @@ set :raise_errors, true
 set :logging, false
 
 @@app = Firefly::Server.new do
-  set :hostname,    "test.host"
-  set :api_key,     "test"
-  set :database,    "mysql://root@localhost/firefly_test"
+  set :hostname,        "test.host"
+  set :api_key,         "test"
+  set :database,        "mysql://root@localhost/firefly_test"
+
+  set :sharing_key,     "asdfasdf"
+  set :sharing_targets, [:twitter]
+  set :sharing_domains, ["example.com", "example.net"]
 end
 
 Spec::Runner.configure do |config|

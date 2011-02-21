@@ -43,6 +43,27 @@ module Firefly
         key == Digest::MD5.hexdigest(config[:api_key])
       end
 
+      def has_valid_share_key?
+        @config[:sharing_key] == params[:key]
+      end
+
+      def has_valid_share_domain?
+        result = @config[:sharing_domains].any? { |domain| params[:url].include?(domain) }
+      end
+
+      def has_valid_share_target?
+        @config[:sharing_targets].include?(params[:target].downcase.to_sym)
+      end
+
+      def validate_share_permission
+        if has_valid_share_key? && has_valid_share_domain? && has_valid_share_target?
+          return true
+        else
+          status 401
+          return false
+        end
+      end
+
       def validate_api_permission
         if !has_valid_api_cookie? && params[:api_key] != config[:api_key]
           status 401
@@ -79,8 +100,12 @@ module Firefly
       end
 
       # Format a tweet
-      def tweet(url)
-        config[:tweet].gsub('%short_url%', url)
+      def tweet(url, message = nil)
+        if message.nil?
+          config[:tweet].gsub('%short_url%', url)
+        else
+          "#{message} #{url}"
+        end
       end
 
       def store_api_key(key)
@@ -137,6 +162,21 @@ module Firefly
 
     get '/api/add', &api_add
     post '/api/add', &api_add
+
+    api_share = lambda {
+      validate_share_permission or return "Cannot share that URL."
+
+      @url = params[:url]
+      @code, @result = generate_short_url(@url, nil)
+      invalid = @code.nil?
+
+      if params[:target].downcase.to_sym == :twitter
+        redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+      end
+    }
+
+    get '/api/share', &api_share
+    post '/api/share', &api_share
 
     # GET /b3d+
     #
