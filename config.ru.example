@@ -17,6 +17,20 @@ app = Firefly::Server.new do
   # Make sure to install the do_mysql gem:
   #    sudo gem install do_mysql
   # set :database,    "mysql://root@localhost/firefly"
+
+  # If you want to enable 'share to twitter'
+
+  # A secure key to be used with 'share to twitter'
+  # set :sharing_key,    "set-a-long-secure-key-here"
+  set :sharing_key,      ""
+
+  # Currently only twitter is supported
+  # set :sharing_targets, [:twitter]
+  set :sharing_targets, []
+
+  # Set the TLDs (in URLs) that are allowed to be shortened
+  # set :sharing_domains, ["example.com", "mydomain.com"]
+  set :sharing_domain, []
 end
 
 run app

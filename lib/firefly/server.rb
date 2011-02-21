@@ -44,14 +44,18 @@ module Firefly
       end
 
       def has_valid_share_key?
+        return false unless @config.has_key?(:sharing_key)
         @config[:sharing_key] == params[:key]
       end
 
       def has_valid_share_domain?
-        result = @config[:sharing_domains].any? { |domain| params[:url].include?(domain) }
+        return false unless @config.has_key?(:sharing_domains)
+        return true if @config[:sharing_domains].empty?
+        @config[:sharing_domains].any? { |domain| params[:url].include?(domain) }
       end
 
       def has_valid_share_target?
+        return false unless @config.has_key?(:sharing_domains)
         @config[:sharing_targets].include?(params[:target].downcase.to_sym)
       end
 
