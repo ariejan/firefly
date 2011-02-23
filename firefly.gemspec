@@ -8,9 +8,9 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Ariejan de Vroom"]
   s.email       = ["ariejan@ariejan.net"]
-  s.homepage    = "http://github.com/ariejan/firefly"
-  s.summary     = %q{FireFly is a simple URL shortner for personal use}
-  s.description = %q{FireFly is a simple URL shortner for personal use. It's powered by Sinatra and can be run with any Rack-capable web server.}
+  s.homepage    = "http://fireflyrb.com"
+  s.summary     = %q{Firefly is your own personal URL shortener for your own domain.}
+  s.description = %q{Firefly is your own personal URL shortener for your own domain. It's written in Ruby and powered by Sinatra. You can run it with any Rack-capable web server.}
 
   s.rubyforge_project = "firefly"
 
