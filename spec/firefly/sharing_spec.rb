@@ -80,6 +80,15 @@ describe "Sharing" do
         last_response['Location'].should include(URI.escape("Test post http://test.host/#{url.code}"))
         last_response['Location'].should_not include(URI.escape(title))
       end
+
+      it "should escape UTF-8 correctly" do
+        title = "Chávez"
+        self.send verb, '/api/share', @params.merge(:title => title)
+        url = Firefly::Url.first(:url => @params[:url])
+
+        last_response['Location'].should include("Ch%C3%A1vez")
+        last_response['Location'].should_not include("Ch%E1vez")
+      end
     end
   end
 end
