@@ -5,5 +5,5 @@ task :default => :spec
 
 desc "Run all specs"
 task "spec" do
-  exec "rspec spec"
+  exec "bundle exec rspec spec"
 end
