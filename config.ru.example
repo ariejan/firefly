@@ -25,7 +25,7 @@ app = Firefly::Server.new do
   set :sharing_key,      ""
 
   # Currently only twitter is supported
-  # set :sharing_targets, [:twitter]
+  # set :sharing_targets, [:twitter, :hyves]
   set :sharing_targets, []
 
   # Set the TLDs (in URLs) that are allowed to be shortened
