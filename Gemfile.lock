@@ -15,7 +15,7 @@ GEM
   remote: http://rubygems.org/
   specs:
     addressable (2.2.5)
-    data_objects (0.10.2)
+    data_objects (0.10.3)
       addressable (~> 2.1)
     database_cleaner (0.6.6)
     diff-lcs (1.1.2)
@@ -37,10 +37,10 @@ GEM
       do_sqlite3 (~> 0.10.2)
     dm-transactions (1.0.2)
       dm-core (~> 1.0.2)
-    do_mysql (0.10.2)
-      data_objects (= 0.10.2)
-    do_sqlite3 (0.10.2)
-      data_objects (= 0.10.2)
+    do_mysql (0.10.3)
+      data_objects (= 0.10.3)
+    do_sqlite3 (0.10.3)
+      data_objects (= 0.10.3)
     escape_utils (0.2.3)
     extlib (0.9.15)
     haml (3.0.25)
@@ -57,7 +57,7 @@ GEM
     rspec-mocks (2.5.0)
     sinatra (1.2.3)
       rack (~> 1.1)
-      tilt (< 2.0, >= 1.2.2)
+      tilt (>= 1.2.2, < 2.0)
     tilt (1.2.2)
 
 PLATFORMS
