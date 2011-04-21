@@ -22,7 +22,7 @@ set :logging, false
   set :database,        "mysql://root@localhost/firefly_test"
 
   set :sharing_key,     "asdfasdf"
-  set :sharing_targets, [:twitter, :hyves]
+  set :sharing_targets, [:twitter, :hyves, :facebook]
   set :sharing_domains, ["example.com", "example.net"]
 end
 

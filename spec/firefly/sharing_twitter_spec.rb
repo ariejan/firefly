@@ -49,15 +49,15 @@ describe "Sharing" do
         }.should_not change(Firefly::Url, :count)
       end
 
-      it "should not share to facebook" do
-        self.send verb, '/api/share', @params.merge(:target => 'facebook')
+      it "should not share to unknown target" do
+        self.send verb, '/api/share', @params.merge(:target => 'twitterbook')
         last_response.status.should eql(401)
         last_response.body.should match(/cannot share that URL/i)
       end
 
-      it "should not create a short URL for facebook" do
+      it "should not create a short URL for unknown target" do
         lambda {
-          self.send verb, '/api/share', @params.merge(:target => 'facebook')
+          self.send verb, '/api/share', @params.merge(:target => 'twitterbook')
         }.should_not change(Firefly::Url, :count)
       end
 
