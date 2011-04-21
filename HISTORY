@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2011-04-21 Added support for sharing to hyves [stalkert]
+
 = 1.4.1 - 2011-02-11
 
  * 2011-02-11 Strip leading and trailing whitespace from titles when sharing [ariejan]
