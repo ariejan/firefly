@@ -7,6 +7,10 @@ require 'dm-core'
 require 'dm-migrations'
 require 'dm-transactions'
 require 'dm-aggregates'
+
+require 'escape_utils'
+require 'escape_utils/url/rack'
+
 begin
   require 'barby'
   require 'barby/outputter/png_outputter'

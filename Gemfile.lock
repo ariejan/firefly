@@ -7,6 +7,7 @@ PATH
       dm-migrations (~> 1.0.2)
       dm-mysql-adapter (~> 1.0.2)
       dm-transactions (~> 1.0.2)
+      escape_utils (~> 0.2.3)
       haml (~> 3.0.18)
       sinatra (~> 1.0)
 
@@ -40,6 +41,7 @@ GEM
       data_objects (= 0.10.2)
     do_sqlite3 (0.10.2)
       data_objects (= 0.10.2)
+    escape_utils (0.2.3)
     extlib (0.9.15)
     haml (3.0.25)
     rack (1.2.2)
@@ -55,7 +57,7 @@ GEM
     rspec-mocks (2.5.0)
     sinatra (1.2.3)
       rack (~> 1.1)
-      tilt (>= 1.2.2, < 2.0)
+      tilt (< 2.0, >= 1.2.2)
     tilt (1.2.2)
 
 PLATFORMS
