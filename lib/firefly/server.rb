@@ -196,6 +196,8 @@ module Firefly
           redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
         when :hyves
           redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+        when :facebook
+          redirect(URI.escape("http://www.facebook.com/share.php?u=http://#{config[:hostname]}/#{@code}"))
         end
     }
 

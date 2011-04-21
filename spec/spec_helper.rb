@@ -20,7 +20,7 @@ set :logging, false
   set :database,        "sqlite3::memory:"
 
   set :sharing_key,     "asdfasdf"
-  set :sharing_targets, [:twitter, :hyves]
+  set :sharing_targets, [:twitter, :hyves, :facebook]
   set :sharing_domains, ["example.com", "example.net"]
 end
 

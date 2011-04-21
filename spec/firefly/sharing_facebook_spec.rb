@@ -11,34 +11,29 @@ describe "Sharing" do
     @params = {
       :url    => 'http://example.com/test',
       :key    => 'asdfasdf',
-      :target => 'hyves',
+      :target => 'facebook',
       :title  => 'Test post'
     }
   end
 
   [:post, :get].each do |verb|
-    describe "hyves" do
+    describe "facebook" do
       it "should create a shortened URL" do
         lambda {
           self.send verb, '/api/share', @params
         }.should change(Firefly::Url, :count).by(1)
       end
 
-      it "should redirect to hyves with status" do
+      it "should redirect to facebook with status" do
         self.send verb, '/api/share', @params
         last_response.should be_redirect
-        last_response['Location'].should match(/hyves.nl/i)
+        last_response['Location'].should match(/facebook.com/i)
       end
 
-      it "should post the title to hyves" do
+      it "should post the short url to facebook" do
         self.send verb, '/api/share', @params
         url = Firefly::Url.first(:url => @params[:url])
-        last_response['Location'].should include(URI.escape("#{@params[:title]}"))
-      end
 
-      it "should post the title and short url to hyves" do
-        self.send verb, '/api/share', @params
-        url = Firefly::Url.first(:url => @params[:url])
         last_response['Location'].should include(URI.escape("http://test.host/#{url.code}"))
       end
 
@@ -66,33 +61,6 @@ describe "Sharing" do
         }.should_not change(Firefly::Url, :count)
       end
 
-      it "should strip the title to remove any unnecessary white space" do
-        title = "      Test post        "
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
-
-        last_response['Location'].should include(URI.escape("Test post"))
-        last_response['Location'].should_not include(URI.escape(title))
-      end
-
-      it "should strip the body to remove any unnecessary white space" do
-        title = "      This is the test body        "
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
-
-        last_response['Location'].should include(URI.escape("http://test.host/#{url.code}"))
-        last_response['Location'].should_not include(URI.escape(title))
-      end
-
-
-      it "should escape UTF-8 correctly" do
-        title = "Chávez"
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
-
-        last_response['Location'].should include("Ch%C3%A1vez")
-        last_response['Location'].should_not include("Ch%E1vez")
-      end
     end
   end
 end

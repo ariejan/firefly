@@ -41,13 +41,13 @@ After you have installed the Firefly gem you should create a `config.ru` file th
       # Default: Check this out: %short_url%
       # set :tweet,       "I loved this: %short_url% - Go check it out now!"
 
-      # If you want to enable 'share to twitter'
+      # If you want to enable 'share to sharing targets'
 
-      # A secure key to be used with 'share to twitter'
+      # A secure key to be used with 'share to sharing targets'
       # set :sharing_key,    "set-a-long-secure-key-here"
 
-      # Available: :twitter, :hyves
-      # set :sharing_targets, [:twitter, :hyves]
+      # Currently only twitter, hyves and facebook are supported
+      # set :sharing_targets, [:twitter, :hyves, :facebook]
 
       # Set the TLDs (in URLs) that are allowed to be shortened
       # set :sharing_domains, ["example.com", "mydomain.com"]
@@ -79,8 +79,9 @@ All configuration is done in `config.ru`.
  * `:recent_urls` sets the number of URLs to show in the overview. Default: 25.
  * `:tweet` set the template to use for tweets. Default: `"Check this out: %short_url%"`
  * `:sharing_key` set this to something long and secure, used for
-   creating 'share to twitter' links.
- * `:sharing_targets` allow sharing to social media. Available: :twitter, :hyves
+   creating 'share to sharing targets' links.
+ * `:sharing_targets` set to `[:twitter, :hyves, :facebook]` if you want to enable sharing 
+   to twitter, hyves or facebook
  * `:sharing_domains` set to an array of TLDs. Only urls shared in those
    domains will be allowed. Set to an empty array (`[]`) if you want to
 accept all domains.
@@ -116,9 +117,9 @@ After you restart Terminal.app (or at least reload the `.profile` file) you can 
     -- http://ariejan.net => http://aj.gs/1
     Short URL copied to clipboard.
 
-## Using the social features (Twitter, Hyves, etc.)
+## Using the social features (Twitter, Facebook, etc.)
 
-The share to twitter feature allows you to create custom links on your
+The share to sharing targets feature allows you to create custom links on your
 site. When clicked, the specified URL will be shortened and the user
 will be redirect to Twitter to share the new short URL.
 
@@ -128,7 +129,7 @@ will be redirect to Twitter to share the new short URL.
     Parameters:
       url - Long URL to share (required)
       key - The sharing key, specified in `config.ru` (required)
-      target - Target to share to. E.g. 'twitter' or 'hyves' (required)
+      target - Target to share to. E.g. `twitter` or `facebook` (required)
       title - Title of text to use in the tweet (optional)
 
 # Bugs, Feature Requests, etc. 
