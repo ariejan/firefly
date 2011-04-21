@@ -46,8 +46,8 @@ After you have installed the Firefly gem you should create a `config.ru` file th
       # A secure key to be used with 'share to twitter'
       # set :sharing_key,    "set-a-long-secure-key-here"
 
-      # Currently only twitter is supported
-      # set :sharing_targets, [:twitter]
+      # Available: :twitter, :hyves
+      # set :sharing_targets, [:twitter, :hyves]
 
       # Set the TLDs (in URLs) that are allowed to be shortened
       # set :sharing_domains, ["example.com", "mydomain.com"]
@@ -80,8 +80,7 @@ All configuration is done in `config.ru`.
  * `:tweet` set the template to use for tweets. Default: `"Check this out: %short_url%"`
  * `:sharing_key` set this to something long and secure, used for
    creating 'share to twitter' links.
- * `:sharing_targets` set to `[:twitter]` if you want to enable sharing
-   to twitter
+ * `:sharing_targets` allow sharing to social media. Available: :twitter, :hyves
  * `:sharing_domains` set to an array of TLDs. Only urls shared in those
    domains will be allowed. Set to an empty array (`[]`) if you want to
 accept all domains.
@@ -92,9 +91,7 @@ It's possible to use all kinds of backends with DataMapper. Sqlite3 and MySQL ha
 
 Simply visit `http://:hostname/` and enter your `:api_key`. You can now shorten URLs.
 
-## Advanced usage
-
-### Using the API
+## Using the API
 
 You may also use the API to automate URL shortening. Here's how.
 
@@ -119,7 +116,7 @@ After you restart Terminal.app (or at least reload the `.profile` file) you can 
     -- http://ariejan.net => http://aj.gs/1
     Short URL copied to clipboard.
 
-### Using the 'Share to Twitter' features
+## Using the social features (Twitter, Hyves, etc.)
 
 The share to twitter feature allows you to create custom links on your
 site. When clicked, the specified URL will be shortened and the user
@@ -131,7 +128,7 @@ will be redirect to Twitter to share the new short URL.
     Parameters:
       url - Long URL to share (required)
       key - The sharing key, specified in `config.ru` (required)
-      target - Target to share to, currently only `twitter` is supported (required)
+      target - Target to share to. E.g. 'twitter' or 'hyves' (required)
       title - Title of text to use in the tweet (optional)
 
 # Bugs, Feature Requests, etc. 
@@ -161,6 +158,7 @@ Feel free to fork Firefly and create patches for it. Here are some basic instruc
 
  * Ariejan de Vroom - Original author
  * Matthew Boeh - Contributor
+ * Joost Saanen - Contributor
 
 # License
 
