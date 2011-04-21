@@ -104,6 +104,8 @@ module Firefly
       end
 
       # Format a tweet
+      # 
+      # redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
       def tweet(url, message = nil)
         if message.nil? || message == ""
           config[:tweet].gsub('%short_url%', url)
@@ -111,6 +113,20 @@ module Firefly
           max_length = 140-1-url.size
           [message.strip.slice(0...max_length), url].join(' ')
         end
+      end
+      
+      # Format a hyves post
+      # {"http://www.hyves.nl/profielbeheer/toevoegen/tips/?name=#{name_of_titel}&text=#{tekst_met_url)}&type=12&rating=5"
+      def hyves_post(url, title = nil, body = nil)
+        if title.nil? || title == ""
+          title = config[:hyves_title]
+        end
+
+        if body.nil? || body == ""
+          body = config[:hyves_body].gsub('%short_url%', url)
+        end
+        
+        return "name=#{title.strip}&text=#{body.strip}&type=12&rating=5"
       end
 
       def store_api_key(key)
@@ -175,9 +191,12 @@ module Firefly
       @code, @result = generate_short_url(@url, nil)
       invalid = @code.nil?
 
-      if params[:target].downcase.to_sym == :twitter
-        redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
-      end
+      case (params[:target].downcase.to_sym)
+        when :twitter
+          redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+        when :hyves
+          redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+        end
     }
 
     get '/api/share', &api_share
