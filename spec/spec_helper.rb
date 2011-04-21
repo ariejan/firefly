@@ -9,6 +9,7 @@ require 'spec'
 require 'spec/autorun'
 require 'spec/interop/test'
 require 'yaml'
+require 'database_cleaner'
 
 # set test environment
 set :environment, :test
@@ -19,7 +20,7 @@ set :logging, false
 @@app = Firefly::Server.new do
   set :hostname,        "test.host"
   set :api_key,         "test"
-  set :database,        "mysql://root@localhost/firefly_test"
+  set :database,        "sqlite3::memory:"
 
   set :sharing_key,     "asdfasdf"
   set :sharing_targets, [:twitter, :hyves]
@@ -27,23 +28,19 @@ set :logging, false
 end
 
 Spec::Runner.configure do |config|
-  config.after(:each) do
-      repository do |r|
-        adapter = r.adapter
-        while adapter.current_transaction
-          adapter.current_transaction.rollback
-          adapter.pop_transaction
-        end
-      end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
   end
 
-  config.before(:each)  do
-      repository do |r|
-        transaction = DataMapper::Transaction.new(r)
-        Firefly::CodeFactory.first.update(:count => 0)
-        transaction.begin
-        r.adapter.push_transaction(transaction)
-      end
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+    Firefly::CodeFactory.create(:count => 0)
   end
 
   # Loads the urls.yml fixtures.

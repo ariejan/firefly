@@ -71,7 +71,7 @@ module Firefly
       def validate_api_permission
         if !has_valid_api_cookie? && params[:api_key] != config[:api_key]
           status 401
-          return false 
+          return false
         else
           return true
         end
@@ -104,7 +104,7 @@ module Firefly
       end
 
       # Format a tweet
-      # 
+      #
       # redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
       def tweet(url, message = nil)
         if message.nil? || message == ""
@@ -114,7 +114,7 @@ module Firefly
           [message.strip.slice(0...max_length), url].join(' ')
         end
       end
-      
+
       # Format a hyves post
       # {"http://www.hyves.nl/profielbeheer/toevoegen/tips/?name=#{name_of_titel}&text=#{tekst_met_url)}&type=12&rating=5"
       def hyves_post(url, title = nil, body = nil)
@@ -125,7 +125,7 @@ module Firefly
         if body.nil? || body == ""
           body = config[:hyves_body].gsub('%short_url%', url)
         end
-        
+
         return "name=#{title.strip}&text=#{body.strip}&type=12&rating=5"
       end
 
@@ -229,7 +229,7 @@ module Firefly
 
       output = "\"Code\",\"Short URL\",\"Long URL\",\"Clicks\",\"Created at\"\n"
       @urls.each do |url|
-        output += "\"#{url.code}\",\"#{short_url(url)}\",\"#{url.url}\",\"#{url.clicks}\",\"#{url.created_at.strftime('%Y-%m-%d %H:%M:%S')}\"\n" 
+        output += "\"#{url.code}\",\"#{short_url(url)}\",\"#{url.url}\",\"#{url.clicks}\",\"#{url.created_at.strftime('%Y-%m-%d %H:%M:%S')}\"\n"
       end
 
       attachment "firefly-export.csv"
@@ -273,10 +273,10 @@ module Firefly
 
       output = {}
       @urls.each do |url|
-        output[url.code] = { 'code' => url.code, 
-                'short_url' => short_url(url), 
-                'long_url' => url.url, 
-                'clicks' => url.clicks, 
+        output[url.code] = { 'code' => url.code,
+                'short_url' => short_url(url),
+                'long_url' => url.url,
+                'clicks' => url.clicks,
                 'created_at' => url.created_at.strftime('%Y-%m-%d %H:%M:%S') }
       end
 
@@ -344,7 +344,7 @@ module Firefly
 
     def check_mysql_collation(first_try = true)
       # Make sure the 'code' column is case-sensitive. This hack is for
-      # MySQL only, other database systems don't have this problem. 
+      # MySQL only, other database systems don't have this problem.
       if DataMapper.repository(:default).adapter =~ "DataMapper::Adapters::MysqlAdapter"
         query     = "SHOW FULL COLUMNS FROM firefly_urls WHERE Field='code';"
         collation = DataMapper.repository(:default).adapter.select(query)[0][:collation]
@@ -353,7 +353,7 @@ module Firefly
           if first_try
             puts " ~ Your MySQL database is not using the 'utf8-bin' collation. Trying to fix..."
             DataMapper.repository(:default).adapter.execute("ALTER TABLE firefly_urls MODIFY `code` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin;")
-            return check_mysql_collation(false) 
+            return check_mysql_collation(false)
           else
             puts " ~ Failed to set the collation for `code` in `firefly_urls`. Please see http://wiki.github.com/ariejan/firefly/faq for details."
             return false

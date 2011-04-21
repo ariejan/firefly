@@ -1,4 +1,5 @@
 *.sqlite3
+*.sqlite3-journal
 sinatra.log
 config.ru
 pkg
