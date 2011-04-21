@@ -5,9 +5,6 @@ require "bundler/setup"
 
 require 'sinatra'
 require 'rack/test'
-require 'spec'
-require 'spec/autorun'
-require 'spec/interop/test'
 require 'yaml'
 require 'database_cleaner'
 
@@ -27,11 +24,12 @@ set :logging, false
   set :sharing_domains, ["example.com", "example.net"]
 end
 
-Spec::Runner.configure do |config|
+RSpec.configure do |config|
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
+    Firefly::CodeFactory.create(:count => 0)
   end
 
   config.before(:each) do
