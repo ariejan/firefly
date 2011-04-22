@@ -204,11 +204,13 @@ module Firefly
       @code, @result = generate_short_url(@url, nil)
       invalid = @code.nil?
 
+      title = URI.unescape(params[:title])
+
       case (params[:target].downcase.to_sym)
         when :twitter
-          redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+          redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", title)}"))
         when :hyves
-          redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", params[:title])}"))
+          redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", title)}"))
         when :facebook
           redirect(URI.escape("http://www.facebook.com/share.php?u=http://#{config[:hostname]}/#{@code}"))
         end

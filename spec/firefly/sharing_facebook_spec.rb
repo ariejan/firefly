@@ -18,7 +18,7 @@ describe "Sharing" do
   end
 
   [:post, :get].each do |verb|
-    describe "facebook" do
+    describe "facebook via #{verb.to_s.upcase}" do
       it "should create a shortened URL" do
         lambda {
           self.send verb, '/api/share', @params

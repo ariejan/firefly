@@ -18,7 +18,7 @@ describe "Sharing" do
   end
 
   [:post, :get].each do |verb|
-    describe "twitter" do
+    describe "twitter via #{verb.to_s.upcase}" do
       it "should create a shortened URL" do
         lambda {
           self.send verb, '/api/share', @params
@@ -75,6 +75,15 @@ describe "Sharing" do
 
       it "should strip the title to remove any unnecessary white space" do
         title = "      Test post        "
+        self.send verb, '/api/share', @params.merge(:title => title)
+        url = Firefly::Url.first(:url => @params[:url])
+
+        last_response['Location'].should include(URI.escape("Test post http://test.host/#{url.code}"))
+        last_response['Location'].should_not include(URI.escape(title))
+      end
+
+      it "should strip the title from url encoded entities correctly" do
+        title = "Test%20post"
         self.send verb, '/api/share', @params.merge(:title => title)
         url = Firefly::Url.first(:url => @params[:url])
 
