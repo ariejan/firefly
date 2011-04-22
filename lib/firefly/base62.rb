@@ -1,9 +1,10 @@
+# encoding: UTF-8
 module Firefly
   class Base62
-  
+
     CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split('')
     BASE = 62
-  
+
     def self.encode(value)
       s = []
       while value >= BASE

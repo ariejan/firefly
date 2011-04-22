@@ -1,5 +1,4 @@
 # encoding: UTF-8
-# encoding: UTF-8
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Sharing" do

@@ -1,6 +1,7 @@
+# encoding: UTF-8
 module Firefly
   class Config < Hash
-    
+
     DEFAULTS = {
       :hostname         => "localhost:3000",
       :api_key          => "test",
@@ -10,12 +11,12 @@ module Firefly
       :hyves_title      => "Check this out",
       :hyves_body       => "Check this out: %short_url%"
     }
-    
+
     def initialize obj
       self.update DEFAULTS
       self.update obj
-    end    
-    
+    end
+
     def set key, val = nil, &blk
       if val.is_a? Hash
         self[key].update val

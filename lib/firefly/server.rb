@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'sinatra/base'
 require 'haml'
 require 'digest/md5'
