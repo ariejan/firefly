@@ -38,6 +38,18 @@ module Firefly
         session["firefly_session"] = Digest::MD5.hexdigest(key)
       end
 
+      # Taken from Rails
+      def truncate(text, length, options = {})
+        options[:omission] ||= "..."
+
+        length_with_room_for_omission = length - options[:omission].length
+        chars = text
+        stop = options[:separator] ?
+          (chars.rindex(options[:separator], length_with_room_for_omission) || length_with_room_for_omission) : length_with_room_for_omission
+
+        (chars.length > length ? chars[0...stop] + options[:omission] : text).to_s
+      end
+
       def has_valid_api_cookie?
         key = session["firefly_session"]
         key == Digest::MD5.hexdigest(config[:api_key])

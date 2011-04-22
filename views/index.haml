@@ -32,7 +32,7 @@
       %tr.highlighted
         %td.value
           %input{ :type => "text", :value => short_url(@highlight), :class => 'short_url', :size => 21 }
-        %td.value.fill <a href="#{@highlight.url}">#{@highlight.url}</a>
+        %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
         %td.value.center= @highlight.clicks
         %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
         %td.value
@@ -52,7 +52,7 @@
       %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
           %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 31 }
-        %td.value.fill <a href="#{url.url}">#{url.url}</a>
+        %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
         %td.value

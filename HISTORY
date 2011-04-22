@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2011-04-22 Truncate long URLs in the backend to preserve layout (issue #25) [ariejan]
+
 = 1.5.0 - 2011-04-21
 
  * 2011-04-21 Firefly is now compatible with ruby 1.8.7, 1.9.2 and ree-1.8 [ariejan]

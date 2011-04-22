@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    firefly (1.4.1)
+    firefly (1.5.0)
       dm-aggregates (~> 1.0.2)
       dm-core (~> 1.0.2)
       dm-migrations (~> 1.0.2)
@@ -65,7 +65,15 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner (~> 0.6.6)
+  dm-aggregates (~> 1.0.2)
+  dm-core (~> 1.0.2)
+  dm-migrations (~> 1.0.2)
+  dm-mysql-adapter (~> 1.0.2)
   dm-sqlite-adapter (~> 1.0.2)
+  dm-transactions (~> 1.0.2)
+  escape_utils (~> 0.2.3)
   firefly!
+  haml (~> 3.0.18)
   rack-test (~> 0.5.4)
   rspec (~> 2.5.0)
+  sinatra (~> 1.0)
