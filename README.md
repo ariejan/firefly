@@ -1,4 +1,5 @@
-# FireFly
+# FireFly [![Build Status](http://travis-ci.org/ariejan/firefly.png)](http://travis-ci.org/ariejan/firefly)
+
 
 FireFly is a simple URL shortener for personal (or not so personal) use.
 
