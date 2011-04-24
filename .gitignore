@@ -5,3 +5,5 @@ config.ru
 pkg
 .rvmrc
 *.swp
+_site
+_site/*
