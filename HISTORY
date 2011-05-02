@@ -1,3 +1,7 @@
+= HEAD
+
+ * 2011-05-02 Fixed issue with sharing a link without a title (issue #26) [ariejan]
+
 = 1.5.1 - 2011-04-22
 
  * 2011-04-22 Truncate long URLs in the backend to preserve layout (issue #25) [ariejan]

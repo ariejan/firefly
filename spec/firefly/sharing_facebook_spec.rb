@@ -12,8 +12,7 @@ describe "Sharing" do
     @params = {
       :url    => 'http://example.com/test',
       :key    => 'asdfasdf',
-      :target => 'facebook',
-      :title  => 'Test post'
+      :target => 'facebook'
     }
   end
 
@@ -61,7 +60,6 @@ describe "Sharing" do
           self.send verb, '/api/share', @params.merge(:target => 'twitterbook')
         }.should_not change(Firefly::Url, :count)
       end
-
     end
   end
 end

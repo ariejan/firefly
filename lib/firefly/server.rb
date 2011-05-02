@@ -204,6 +204,7 @@ module Firefly
       @code, @result = generate_short_url(@url, nil)
       invalid = @code.nil?
 
+      params[:title] ||= ""
       title = URI.unescape(params[:title])
 
       case (params[:target].downcase.to_sym)
