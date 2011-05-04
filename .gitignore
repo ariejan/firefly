@@ -7,3 +7,5 @@ pkg
 *.swp
 _site
 _site/*
+log/
+log/*
