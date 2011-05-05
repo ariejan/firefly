@@ -1,3 +1,7 @@
+- HEAD
+
+ * 2011-05-02 Force all instances of Firefly to use the same session_secret so logins work properly with multi-instance setups (issue #30) [ariejan]
+
 = 1.5.2 - 2011-05-02
 
  * 2011-05-02 Fixed issue with sharing a link without a title (issue #26) [ariejan]

@@ -25,6 +25,13 @@ if ENV['RACK_ENV'] == 'development'
   DataMapper::Logger.new($stdout, :debug)
 end
 
+module Firefly
+  # Get the current environment
+  def self.environment
+    ENV['RACK_ENV'] || "development"
+  end
+end
+
 require 'firefly/config'
 require 'firefly/version'
 require 'firefly/base62'

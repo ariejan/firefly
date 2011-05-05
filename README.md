@@ -52,6 +52,10 @@ After you have installed the Firefly gem you should create a `config.ru` file th
 
       # Set the TLDs (in URLs) that are allowed to be shortened
       # set :sharing_domains, ["example.com", "mydomain.com"]
+
+      # Set your session secret here.
+      # If you're unsure what to use, open IRB console and run `'%x' % rand(2**255)`
+      set :session_secret, "change-me"
     end
 
     run app
