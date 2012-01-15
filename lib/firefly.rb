@@ -37,5 +37,5 @@ require 'firefly/version'
 require 'firefly/base62'
 require 'firefly/code_factory'
 require 'firefly/url'
+require 'firefly/share'
 require 'firefly/server'
-
