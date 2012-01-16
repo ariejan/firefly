@@ -250,7 +250,7 @@ module Firefly
       super
       @config = config.is_a?(Config) ? config : Firefly::Config.new(config)
       @config.instance_eval(&blk) if block_given?
-
+      Firefly::CodeFactory.order = @config[:order]
       begin
         DataMapper.setup(:default, @config[:database])
         DataMapper.auto_upgrade!
