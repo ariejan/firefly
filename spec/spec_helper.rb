@@ -16,7 +16,7 @@ set :logging, false
 @@app = Firefly::Server.new do
   set :hostname,        "test.host"
   set :api_key,         "test"
-  set :database,        "sqlite3::memory:"
+  set :database,        "mysql://root@localhost/firefly-test"
 
   set :sharing_key,     "asdfasdf"
   set :sharing_targets, [:twitter, :hyves, :facebook]

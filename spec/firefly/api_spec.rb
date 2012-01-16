@@ -154,7 +154,7 @@ describe "API" do
       Firefly::Server.new do
         set :hostname,    "test.host"
         set :api_key,     "test#!"
-        set :database,    "sqlite3://firefly_test_alt.sqlite3"
+        set :database,    "mysql://root@localhost/firefly-test-alt"
       end
     end
 
