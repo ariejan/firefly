@@ -189,11 +189,11 @@ module Firefly
 
       case (params[:target].downcase.to_sym)
         when :twitter
-          redirect(URI.escape(twitter("http://#{config[:hostname]}/#{@code}", title)))
+          redirect(twitter("http://#{config[:hostname]}/#{@code}", title))
         when :hyves
-          redirect(URI.escape(hyves("http://#{config[:hostname]}/#{@code}", title)))
+          redirect(hyves("http://#{config[:hostname]}/#{@code}", title))
         when :facebook
-          redirect(URI.escape(facebook("http://#{config[:hostname]}/#{@code}")))
+          redirect(facebook("http://#{config[:hostname]}/#{@code}"))
         end
     }
 

@@ -19,11 +19,11 @@ module Firefly
        body = config[:hyves_body].gsub('%short_url%', url)
       end
 
-      "http://www.hyves.nl/profielbeheer/#{config[:hyves_path]}/?name=#{title.strip}&text=#{body.strip}&#{config[:hyves_args]}"
+      "http://www.hyves.nl/profielbeheer/#{config[:hyves_path]}/?name=#{URI.escape(title.strip)}&text=#{URI.escape(body.strip)}&#{config[:hyves_args]}"
     end
 
     def facebook(url)
-      "http://www.facebook.com/share.php?u=#{url}"
+      "http://www.facebook.com/share.php?u=#{URI.escape(url)}"
     end
   end
 end
