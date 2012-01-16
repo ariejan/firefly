@@ -31,5 +31,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency("rspec",             ["~> 2.8.0"])
   s.add_development_dependency("rack-test",         ["~> 0.6.1"])
   s.add_development_dependency("dm-sqlite-adapter", ["~> 1.2.0"])
-  s.add_development_dependency("database_cleaner",  ["~> 0.7.0"])
+  s.add_development_dependency("database_cleaner",  ["~> 0.7.1"])
 end
