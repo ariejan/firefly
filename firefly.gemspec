@@ -28,8 +28,8 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency("haml",              ["~> 3.1.4"])
   s.add_runtime_dependency("escape_utils",      ["~> 0.2.4"])
 
-  s.add_development_dependency("rspec",             ["~> 2.5.0"])
+  s.add_development_dependency("rspec",             ["~> 2.8.0"])
   s.add_development_dependency("rack-test",         ["~> 0.6.1"])
   s.add_development_dependency("dm-sqlite-adapter", ["~> 1.2.0"])
-  s.add_development_dependency("database_cleaner",  ["~> 0.6.6"])
+  s.add_development_dependency("database_cleaner",  ["~> 0.7.0"])
 end
