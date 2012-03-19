@@ -3,7 +3,6 @@ module Firefly
   class Url
     include DataMapper::Resource
 
-    VALID_URL_REGEX  = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
     VALID_CODE_REGEX = /^[a-z0-9\-_]{3,64}$/i
 
     property :id,           Serial
@@ -55,7 +54,7 @@ module Firefly
 
       # Validates the URL to be a valid http or https one. 
       def self.valid_url?(url)
-        url.match(Firefly::Url::VALID_URL_REGEX)
+        url.match URI.regexp(['http', 'https'])
       end
 
       def self.valid_code?(code)
