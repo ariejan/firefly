@@ -19,16 +19,15 @@ module Firefly
 
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
-    set :views,   "#{dir}/views"
-    set :public,  "#{dir}/public"
-    set :haml,    {:format => :html5 }
-    set :static,  true
+    set :root, dir
+    set :haml, {:format => :html5 }
     set :session_secret, nil
 
     attr_accessor :config
 
     helpers do
       include Rack::Utils
+      include Firefly::Share
       alias_method :h, :escape_html
 
       def url(*path_parts)
@@ -118,33 +117,7 @@ module Firefly
 
       def is_highlighted?(url)
         return false unless @highlight
-        @highlight == url.code
-      end
-
-      # Format a tweet
-      #
-      # redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
-      def tweet(url, message = nil)
-        if message.nil? || message == ""
-          config[:tweet].gsub('%short_url%', url)
-        else
-          max_length = 140-1-url.size
-          [message.strip.slice(0...max_length), url].join(' ')
-        end
-      end
-
-      # Format a hyves post
-      # {"http://www.hyves.nl/profielbeheer/toevoegen/tips/?name=#{name_of_titel}&text=#{tekst_met_url)}&type=12&rating=5"
-      def hyves_post(url, title = nil, body = nil)
-        if title.nil? || title == ""
-          title = config[:hyves_title]
-        end
-
-        if body.nil? || body == ""
-          body = config[:hyves_body].gsub('%short_url%', url)
-        end
-
-        return "name=#{title.strip}&text=#{body.strip}&type=12&rating=5"
+        @highlight.code == url.code
       end
 
       def store_api_key(key)
@@ -164,7 +137,7 @@ module Firefly
     end
 
     get '/' do
-      @highlight = Firefly::Url.first(:code => params[:highlight])
+      @highlight = Firefly::Url.first(:code => params[:highlight]) if not params[:highlight].nil?
       @error     = params[:highlight] == "error"
 
       sort_column = params[:s] || 'created_at'
@@ -216,18 +189,18 @@ module Firefly
 
       case (params[:target].downcase.to_sym)
         when :twitter
-          redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", title)}"))
+          redirect(twitter("http://#{config[:hostname]}/#{@code}", title))
         when :hyves
-          redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", title)}"))
+          redirect(hyves("http://#{config[:hostname]}/#{@code}", title))
         when :facebook
-          redirect(URI.escape("http://www.facebook.com/share.php?u=http://#{config[:hostname]}/#{@code}"))
+          redirect(facebook("http://#{config[:hostname]}/#{@code}"))
         end
     }
 
     get '/api/share', &api_share
     post '/api/share', &api_share
 
-    # GET /b3d+
+    # GET /api/info/b3d
     #
     # Show info on the URL
     get '/api/info/:code' do
@@ -244,22 +217,17 @@ module Firefly
       end
     end
 
-    if defined? Barby
-      # GET /b3d.png
-      #
-      # Return a QR code image
-      get '/:code.png' do
-        @url = Firefly::Url.first(:code => params[:code])
+    # GET /b3d.png
+    #
+    # Return a QR code image
+    get '/:code.png' do
+      @url = Firefly::Url.first(:code => params[:code])
 
-        if @url.nil?
-          status 404
-          "Sorry, that code is unknown."
-        else
-          qr = Barby::QrCode.new(short_url(@url))
-          content_type('image/png')
-          cache_control :public, :max_age => 2592000 # One month
-          body(qr.to_png(:xdim => 15, :margin => 30))
-        end
+      if @url.nil?
+        status 404
+        "Sorry, that code is unknown."
+      else
+        redirect("http://chart.googleapis.com/chart?cht=qr&chl=#{URI.escape(short_url(@url), Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))}&chs=#{config[:qr_size]}")
       end
     end
 
@@ -282,7 +250,7 @@ module Firefly
       super
       @config = config.is_a?(Config) ? config : Firefly::Config.new(config)
       @config.instance_eval(&blk) if block_given?
-
+      Firefly::CodeFactory.order = @config[:order]
       begin
         DataMapper.setup(:default, @config[:database])
         DataMapper.auto_upgrade!

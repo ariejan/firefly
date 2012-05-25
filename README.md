@@ -66,14 +66,6 @@ Next you can start your web server. You may try thin:
 
 Now visit `http://:hostname/` and enter your `:api_key`. Happy URL shortening!
 
-# Enabling QR Codes
-
-To enable QR Codes install the `barby` and `png` gems:
-
-    gem install barby png
-
-Firefly will detect you have these gems available and enable QR Code support automatically.
-
 # Configuration
 
 All configuration is done in `config.ru`. 

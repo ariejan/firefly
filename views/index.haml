@@ -19,26 +19,6 @@
       %p
         %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
 
-  - if @highlight
-    %h2 Your short URL
-
-    %table
-      %tr
-        %td.label Short URL
-        %td.label Full URL
-        %td.label Clicks
-        %td.label Shortened at
-        %td.label &nbsp;
-      %tr.highlighted
-        %td.value
-          %input{ :type => "text", :value => short_url(@highlight), :class => 'short_url', :size => 21 }
-        %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
-        %td.value.center= @highlight.clicks
-        %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
-        %td.value
-          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(@highlight))}" }
-            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
-
   %h2 Recently shortened
   
   %table
@@ -55,9 +35,14 @@
         %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
-        %td.value
-          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(url))}" }
-            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
+        %td.value.actions
+          - if @config[:sharing_targets].include? :twitter
+            %a.twitter{ :href => twitter(short_url(url)) }
+          - if @config[:sharing_targets].include? :facebook
+            %a.facebook{ :href => facebook(short_url(url)) }
+          - if @config[:sharing_targets].include? :hyves
+            %a.hyves{ :href => hyves(short_url(url)) }
+          %a.qrcode{ :href => "#{short_url(url)}.png" }
 
   :javascript
     $(document).ready(function() {

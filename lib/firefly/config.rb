@@ -7,9 +7,12 @@ module Firefly
       :api_key          => "test",
       :database         => "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3",
       :recent_urls      => 25,
-      :tweet            => "Check this out: %short_url%",
+      :twitter          => "Check this out: %short_url%",
+      :hyves_path       => "toevoegen/tips",
+      :hyves_args       => "type=12&rating=5",
       :hyves_title      => "Check this out",
-      :hyves_body       => "Check this out: %short_url%"
+      :hyves_body       => "Check this out: %short_url%",
+      :qr_size          => "150x150"
     }
 
     def initialize obj
