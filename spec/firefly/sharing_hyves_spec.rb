@@ -5,7 +5,7 @@ describe "Sharing" do
   include Rack::Test::Methods
 
   def app
-    @@app
+    self.class.class_variable_get(:@@app) # ruby 1.9.3 warning
   end
 
   before(:each) do

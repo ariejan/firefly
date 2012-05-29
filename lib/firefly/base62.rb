@@ -6,19 +6,17 @@ module Firefly
     BASE = 62
 
     def self.encode(value)
-      s = []
-      while value >= BASE
+      s = ""
+      while value > 0
         value, rem = value.divmod(BASE)
         s << CHARS[rem]
       end
-      s << CHARS[value]
-      s.reverse.join("")
+      s.reverse
     end
 
     def self.decode(str)
-      str = str.split('').reverse
       total = 0
-      str.each_with_index do |v,k|
+      str.split('').reverse.each_with_index do |v,k|
         total += (CHARS.index(v) * (BASE ** k))
       end
       total

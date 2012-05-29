@@ -4,7 +4,7 @@ describe "API" do
   include Rack::Test::Methods
 
   def app
-    @@app
+    self.class.class_variable_get(:@@app) # ruby 1.9.3 warning
   end
 
   [:post, :get].each do |verb|
@@ -154,7 +154,7 @@ describe "API" do
       Firefly::Server.new do
         set :hostname,    "test.host"
         set :api_key,     "test#!"
-        set :database,    "sqlite3://firefly_test_alt.sqlite3"
+        set :database,    "mysql://root@localhost/firefly-test-alt"
       end
     end
 
