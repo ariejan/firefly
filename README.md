@@ -1,11 +1,6 @@
-# FireFly [![Build Status](http://travis-ci.org/ariejan/firefly.png)](http://travis-ci.org/ariejan/firefly)
+# Firefly [![Build Status](http://travis-ci.org/ariejan/firefly.png)](http://travis-ci.org/ariejan/firefly)
 
-
-FireFly is a simple URL shortener for personal (or not so personal) use.
-
-# Quick-Start (2 minutes) with Heroku
-
-See the [screencast][1] or [written instructions][2] on how to setup Firefly within 2 minutes on [Heroku][3]
+Firefly is a URL-shortener app built using Sinatra. It can be easily hosted on Heroku and other platforms.
 
 # Installation
 
