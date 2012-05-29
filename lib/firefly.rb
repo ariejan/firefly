@@ -12,12 +12,6 @@ require 'dm-aggregates'
 require 'escape_utils'
 require 'escape_utils/url/rack'
 
-begin
-  require 'barby'
-  require 'barby/outputter/png_outputter'
-rescue LoadError
-end
-
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
@@ -37,5 +31,5 @@ require 'firefly/version'
 require 'firefly/base62'
 require 'firefly/code_factory'
 require 'firefly/url'
+require 'firefly/share'
 require 'firefly/server'
-

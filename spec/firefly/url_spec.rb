@@ -1,6 +1,9 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Url" do
+  before do
+    Firefly::CodeFactory.order = :sequential
+  end
 
   describe "shortening" do
     it "should generate a code after create" do

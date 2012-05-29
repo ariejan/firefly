@@ -7,6 +7,9 @@ app = Firefly::Server.new do
   set :hostname,    "localhost:3000"
   set :api_key,     "test"
 
+  # Order urls random or sequential
+  set :order,       :sequential
+
   # Use Sqlite3 by default
   set :database,    "sqlite3://#{Dir.pwd}/firefly.sqlite3"
 

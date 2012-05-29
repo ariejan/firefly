@@ -89,6 +89,10 @@ body { padding:0; margin:0; }
 #main table tr td.label { font-weight: bold; }
 #main table tr td.label a { text-decoration: none; font-size: 11px; }
 #main table tr td.label a.highlight { color: #f00; }
+#main table tr td.actions a { display: inline-block; margin-right: 4px; border: 0; margin: 0; padding: 0; width: 16px; height: 16px; }
+#main table tr td.actions a.twitter { background-image: url(images/twitter.png); }
+#main table tr td.actions a.hyves { background-image: url(images/hyves.png); }
+#main table tr td.actions a.facebook { background-image: url(images/facebook.png); }
+#main table tr td.actions a.qrcode { background-image: url(images/qrcode.png); }
 
 #main table tr td input.short_url { border: 1px solid #CCC; color: #666; font-family: Monaco, 'Courier New', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace; font-size: 11px; height: 16px; padding: 3px 5px 2px; width: 200px; }
-#main table tr td img.twitter { border: 0; margin: 0; padding: 0; float: right; width: 16px; height: 16px; }
