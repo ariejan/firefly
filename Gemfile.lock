@@ -1,16 +1,3 @@
-PATH
-  remote: .
-  specs:
-    firefly (1.5.3)
-      dm-aggregates (~> 1.2.0)
-      dm-core (~> 1.2.0)
-      dm-migrations (~> 1.2.0)
-      dm-mysql-adapter (~> 1.2.0)
-      dm-transactions (~> 1.2.0)
-      escape_utils (~> 0.2.4)
-      haml (~> 3.1.4)
-      sinatra (~> 1.3.2)
-
 GEM
   remote: http://rubygems.org/
   specs:
@@ -66,7 +53,14 @@ PLATFORMS
 
 DEPENDENCIES
   database_cleaner (~> 0.7.1)
+  dm-aggregates (~> 1.2.0)
+  dm-core (~> 1.2.0)
+  dm-migrations (~> 1.2.0)
+  dm-mysql-adapter (~> 1.2.0)
   dm-sqlite-adapter (~> 1.2.0)
-  firefly!
+  dm-transactions (~> 1.2.0)
+  escape_utils (~> 0.2.4)
+  haml (~> 3.1.4)
   rack-test (~> 0.6.1)
   rspec (~> 2.8.0)
+  sinatra (~> 1.3.2)
