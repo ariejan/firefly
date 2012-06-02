@@ -1,0 +1,24 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: firefly_development
+  pool: 5
+  username: ariejan
+  password:
+  min_messages: warning
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: firefly_test
+  pool: 5
+  username: ariejan
+  password:
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: firefly_production
+  pool: 5
+  username: ariejan
+  password:

@@ -1,8 +1,7 @@
-require 'bundler'
+#!/usr/bin/env rake
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-task :default => :spec
+require File.expand_path('../config/application', __FILE__)
 
-desc "Run all specs"
-task "spec" do
-  exec "bundle exec rspec spec"
-end
+Firefly::Application.load_tasks

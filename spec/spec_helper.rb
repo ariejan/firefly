@@ -1,54 +1,17 @@
-require File.join(File.dirname(__FILE__), '..', 'lib', 'firefly.rb')
+# This file is copied to spec/ when you run 'rails generate rspec:install'
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
 
-require "bundler/setup"
-
-require 'sinatra'
-require 'rack/test'
-require 'yaml'
-require 'database_cleaner'
-
-# set test environment
-set :environment, :test
-set :run, false
-set :raise_errors, true
-set :logging, false
-
-@@app = Firefly::Server.new do
-  set :hostname,        "test.host"
-  set :api_key,         "test"
-  set :database,        "mysql://root@localhost/firefly-test"
-
-  set :sharing_key,     "asdfasdf"
-  set :sharing_targets, [:twitter, :hyves, :facebook]
-  set :sharing_domains, ["example.com", "example.net"]
-end
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in spec/support/ and its subdirectories.
+Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
 RSpec.configure do |config|
+  config.use_transactional_fixtures = true
+  config.infer_base_class_for_anonymous_controllers = false
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.clean_with(:truncation)
-    Firefly::CodeFactory.create(:count => 0)
-  end
-
-  config.before(:each) do
-    DatabaseCleaner.start
-  end
-
-  config.after(:each) do
-    DatabaseCleaner.clean
-    Firefly::CodeFactory.create(:count => 0)
-  end
-
-  # Loads the urls.yml fixtures.
-  def load_fixtures
-    Firefly::Url.destroy
-    urls = YAML::load(File.open('spec/fixtures/urls.yml'))
-    urls.each { |key, url| Firefly::Url.create(url) }
-  end
-
-  # Load a spec file and return its contents
-  def spec_file(filename)
-    File.open('spec/files/'+filename) { |f| f.read }
-  end
+  config.include FactoryGirl::Syntax::Methods
+  config.include ApiHelper, type: :api
 end
