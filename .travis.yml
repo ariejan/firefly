@@ -4,10 +4,9 @@ rvm:
 env:
   - DB=mysql
   - DB=postgresql
-  - RAILS_ENV=test
 script:
-  - bundle exec rake --trace spec
+  - "RAILS_ENV=test bundle exec rake --trace spec"
 before_script:
   - "cp config/database.yml.$DB config/database.yml"
-  - "bundle exec rake db:create"
-  - "bundle exec rake db:migrate"
+  - "RAILS_ENV=test bundle exec rake db:create"
+  - "RAILS_ENV=test bundle exec rake db:migrate"

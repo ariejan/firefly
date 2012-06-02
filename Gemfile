@@ -1,8 +1,13 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem 'pg'
 gem 'jbuilder'
+
+# Use Postgres
+gem 'pg'
+
+# Use MySQL
+gem 'mysql2'
 
 group :development, :test do
   gem 'rake'
