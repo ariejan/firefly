@@ -4,8 +4,9 @@ module Api
 
       # /api/v1/expand
       def expand
-        render nothing: true, status: :not_found
+        @url = Url.find_by_fingerprint!(params[:fingerprint])
       end
+
     end
   end
 end

@@ -11,6 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20120602125957) do
+
+  create_table "urls", :force => true do |t|
+    t.string "url"
+    t.string "fingerprint", :limit => 24
+  end
 
 end
