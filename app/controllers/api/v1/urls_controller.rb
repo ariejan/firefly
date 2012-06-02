@@ -4,7 +4,8 @@ module Api
 
       # /api/v1/expand
       def expand
-        @url = Url.find_by_fingerprint!(params[:fingerprint])
+        fingerprint = FingerprintParser.extract_fingerprint(params[:fingerprint], params[:short_url])
+        @url = Url.find_by_fingerprint!(fingerprint)
       end
 
     end

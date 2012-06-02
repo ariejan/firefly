@@ -17,6 +17,18 @@ describe '/api/v1/expand', type: :api do
         last_response.body.should be_json_eql %({"url" : "#{url.url}"})
       end
     end
+
+    context "for a short url" do
+      it 'returns a 200' do
+        get api_url, fingerprint: "http://test.host/#{url.fingerprint}"
+        last_response.status.should == 200
+      end
+
+      it 'returns correct json' do
+        get api_url, fingerprint: "http://test.host/#{url.fingerprint}"
+        last_response.body.should be_json_eql %({"url" : "#{url.url}"})
+      end
+    end
   end
 
   context 'with no url available' do
