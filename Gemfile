@@ -5,6 +5,7 @@ gem 'pg'
 gem 'jbuilder'
 
 group :development, :test do
+  gem 'rake'
   gem 'capybara'
   gem 'rspec-rails'
   gem 'guard-rspec'

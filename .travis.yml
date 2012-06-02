@@ -1,5 +1,13 @@
-script: rake spec
+language: ruby
 rvm:
-  - 1.8.7
-  - ree
-
+  - 1.9.3
+env:
+  - DB=mysql
+  - DB=postgresql
+  - RAILS_ENV=test
+script:
+  - bundle exec rake --trace spec
+before_script:
+  - "cp config/database.yml.$DB config/database.yml"
+  - "bundle exec rake db:create"
+  - "bundle exec rake db:migrate"
