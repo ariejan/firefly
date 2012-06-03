@@ -4,4 +4,6 @@ Firefly::Application.routes.draw do
       get 'expand', to: 'urls#expand'
     end
   end
+
+  match '/:fingerprint', to: 'urls#redirect'
 end
