@@ -3,7 +3,7 @@ module Firefly
   class Url
     include DataMapper::Resource
 
-    VALID_CODE_REGEX = /^[a-z0-9\-_]{3,64}$/i
+    VALID_CODE_REGEX = /A[a-z0-9\-_]{3,64}z/i
 
     property :id,           Serial
     property :url,          String,     :index => true, :length => 255
