@@ -1,12 +1,12 @@
 defaults: &defaults
-  domain: firefly.dev
+  host: firefly.dev
 
 development:
   <<: *defaults
 
 test:
   <<: *defaults
-  domain: test.host
+  host: test.host
 
 production:
   <<: *defaults
