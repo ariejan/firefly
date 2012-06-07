@@ -10,5 +10,6 @@ script:
   - "RAILS_ENV=test bundle exec rake --trace spec"
 before_script:
   - "cp config/database.yml.$DB config/database.yml"
+  - "cp config/firefly.yml.example config/firefly.yml"
   - "RAILS_ENV=test bundle exec rake db:create"
   - "RAILS_ENV=test bundle exec rake db:migrate"
