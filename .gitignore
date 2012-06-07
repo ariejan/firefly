@@ -16,3 +16,6 @@
 
 # Database configuration
 /config/database.yml
+
+# Current firefly configuration
+/config/firefly.yml

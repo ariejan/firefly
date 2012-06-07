@@ -1,0 +1,13 @@
+defaults: &defaults
+  domain: firefly.dev
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+  domain: test.host
+
+production:
+  <<: *defaults
+
