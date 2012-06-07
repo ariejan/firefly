@@ -3,7 +3,11 @@ module Api
     class UrlsController < BaseController
       # /api/v1/shorten
       def shorten
-        @url = Url.create(url: params[:long_url])
+        @url = Url.find_or_initialize_by_url(url: params[:long_url])
+
+        if !@url.save
+          render nothing: true, status: :not_acceptable
+        end
       end
 
       # /api/v1/expand

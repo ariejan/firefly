@@ -1,5 +1,9 @@
+require 'uri'
+
 class Url < ActiveRecord::Base
   attr_accessible :url
+
+  validates :url, format: { with: URI.regexp(['http', 'https']) }
 
   after_create :set_fingerprint
 
