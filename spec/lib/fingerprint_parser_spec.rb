@@ -10,7 +10,7 @@ describe FingerprintParser do
       end
     end
 
-    context 'with on element' do
+    context 'with one element' do
       it 'returns the element' do
         subject.extract_fingerprint('meh').should == 'meh'
       end
