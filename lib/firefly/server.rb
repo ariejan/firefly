@@ -201,8 +201,39 @@ module Firefly
       end
     }
 
-    get '/api/add', &api_add
-    post '/api/add', &api_add
+    get '/api/add' do
+      validate_api_permission or return "Permission denied: Invalid API key"
+
+      @url            = params[:url]
+      @requested_code = params[:short]
+      @code, @result  = generate_short_url(@url, @requested_code)
+      invalid = @code.nil?
+
+      if params[:visual]
+        store_api_key(params[:api_key])
+        @code.nil? ? haml(:error) : redirect("/?highlight=#{@code}")
+      else
+        head(422) if invalid
+        @result
+      end
+    end
+
+    post '/api/add' do
+      validate_api_permission or return "Permission denied: Invalid API key"
+
+      @url            = params[:url]
+      @requested_code = params[:short]
+      @code, @result  = generate_short_url(@url, @requested_code)
+      invalid = @code.nil?
+
+      if params[:visual]
+        store_api_key(params[:api_key])
+        @code.nil? ? haml(:error) : redirect("/?highlight=#{@code}")
+      else
+        head(422) if invalid
+        @result
+      end
+    end
 
     api_share = lambda {
       validate_share_permission or return "Cannot share that URL."
