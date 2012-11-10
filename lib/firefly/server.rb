@@ -196,7 +196,7 @@ module Firefly
         store_api_key(params[:api_key])
         @code.nil? ? haml(:error) : redirect("/?highlight=#{@code}")
       else
-        head 422 if invalid
+        head(422) if invalid
         @result
       end
     }
