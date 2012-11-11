@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  database: firefly_development
+  host: localhost
+  pool: 5
+  username: firefly
+  password:
+  # min_messages: WARNING
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  database: firefly_test
+  host: localhost
+  pool: 5
+  username: firefly
+  password:
+

@@ -5,12 +5,12 @@ describe "Url" do
   describe "shortening" do
     it "should generate a code after create" do
       url = Firefly::Url.shorten("http://example.com/")
-      Firefly::Url.first(:url => "http://example.com/").code.should_not be_nil
+      Firefly::Url.where(url: "http://example.com/").first.code.should_not be_nil
     end
 
     it "should set a clicks count of 0 for newly shortened urls" do
       url = Firefly::Url.shorten("http://example.com/")
-      Firefly::Url.first(:url => "http://example.com/").clicks.should eql(0)
+      Firefly::Url.where(url: "http://example.com/").first.clicks.should eql(0)
     end
 
     it "should create a new Firefly::Url with a new long_url" do
@@ -69,7 +69,7 @@ describe "Url" do
     it "should automatically forward code to prevent duplicates" do
       url = Firefly::Url.shorten("http://example.com/")
       the_code = url.code.next
-      Firefly::Url.create(:url => "http://example.com/blah", :code => the_code)
+      Firefly::Url.create(url: "http://example.com/blah", code: the_code)
 
       url_correct = Firefly::Url.shorten("http://example.com/testit")
       url_correct.code.should_not eql(the_code)
@@ -78,7 +78,7 @@ describe "Url" do
   end
 
   describe "long url validation" do
-    [ "http://ariejan.net", 
+    [ "http://ariejan.net",
       "https://ariejan.net",
       "http://ariejan.net/page/1",
       "http://ariejan.net/page/1?q=x&p=123",
@@ -89,7 +89,7 @@ describe "Url" do
       end
     end
 
-    [ "ftp://ariejan.net", 
+    [ "ftp://ariejan.net",
       "irc://freenode.org/rails",
       "skype:adevroom",
       "ariejan.net",
@@ -105,11 +105,11 @@ describe "Url" do
   describe "clicking" do
     before(:each) do
       Firefly::Url.create(
-        :url => 'http://example.com/123', 
-        :code => 'alpha', 
-        :clicks => 69
+        url: 'http://example.com/123',
+        code: 'alpha',
+        clicks: 69
       )
-      @url = Firefly::Url.first(:code => 'alpha')
+      @url = Firefly::Url.where(code: 'alpha').first
     end
 
     it "should increase the click count" do

@@ -12,7 +12,7 @@ describe "Sharing" do
     @params = {
       :url    => 'http://example.com/test',
       :key    => 'asdfasdf',
-      :target => 'hyves',
+      target: 'hyves',
       :title  => 'Test post'
     }
   end
@@ -33,44 +33,44 @@ describe "Sharing" do
 
       it "should post the title to hyves" do
         self.send verb, '/api/share', @params
-        url = Firefly::Url.first(:url => @params[:url])
+        url = Firefly::Url.where(url: @params[:url]).first
         last_response['Location'].should include(URI.escape("#{@params[:title]}"))
       end
 
       it "should post the title and short url to hyves" do
         self.send verb, '/api/share', @params
-        url = Firefly::Url.first(:url => @params[:url])
+        url = Firefly::Url.where(url: @params[:url]).first
         last_response['Location'].should include(URI.escape("http://test.host/#{url.code}"))
       end
 
       it "should not allow sharing of example.org URL" do
-        self.send verb, '/api/share', @params.merge(:url => 'http://example.org/test123')
+        self.send verb, '/api/share', @params.merge(url: 'http://example.org/test123')
         last_response.status.should eql(401)
         last_response.body.should match(/cannot share that URL/i)
       end
 
       it "should not create a short URL for example.org URL" do
         lambda {
-          self.send verb, '/api/share', @params.merge(:url => 'http://example.org/test123')
+          self.send verb, '/api/share', @params.merge(url: 'http://example.org/test123')
         }.should_not change(Firefly::Url, :count)
       end
 
       it "should not share to unknown target" do
-        self.send verb, '/api/share', @params.merge(:target => 'twitterbook')
+        self.send verb, '/api/share', @params.merge(target: 'twitterbook')
         last_response.status.should eql(401)
         last_response.body.should match(/cannot share that URL/i)
       end
 
       it "should not create a short URL for unknown target" do
         lambda {
-          self.send verb, '/api/share', @params.merge(:target => 'twitterbook')
+          self.send verb, '/api/share', @params.merge(target: 'twitterbook')
         }.should_not change(Firefly::Url, :count)
       end
 
       it "should strip the title to remove any unnecessary white space" do
         title = "      Test post        "
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
+        self.send verb, '/api/share', @params.merge(title: title)
+        url = Firefly::Url.where(url: @params[:url]).first
 
         last_response['Location'].should include(URI.escape("Test post"))
         last_response['Location'].should_not include(URI.escape(title))
@@ -78,8 +78,8 @@ describe "Sharing" do
 
       it "should strip the body to remove any unnecessary white space" do
         title = "      This is the test body        "
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
+        self.send verb, '/api/share', @params.merge(title: title)
+        url = Firefly::Url.where(url: @params[:url]).first
 
         last_response['Location'].should include(URI.escape("http://test.host/#{url.code}"))
         last_response['Location'].should_not include(URI.escape(title))
@@ -87,8 +87,8 @@ describe "Sharing" do
 
       it "should strip the title from url encoded entities correctly" do
         title = "Test%20post"
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
+        self.send verb, '/api/share', @params.merge(title: title)
+        url = Firefly::Url.where(url: @params[:url]).first
 
         last_response['Location'].should include(URI.escape("Test post"))
         last_response['Location'].should_not include(URI.escape(title))
@@ -96,8 +96,8 @@ describe "Sharing" do
 
       it "should escape UTF-8 correctly" do
         title = "Chávez"
-        self.send verb, '/api/share', @params.merge(:title => title)
-        url = Firefly::Url.first(:url => @params[:url])
+        self.send verb, '/api/share', @params.merge(title: title)
+        url = Firefly::Url.where(url: @params[:url]).first
 
         last_response['Location'].should include("Ch%C3%A1vez")
         last_response['Location'].should_not include("Ch%E1vez")

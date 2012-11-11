@@ -18,7 +18,7 @@ describe "Firefly" do
   if defined? Barby
     describe "QR Codes" do
       before(:each) do
-        @url = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+        @url = Firefly::Url.create(url: 'http://example.com/123', code: 'alpha')
       end
 
       it "should return a 200 status" do
@@ -40,7 +40,7 @@ describe "Firefly" do
 
   describe "redirecting" do
     it "should redirect to the original URL" do
-      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      fake = Firefly::Url.create(url: 'http://example.com/123', code: 'alpha')
 
       get '/alpha'
       follow_redirect!
@@ -49,16 +49,15 @@ describe "Firefly" do
     end
 
     it "should increase the visits counter" do
-      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
-      Firefly::Url.should_receive(:first).and_return(fake)
+      url = Firefly::Url.create(url: 'http://example.com/123', code: 'alpha')
 
       lambda {
         get '/alpha'
-      }.should change(fake, :clicks).by(1)
+      }.should change { url.reload.clicks }.by(1)
     end
 
     it "should redirect with a 301 Permanent redirect" do
-      fake = Firefly::Url.create(:url => 'http://example.com/123', :code => 'alpha')
+      fake = Firefly::Url.create(url: 'http://example.com/123', code: 'alpha')
 
       get '/alpha'
 
