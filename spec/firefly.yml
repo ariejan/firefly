@@ -1,0 +1,3 @@
+firefly:
+  hostname: 'test.host'
+  api_key: 'test'

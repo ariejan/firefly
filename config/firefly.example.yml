@@ -1,0 +1,4 @@
+firefly:
+  hostname: 'localhost:300'
+  api_key: 'test'
+  session_secret: 'change-me'

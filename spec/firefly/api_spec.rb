@@ -1,12 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "API" do
-  include Rack::Test::Methods
-
-  def app
-    @@app
-  end
-
   [:post, :get].each do |verb|
     describe "adding a URL by #{verb.to_s.upcase}" do
       it "should be okay adding a new URL" do
@@ -151,10 +145,7 @@ describe "API" do
 
   describe "api key" do
     def app
-      Firefly::Server.new do
-        set :hostname,    "test.host"
-        set :api_key,     "test#!"
-      end
+      Firefly::Server.new(File.join(Firefly.root, 'spec/firefly_special_key.yml'))
     end
 
     it "should be okay adding a new URL" do

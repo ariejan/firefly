@@ -206,10 +206,11 @@ module Firefly
       end
     end
 
-    def initialize config = {}, &blk
+    def initialize(configuration_file = nil)
       super
-      @config = config.is_a?(Config) ? config : Firefly::Config.new(config)
-      @config.instance_eval(&blk) if block_given?
+
+      configuration_file ||= File.join(Firefly.root, 'config/firefly.yml')
+      @config = Firefly::Config.new(configuration_file)
 
       begin
         # TODO: Check for proper database collation with ActiveRecord

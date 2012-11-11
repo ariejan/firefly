@@ -1,30 +1,23 @@
-ENV['RACK_ENV'] = "test"
-
-require File.join(File.dirname(__FILE__), '..', 'lib', 'firefly.rb')
-
-require 'rubygems'
-require "bundler/setup"
+require File.expand_path('../../lib/firefly', __FILE__)
 
 require 'sinatra'
-require 'sinatra/activerecord'
-
 require 'rack/test'
-require 'yaml'
 require 'database_cleaner'
 
-# set test environment
-set :environment, :test
+set :environment,   :test
+set :run,           false
+set :raise_errors,  true
+set :logging,       false
 
-set :run, false
-set :raise_errors, true
-set :logging, false
-
-@@app = Firefly::Server.new do
-  set :hostname,        "test.host"
-  set :api_key,         "test"
+module RSpecMixin
+  include Rack::Test::Methods
+  def app
+    Firefly::Server.new(File.join(Firefly.root, 'spec/firefly.yml'))
+  end
 end
 
 RSpec.configure do |config|
+  config.include RSpecMixin
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
