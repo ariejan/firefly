@@ -1,12 +1,6 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Firefly" do
-  include Rack::Test::Methods
-
-  def app
-    @@app
-  end
-
   describe "/" do
     it "should respond ok" do
       get '/'
