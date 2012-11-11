@@ -1,4 +1,10 @@
 language: ruby
+
 rvm:
   - 1.9.2
+
+before_script:
+  - "cp config/database.travis.yml config/database.yml"
+  - "psql -c 'create database firefly_test;' -U postgres"
+  - "RACK_ENV=test bundle exec rake db:migrate"
 
