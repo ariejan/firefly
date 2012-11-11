@@ -1,6 +1,7 @@
 module Firefly
   class Database
     def self.connect!
+      puts "Connecting to database #{config['database']}"
       ActiveRecord::Base.establish_connection(config)
     end
 

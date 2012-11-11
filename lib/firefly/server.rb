@@ -17,6 +17,7 @@ module Firefly
       enable :logging, :dump_errors, :raise_errors
     end
 
+    # TODO: Replace this properly with Firefly.root
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
     set :views,          "#{dir}/views"
@@ -164,13 +165,13 @@ module Firefly
     end
 
     get '/' do
-      @highlight = Firefly::Url.first(:code => params[:highlight])
+      @highlight = Firefly::Url.where(code: params[:highlight]).first
       @error     = params[:highlight] == "error"
 
       sort_column = params[:s] || 'created_at'
       sort_order  = params[:d] || 'desc'
 
-      @urls = Firefly::Url.all(:limit => config[:recent_urls], :order => [ sort_column.to_sym.send(sort_order.to_sym) ] )
+      @urls = Firefly::Url.limit(config[:recent_urls]).order("#{sort_column} #{sort_order}").all
 
       haml :index
     end
@@ -234,7 +235,7 @@ module Firefly
     get '/api/info/:code' do
       validate_api_permission or return "Permission denied: Invalid API key"
 
-      @url = Firefly::Url.first(:code => params[:code])
+      @url = Firefly::Url.where(code: params[:code]).first
 
       if @url.nil?
         status 404
@@ -250,7 +251,7 @@ module Firefly
       #
       # Return a QR code image
       get '/:code.png' do
-        @url = Firefly::Url.first(:code => params[:code])
+        @url = Firefly::Url.where(code: params[:code]).first
 
         if @url.nil?
           status 404
@@ -258,8 +259,8 @@ module Firefly
         else
           qr = Barby::QrCode.new(short_url(@url))
           content_type('image/png')
-          cache_control :public, :max_age => 2592000 # One month
-          body(qr.to_png(:xdim => 15, :margin => 30))
+          cache_control :public, max_age: 2592000 # One month
+          body(qr.to_png(xdim: 15, margin: 30))
         end
       end
     end
@@ -268,7 +269,7 @@ module Firefly
     #
     # Redirect to the shortened URL
     get '/:code' do
-      @url = Firefly::Url.first(:code => params[:code])
+      @url = Firefly::Url.where(code: params[:code]).first
 
       if @url.nil?
         status 404
@@ -285,9 +286,8 @@ module Firefly
       @config.instance_eval(&blk) if block_given?
 
       begin
-        DataMapper.setup(:default, @config[:database])
-        DataMapper.auto_upgrade!
-        check_mysql_collation
+        # TODO: Check for proper database collation with ActiveRecord
+        # check_mysql_collation
         check_code_factory
       rescue
         puts "Error setting up database connection. Please check the `database` setting in config.ru"
@@ -299,7 +299,7 @@ module Firefly
     end
 
     def check_code_factory
-      Firefly::CodeFactory.first || Firefly::CodeFactory.create(:count => 0)
+      Firefly::CodeFactory.first || Firefly::CodeFactory.create(count: 0)
     end
 
     def check_mysql_collation(first_try = true)

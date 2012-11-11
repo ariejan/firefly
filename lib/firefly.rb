@@ -18,10 +18,6 @@ end
 $:.unshift(File.dirname(__FILE__)) unless
   $:.include?(File.dirname(__FILE__)) || $:.include?(File.expand_path(File.dirname(__FILE__)))
 
-if ENV['RACK_ENV'] == 'development'
-  DataMapper::Logger.new($stdout, :debug)
-end
-
 module Firefly
   # Return the path to the root of this Firefly instance
   def self.root
@@ -30,7 +26,7 @@ module Firefly
 
   # Get the current environment
   def self.environment
-    ENV['RACK_ENV'] || "development"
+    @environment ||= ENV['RACK_ENV'] || "development"
   end
 end
 

@@ -1,13 +1,13 @@
 # encoding: UTF-8
 module Firefly
-  class Url
+  class Url < ActiveRecord::Base
 
     VALID_URL_REGEX  = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
     VALID_CODE_REGEX = /^[a-z0-9\-_]{3,64}$/i
 
     # Increase the visits counter by 1
     def register_click!
-      self.update(:clicks => self.clicks + 1)
+      self.update_attribute(:clicks, self.clicks + 1)
     end
 
     # Shorten a long_url and return a new FireFly::Url
@@ -19,11 +19,11 @@ module Firefly
 
       long_url = normalize_url(long_url)
 
-      the_url = Firefly::Url.first(:url => long_url) || Firefly::Url.create(:url => long_url)
+      the_url = Firefly::Url.find_or_create_by_url(long_url)
       return the_url unless the_url.code.nil?
 
       code ||= get_me_a_code
-      the_url.update(:code => code)
+      the_url.update_attribute(:code, code)
       the_url
     end
 
@@ -33,7 +33,7 @@ module Firefly
       def self.get_me_a_code
         code = Firefly::CodeFactory.next_code!
 
-        if Firefly::Url.count(:code => code) > 0
+        if Firefly::Url.exists?(code: code)
           code = get_me_a_code
         end
 
@@ -53,7 +53,7 @@ module Firefly
 
       def self.valid_code?(code)
         return true if code.nil?
-        code.match(Firefly::Url::VALID_CODE_REGEX) && Firefly::Url.count(:code => code) == 0
+        code.match(Firefly::Url::VALID_CODE_REGEX) && !Firefly::Url.exists?(code: code)
       end
 
   end
