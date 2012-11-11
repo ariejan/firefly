@@ -28,16 +28,12 @@
         %td.label Full URL
         %td.label Clicks
         %td.label Shortened at
-        %td.label &nbsp;
       %tr.highlighted
         %td.value
           %input{ :type => "text", :value => short_url(@highlight), :class => 'short_url', :size => 21 }
         %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
         %td.value.center= @highlight.clicks
         %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
-        %td.value
-          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(@highlight))}" }
-            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
 
   %h2 Recently shortened
   
@@ -47,7 +43,6 @@
       %td.label(nowrap='nowrap') Full URL <a href="/?s=url&d=asc">▲</a> <a href="/?s=url&d=desc">▼</a>
       %td.label(nowrap='nowrap') Clicks <a href="/?s=clicks&d=asc">▲</a> <a href="/?s=clicks&d=desc">▼</a>
       %td.label(nowrap='nowrap') Shortened At <a href="/?s=created_at&d=asc">▲</a> <a href="/?s=created_at&d=desc">▼</a>
-      %td.label &nbsp;
     - @urls.each do |url|
       %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
@@ -55,9 +50,6 @@
         %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
-        %td.value
-          %a{ :href => "http://twitter.com/home?status=#{tweet(short_url(url))}" }
-            %img.twitter{ :src => "/images/twitter.png", :width => "16", :height => "16" }
 
   :javascript
     $(document).ready(function() {

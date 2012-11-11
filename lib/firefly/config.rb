@@ -5,11 +5,7 @@ module Firefly
     DEFAULTS = {
       :hostname         => "localhost:3000",
       :api_key          => "test",
-      :database         => "sqlite3://#{Dir.pwd}/firefly_#{ENV['RACK_ENV']}.sqlite3",
-      :recent_urls      => 25,
-      :tweet            => "Check this out: %short_url%",
-      :hyves_title      => "Check this out",
-      :hyves_body       => "Check this out: %short_url%"
+      :recent_urls      => 25
     }
 
     def initialize obj

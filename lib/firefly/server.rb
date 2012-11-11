@@ -62,31 +62,6 @@ module Firefly
         key == Digest::MD5.hexdigest(config[:api_key])
       end
 
-      def has_valid_share_key?
-        return false unless @config.has_key?(:sharing_key)
-        @config[:sharing_key] == params[:key]
-      end
-
-      def has_valid_share_domain?
-        return false unless @config.has_key?(:sharing_domains)
-        return true if @config[:sharing_domains].empty?
-        @config[:sharing_domains].any? { |domain| params[:url].include?(domain) }
-      end
-
-      def has_valid_share_target?
-        return false unless @config.has_key?(:sharing_domains)
-        @config[:sharing_targets].include?(params[:target].downcase.to_sym)
-      end
-
-      def validate_share_permission
-        if has_valid_share_key? && has_valid_share_domain? && has_valid_share_target?
-          return true
-        else
-          status 401
-          return false
-        end
-      end
-
       def validate_api_permission
         if !has_valid_api_cookie? && params[:api_key] != config[:api_key]
           status 401
@@ -120,32 +95,6 @@ module Firefly
       def is_highlighted?(url)
         return false unless @highlight
         @highlight == url.code
-      end
-
-      # Format a tweet
-      #
-      # redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", params[:title])}"))
-      def tweet(url, message = nil)
-        if message.nil? || message == ""
-          config[:tweet].gsub('%short_url%', url)
-        else
-          max_length = 140-1-url.size
-          [message.strip.slice(0...max_length), url].join(' ')
-        end
-      end
-
-      # Format a hyves post
-      # {"http://www.hyves.nl/profielbeheer/toevoegen/tips/?name=#{name_of_titel}&text=#{tekst_met_url)}&type=12&rating=5"
-      def hyves_post(url, title = nil, body = nil)
-        if title.nil? || title == ""
-          title = config[:hyves_title]
-        end
-
-        if body.nil? || body == ""
-          body = config[:hyves_body].gsub('%short_url%', url)
-        end
-
-        return "name=#{title.strip}&text=#{body.strip}&type=12&rating=5"
       end
 
       def store_api_key(key)
@@ -205,29 +154,6 @@ module Firefly
 
     get '/api/add', &api_add
     post '/api/add', &api_add
-
-    api_share = lambda {
-      validate_share_permission or return "Cannot share that URL."
-
-      @url = params[:url]
-      @code, @result = generate_short_url(@url, nil)
-      invalid = @code.nil?
-
-      params[:title] ||= ""
-      title = URI.unescape(params[:title])
-
-      case (params[:target].downcase.to_sym)
-        when :twitter
-          redirect(URI.escape("http://twitter.com/home?status=#{tweet("http://#{config[:hostname]}/#{@code}", title)}"))
-        when :hyves
-          redirect(URI.escape("http://www.hyves.nl/profielbeheer/toevoegen/tips/?#{hyves_post("http://#{config[:hostname]}/#{@code}", title)}"))
-        when :facebook
-          redirect(URI.escape("http://www.facebook.com/share.php?u=http://#{config[:hostname]}/#{@code}"))
-        end
-    }
-
-    get '/api/share', &api_share
-    post '/api/share', &api_share
 
     # GET /b3d+
     #

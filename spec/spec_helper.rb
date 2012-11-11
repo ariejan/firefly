@@ -22,10 +22,6 @@ set :logging, false
 @@app = Firefly::Server.new do
   set :hostname,        "test.host"
   set :api_key,         "test"
-
-  set :sharing_key,     "asdfasdf"
-  set :sharing_targets, [:twitter, :hyves, :facebook]
-  set :sharing_domains, ["example.com", "example.net"]
 end
 
 RSpec.configure do |config|
