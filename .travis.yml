@@ -2,6 +2,14 @@ language: ruby
 
 rvm:
   - 1.9.2
+  - 1.9.3
+  - rbx-19mode
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: rbx-19mode
+    - rvm: ruby-head
 
 env:
   - DB=sqlite
