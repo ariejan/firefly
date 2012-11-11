@@ -5,19 +5,19 @@
     %p
       Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
     %p
-      %a{ :href => "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+      %a{ href: "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
 
   %h1 How about shortening a URL?
 
   .the_form
-    %form{ :action => '/api/add', :method => 'post' }
-      %input{ :type => "hidden", :name => "visual", :value => "1" }
+    %form{ action: '/api/add', method: 'post' }
+      %input{ type: "hidden", name: "visual", value: "1" }
       %p
-        %input.big_url{ :type => 'text', :placeholder => "Paste your long URL here...", :name => 'url', :id => 'url', :size => 40, :autocomplete => "off", :spellcheck => 'false' }
-        %span{ :style => "font-size: 1.8em;" }= '>' 
-        %input.big_url{ :type => 'text', :placeholder => "Optional short code", :name => 'short', :id => 'short', :size => 20, :autocomplete => "off", :spellcheck => 'false' }
+        %input.big_url{ type: 'text', placeholder: "Paste your long URL here...", name: 'url', id: 'url', size: 40, autocomplete: "off", spellcheck: 'false' }
+        %span{ style: "font-size: 1.8em;" }= '>' 
+        %input.big_url{ type: 'text', placeholder: "Optional short code", name: 'short', id: 'short', size: 20, autocomplete: "off", spellcheck: 'false' }
       %p
-        %input.big_url{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Make it short!" }
+        %input.big_url{ type: 'submit', name: 'submit', id: 'submit', value: "Make it short!" }
 
   - if @highlight
     %h2 Your short URL
@@ -30,7 +30,7 @@
         %td.label Shortened at
       %tr.highlighted
         %td.value
-          %input{ :type => "text", :value => short_url(@highlight), :class => 'short_url', :size => 21 }
+          %input{ type: "text", value: short_url(@highlight), class: 'short_url', size: 21 }
         %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
         %td.value.center= @highlight.clicks
         %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
@@ -44,9 +44,9 @@
       %td.label(nowrap='nowrap') Clicks <a href="/?s=clicks&d=asc">▲</a> <a href="/?s=clicks&d=desc">▼</a>
       %td.label(nowrap='nowrap') Shortened At <a href="/?s=created_at&d=asc">▲</a> <a href="/?s=created_at&d=desc">▼</a>
     - @urls.each do |url|
-      %tr{ :class => is_highlighted?(url) ? 'highlighted' : '' }
+      %tr{ class: is_highlighted?(url) ? 'highlighted' : '' }
         %td.value
-          %input{ :type => "text", :value => short_url(url), :class => 'short_url', :size => 31 }
+          %input{ type: "text", value: short_url(url), class: 'short_url', size: 31 }
         %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
         %td.value.center= url.clicks
         %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
@@ -75,9 +75,9 @@
   %p
     Please enter your API key below to make sure only you can shorten URLs here.
   
-  %form{ :action => '/api/set', :method => 'post' }
+  %form{ action: '/api/set', method: 'post' }
     %p
-      %label{ :for => 'api_key' } API Key
-      %input{ :type => 'password', :name => 'api_key', :id => 'api_key' }
+      %label{ for: 'api_key' } API Key
+      %input{ type: 'password', name: 'api_key', id: 'api_key' }
     %p
-      %input{ :type => 'submit', :name => 'submit', :id => 'submit', :value => "Let me in" }
+      %input{ type: 'submit', name: 'submit', id: 'submit', value: "Let me in" }

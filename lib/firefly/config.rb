@@ -3,9 +3,9 @@ module Firefly
   class Config < Hash
 
     DEFAULTS = {
-      :hostname         => "localhost:3000",
-      :api_key          => "test",
-      :recent_urls      => 25
+      hostname:    "localhost:3000",
+      api_key:     "test",
+      recent_urls: 25
     }
 
     def initialize configuration_file

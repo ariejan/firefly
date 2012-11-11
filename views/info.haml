@@ -1,5 +1,5 @@
 %p.link
-  %a{ :href => "/" } &laquo; Back
+  %a{ href: "/" } &laquo; Back
 
 %h1 http://#{@config[:hostname]}/#{@url.code}
 
@@ -12,7 +12,7 @@
 
   %tr
     %td.value
-      %input{ :type => "text", :value => short_url(@url), :class => 'short_url', :size => 21 }
+      %input{ type: "text", value: short_url(@url), class: 'short_url', size: 21 }
     %td.value.fill <a href="#{@url.url}">#{@url.url}</a>
     %td.value.center= @url.clicks
     %td.value= @url.created_at.strftime("%Y-%m-%d %H:%M")

@@ -22,7 +22,7 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean_with(:truncation)
-    Firefly::CodeFactory.create(:count => 0)
+    Firefly::CodeFactory.create(count: 0)
   end
 
   config.before(:each) do
@@ -31,7 +31,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
-    Firefly::CodeFactory.create(:count => 0)
+    Firefly::CodeFactory.create(count: 0)
   end
 
   # Loads the urls.yml fixtures.
