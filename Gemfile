@@ -14,6 +14,5 @@ group :development, :test do
   gem 'rake',               '~> 0.9.2'
   gem 'rspec',              '~> 2.11'
   gem 'rack-test',          '~> 0.6'
-  gem 'dm-sqlite-adapter',  '~> 1.0.2'
   gem 'database_cleaner',   '~> 0.9'
 end
