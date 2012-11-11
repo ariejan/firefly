@@ -19,10 +19,10 @@ module Firefly
 
     dir = File.join(File.dirname(__FILE__), '..', '..')
 
-    set :views,   "#{dir}/views"
-    set :public,  "#{dir}/public"
-    set :haml,    {:format => :html5 }
-    set :static,  true
+    set :views,          "#{dir}/views"
+    set :public_folder,  "#{dir}/public"
+    set :haml,           format: :html5
+    set :static,         true
     set :session_secret, nil
 
     attr_accessor :config
