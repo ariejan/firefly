@@ -5,6 +5,9 @@ gem 'haml',                 '~> 3.0.18'
 gem 'escape_utils',         '~> 0.2.3'
 
 gem 'pg'
+gem 'mysql2'
+gem 'sqlite3'
+
 gem 'sinatra-activerecord', '~> 1.1.2'
 
 group :development, :test do

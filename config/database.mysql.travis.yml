@@ -1,0 +1,6 @@
+test:
+  adapter: mysql2
+  database: firefly_test
+  username:
+  encoding: utf8
+
