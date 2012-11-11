@@ -4,10 +4,7 @@ require 'open-uri'
 require 'cgi'
 require 'yaml'
 require 'sinatra'
-require 'dm-core'
-require 'dm-migrations'
-require 'dm-transactions'
-require 'dm-aggregates'
+require 'sinatra/activerecord'
 
 require 'escape_utils'
 require 'escape_utils/url/rack'
@@ -26,12 +23,18 @@ if ENV['RACK_ENV'] == 'development'
 end
 
 module Firefly
+  # Return the path to the root of this Firefly instance
+  def self.root
+    @root ||= File.expand_path('../../', __FILE__)
+  end
+
   # Get the current environment
   def self.environment
     ENV['RACK_ENV'] || "development"
   end
 end
 
+require 'firefly/database'
 require 'firefly/config'
 require 'firefly/version'
 require 'firefly/base62'

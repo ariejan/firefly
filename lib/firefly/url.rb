@@ -1,16 +1,9 @@
 # encoding: UTF-8
 module Firefly
   class Url
-    include DataMapper::Resource
 
     VALID_URL_REGEX  = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/ix
     VALID_CODE_REGEX = /^[a-z0-9\-_]{3,64}$/i
-
-    property :id,           Serial
-    property :url,          String,     :index => true, :length => 255
-    property :code,         String,     :index => true, :length => 64
-    property :clicks,       Integer,    :default => 0
-    property :created_at,   DateTime,   :default => Proc.new{Time.now}
 
     # Increase the visits counter by 1
     def register_click!
@@ -40,7 +33,7 @@ module Firefly
       def self.get_me_a_code
         code = Firefly::CodeFactory.next_code!
 
-        if Firefly::Url.count(:code => code) > 0 
+        if Firefly::Url.count(:code => code) > 0
           code = get_me_a_code
         end
 
@@ -53,7 +46,7 @@ module Firefly
         URI.parse(url).normalize.to_s
       end
 
-      # Validates the URL to be a valid http or https one. 
+      # Validates the URL to be a valid http or https one.
       def self.valid_url?(url)
         url.match(Firefly::Url::VALID_URL_REGEX)
       end

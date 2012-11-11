@@ -9,3 +9,4 @@ _site
 _site/*
 log/
 log/*
+config/database.yml

@@ -1,10 +1,6 @@
 # encoding: UTF-8
 module Firefly
   class CodeFactory
-    include DataMapper::Resource
-
-    property :id,    Serial
-    property :count, Integer, :default => 0
 
     # Returns the next auto increment value and updates
     # the counter
