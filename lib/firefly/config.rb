@@ -8,17 +8,14 @@ module Firefly
       :recent_urls      => 25
     }
 
-    def initialize obj
+    def initialize configuration_file
       self.update DEFAULTS
-      self.update obj
+      self.merge! Firefly::Config.read_from_file(configuration_file)
     end
 
-    def set key, val = nil, &blk
-      if val.is_a? Hash
-        self[key].update val
-      else
-        self[key] = block_given?? blk : val
-      end
+    def self.read_from_file(configuration_file)
+      data = YAML::load(File.read(configuration_file))['firefly']
+      data.symbolize_keys
     end
   end
 end

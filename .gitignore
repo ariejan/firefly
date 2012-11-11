@@ -10,3 +10,4 @@ _site/*
 log/
 log/*
 config/database.yml
+config/firefly.yml

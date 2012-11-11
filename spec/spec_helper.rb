@@ -12,10 +12,7 @@ set :logging,       false
 module RSpecMixin
   include Rack::Test::Methods
   def app
-    Firefly::Server.new do
-      set :hostname,        "test.host"
-      set :api_key,         "test"
-    end
+    Firefly::Server.new(File.join(Firefly.root, 'spec/firefly.yml'))
   end
 end
 

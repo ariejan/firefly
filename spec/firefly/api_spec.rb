@@ -145,10 +145,7 @@ describe "API" do
 
   describe "api key" do
     def app
-      Firefly::Server.new do
-        set :hostname,    "test.host"
-        set :api_key,     "test#!"
-      end
+      Firefly::Server.new(File.join(Firefly.root, 'spec/firefly_special_key.yml'))
     end
 
     it "should be okay adding a new URL" do
