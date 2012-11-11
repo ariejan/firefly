@@ -1,15 +1,20 @@
+ENV['RACK_ENV'] ||= "test"
+
 require File.join(File.dirname(__FILE__), '..', 'lib', 'firefly.rb')
 
 require 'rubygems'
 require "bundler/setup"
 
 require 'sinatra'
+require 'sinatra/activerecord'
+
 require 'rack/test'
 require 'yaml'
 require 'database_cleaner'
 
 # set test environment
 set :environment, :test
+
 set :run, false
 set :raise_errors, true
 set :logging, false
@@ -17,7 +22,6 @@ set :logging, false
 @@app = Firefly::Server.new do
   set :hostname,        "test.host"
   set :api_key,         "test"
-  set :database,        "sqlite3::memory:"
 
   set :sharing_key,     "asdfasdf"
   set :sharing_targets, [:twitter, :hyves, :facebook]
