@@ -3,4 +3,6 @@ test:
   database: firefly_test
   username:
   encoding: utf8
+  charset: utf8
+  collation: utf8_bin
 
