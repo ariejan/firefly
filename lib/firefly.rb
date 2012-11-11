@@ -6,9 +6,6 @@ require 'yaml'
 require 'sinatra'
 require 'sinatra/activerecord'
 
-require 'escape_utils'
-require 'escape_utils/url/rack'
-
 begin
   require 'barby'
   require 'barby/outputter/png_outputter'
