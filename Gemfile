@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra', '~> 1.3'
-gem 'haml',                 '~> 3.0.18'
-# gem 'escape_utils',         '~> 0.2.3'
+gem 'haml',    '~> 3.1.7'
 
 gem 'pg'
 gem 'mysql2'
