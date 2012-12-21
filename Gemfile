@@ -14,4 +14,5 @@ group :development, :test do
   gem 'rspec',              '~> 2.11'
   gem 'rack-test',          '~> 0.6'
   gem 'database_cleaner',   '~> 0.9'
+  gem 'coveralls', require: false
 end

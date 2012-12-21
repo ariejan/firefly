@@ -4,6 +4,9 @@ require 'sinatra'
 require 'rack/test'
 require 'database_cleaner'
 
+require 'coveralls'
+Coveralls.wear!
+
 set :environment,   :test
 set :run,           false
 set :raise_errors,  true
