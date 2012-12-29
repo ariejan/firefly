@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    firefly (1.5.2)
+    firefly (1.5.3)
       dm-aggregates (~> 1.0.2)
       dm-core (~> 1.0.2)
       dm-migrations (~> 1.0.2)
