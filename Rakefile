@@ -1,11 +1,9 @@
+require 'rspec/core'
 require 'rspec/core/rake_task'
 require 'sinatra/activerecord/rake'
-require './lib/firefly'
+require File.expand_path('../lib/firefly', __FILE__)
 
-desc "Run all the specs!"
-RSpec::Core::RakeTask.new :spec do |config|
-  ENV['RACK_ENV'] = "test"
-end
+task :default => :spec
 
-task default: :spec
-
+desc "Run all specs in spec directory (excluding plugin specs)"
+RSpec::Core::RakeTask.new(:spec)
