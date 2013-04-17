@@ -1,0 +1,53 @@
+.table tr .right {
+  text-align: right;
+}
+.table tr .left {
+  text-align: left;
+}
+.table tr .center {
+  text-align: center;
+}
+.content {
+  background-color: white;
+  padding: 20px;
+  margin: 0 -20px;
+  -webkit-border-radius: 0 0 6px 6px;
+  -moz-border-radius: 0 0 6px 6px;
+  border-radius: 0 0 6px 6px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+.page-header {
+  background-color: whiteSmoke;
+  padding: 20px 20px;
+  margin: -20px -20px 20px;
+  border-bottom: 1px solid #EEE;
+}
+.breadcrumb {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 20px 0;
+  background: transparent;
+  border-bottom: 1px solid #EEE;
+}
+.nav-tabs > li > a,
+.nav-pills > li > a {
+  padding-right: 7px;
+  padding-left: 7px;
+}
+.container > footer {
+  margin: 25px;
+}
+.container > footer p {
+  text-align: center;
+}
+.form-horizontal .control-label {
+  line-height: 42px;
+}
+.form-horizontal .controls input[type=file] {
+  line-height: 12px;
+  vertical-align: baseline;
+}
