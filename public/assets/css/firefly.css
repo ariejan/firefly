@@ -1,0 +1,44 @@
+body.application {
+  padding-top: 60px;
+  background-color: #eeeeee;
+}
+i.logo-image {
+  display: block;
+  float: left;
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+.navbar .brand .logo {
+  font-weight: bold;
+}
+.navbar .nav {
+  margin: 0px;
+}
+.hidden {
+  display: none;
+}
+.margin-left5 {
+  margin-left: 5px;
+}
+.header-button {
+  line-height: 30px;
+}
+.well hr {
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+.navbar .brand .logo {
+  font-weight: bold;
+}
+.environment {
+  color: #F00;
+}
+
+.ascii-name pre {
+  font-family: 'courier';
+  text-align: center;
+  background-color: #000;
+  border: none;
+  color: #14F53C;
+}

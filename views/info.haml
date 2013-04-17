@@ -1,21 +1,25 @@
-%p.link
-  %a{ href: "/" } &laquo; Back
+.row
+  .span12
 
-%h1 http://#{@config[:hostname]}/#{@url.code}
+    %h1 http://#{@config[:hostname]}/#{@url.code}
 
-%table
-  %tr
-    %td.label Short URL
-    %td.label Full URL
-    %td.label Clicks
-    %td.label Shortened at
+    %table.table.table-hover
+      %thead
+        %tr
+          %th Short URL
+          %th Full URL
+          %th Clicks
+          %th Shortened at
+      %tbody
+        %tr
+          %td
+            %input{ type: "text", value: short_url(@url), class: 'short_url', size: 21 }
+          %td <a href="#{@url.url}">#{@url.url}</a>
+          %td= @url.clicks
+          %td= @url.created_at.strftime("%Y-%m-%d %H:%M")
 
-  %tr
-    %td.value
-      %input{ type: "text", value: short_url(@url), class: 'short_url', size: 21 }
-    %td.value.fill <a href="#{@url.url}">#{@url.url}</a>
-    %td.value.center= @url.clicks
-    %td.value= @url.created_at.strftime("%Y-%m-%d %H:%M")
+    %p
+      %a{ href: "/" } &laquo; Back
 
 :javascript
   $(document).ready(function() {

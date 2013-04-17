@@ -3,16 +3,20 @@
   %head
     %title #{@title}
     %meta(charset="UTF-8")
-    %link{ rel: "stylesheet", href: u('reset.css') }
-    %link{ rel: "stylesheet", href: u('style.css') }
-    %script{ type: "text/javascript", src: u('jquery-1.4.2.min.js') }
-  %body
-    .header
-      %h1= @title
+    %link{ rel: "stylesheet", href: u('vendor/bootstrap/css/bootstrap.min.css') }
+    %link{ rel: "stylesheet", href: u('assets/css/bootstrap_extends.css') }
+    %link{ rel: "stylesheet", href: u('assets/css/firefly.css') }
+    %script{ type: "text/javascript", src: u('vendor/jquery-1.9.1.min.js') }
+    %script{ type: "text/javascript", src: u('assets/js/firefly.js') }
+  %body.application
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          %a{ href: u('/'), class: 'brand' } FIREFLY
+    .container
+      .content
+        = yield
 
-    #main
-      = yield
-
-    #footer
-      %p
-        Powered by <a href="http://github.com/ariejan/firefly">Firefly</a> v#{Firefly::VERSION} | <a href="https://github.com/ariejan/firefly/tree/v#{Firefly::VERSION}">Source</a> | <a href="http://github.com/ariejan/firefly/issues">Issues</a>
+      %footer
+        %p
+          Powered by <a href="http://github.com/ariejan/firefly">Firefly</a> v#{Firefly::VERSION} | <a href="https://github.com/ariejan/firefly/tree/v#{Firefly::VERSION}">Source</a> | <a href="http://github.com/ariejan/firefly/issues">Issues</a>

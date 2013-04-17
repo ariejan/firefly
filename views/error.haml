@@ -1,11 +1,10 @@
-%h1 Whoops!
+.row
+  .span12
+    %h1 Whoops!
 
-%p
-  There was an error processing your request:
+    .alert.alert-error
+      There was an error processing your request:
+      %strong= @result
 
-%p
-  %blockquote
-    = @result
-
-%p
-  %a(href='/') Go back
+    %p
+      %a(href='/') Go back
