@@ -7,6 +7,7 @@ gem 'pg',       '~> 0.17'
 gem 'mysql2',   '~> 0.3'
 gem 'sqlite3',  '~> 1.3'
 
+gem 'activerecord', "= 4.0.4"
 gem 'sinatra-activerecord', '~> 1.7'
 
 group :development, :test do
