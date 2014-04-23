@@ -120,7 +120,7 @@ module Firefly
       sort_column = params[:s] || 'created_at'
       sort_order  = params[:d] || 'desc'
 
-      @urls = Firefly::Url.limit(config[:recent_urls]).order("#{sort_column} #{sort_order}").all
+      @urls = Firefly::Url.limit(config[:recent_urls]).order("#{sort_column} #{sort_order}")
 
       haml :index
     end
