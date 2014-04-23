@@ -19,7 +19,8 @@ module Firefly
 
       long_url = normalize_url(long_url)
 
-      the_url = Firefly::Url.find_or_create_by_url(long_url)
+      # the_url = Firefly::Url.find_or_create_by_url(long_url)
+      the_url = Firefly::Url.find_or_create_by(url: long_url)
       return the_url unless the_url.code.nil?
 
       code ||= get_me_a_code
