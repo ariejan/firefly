@@ -114,6 +114,7 @@ module Firefly
     end
 
     get '/' do
+      redirect '/login' if !@authenticated
       @highlight = Firefly::Url.where(code: params[:highlight]).first
       @error     = params[:highlight] == "error"
 
@@ -128,6 +129,10 @@ module Firefly
     post '/api/set' do
       store_api_key(params[:api_key])
       redirect '/'
+    end
+
+    get '/login' do
+      haml :login
     end
 
     # GET /add?url=http://ariejan.net&api_key=test
