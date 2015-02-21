@@ -1,83 +1,70 @@
-- if @authenticated
-  .sidebox
-    %h2 Bookmarklet
+.sidebox
+  %h2 Bookmarklet
 
+  %p
+    Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
+  %p
+    %a{ href: "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+
+%h1 How about shortening a URL?
+
+.the_form
+  %form{ action: '/api/add', method: 'post' }
+    %input{ type: "hidden", name: "visual", value: "1" }
     %p
-      Drag the following link to your bookmarks. Click it to shorten the URL to the page you're currently viewing.
+      %input.big_url{ type: 'text', placeholder: "Paste your long URL here...", name: 'url', id: 'url', size: 40, autocomplete: "off", spellcheck: 'false' }
+      %span{ style: "font-size: 1.8em;" }= '>'
+      %input.big_url{ type: 'text', placeholder: "Optional short code", name: 'short', id: 'short', size: 20, autocomplete: "off", spellcheck: 'false' }
     %p
-      %a{ href: "javascript:var%20d=document,w=window,enc=encodeURIComponent,e=w.getSelection,k=d.getSelection,x=d.selection,s=(e?e():(k)?k():(x?x.createRange().text:0)),s2=((s.toString()=='')?s:('%22'+enc(s)+'%22')),key=enc('#{@config[:api_key]}'),f='http://#{@config[:hostname]}/api/add',l=d.location,p='?visual=1&api_key='+key+'&url='+enc(l.href),u=f+p;try{if(!/^(.*\.)?tumblrzzz[^.]*$/.test(l.host))throw(0);tstbklt();}catch(z){a%20=function(){if(!w.open(u))l.href=u;};if(/Firefox/.test(navigator.userAgent))setTimeout(a,0);else%20a();}void(0)" } Shorten with #{@config[:hostname]}
+      %input.big_url{ type: 'submit', name: 'submit', id: 'submit', value: "Make it short!" }
 
-  %h1 How about shortening a URL?
+- if @highlight
+  %h2 Your short URL
 
-  .the_form
-    %form{ action: '/api/add', method: 'post' }
-      %input{ type: "hidden", name: "visual", value: "1" }
-      %p
-        %input.big_url{ type: 'text', placeholder: "Paste your long URL here...", name: 'url', id: 'url', size: 40, autocomplete: "off", spellcheck: 'false' }
-        %span{ style: "font-size: 1.8em;" }= '>' 
-        %input.big_url{ type: 'text', placeholder: "Optional short code", name: 'short', id: 'short', size: 20, autocomplete: "off", spellcheck: 'false' }
-      %p
-        %input.big_url{ type: 'submit', name: 'submit', id: 'submit', value: "Make it short!" }
-
-  - if @highlight
-    %h2 Your short URL
-
-    %table
-      %tr
-        %td.label Short URL
-        %td.label Full URL
-        %td.label Clicks
-        %td.label Shortened at
-      %tr.highlighted
-        %td.value
-          %input{ type: "text", value: short_url(@highlight), class: 'short_url', size: 21 }
-        %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
-        %td.value.center= @highlight.clicks
-        %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
-
-  %h2 Recently shortened
-  
   %table
     %tr
-      %td.label(nowrap='nowrap') Short URL <a href="/?s=code&d=asc">▲</a> <a href="/?s=code&d=desc">▼</a>
-      %td.label(nowrap='nowrap') Full URL <a href="/?s=url&d=asc">▲</a> <a href="/?s=url&d=desc">▼</a>
-      %td.label(nowrap='nowrap') Clicks <a href="/?s=clicks&d=asc">▲</a> <a href="/?s=clicks&d=desc">▼</a>
-      %td.label(nowrap='nowrap') Shortened At <a href="/?s=created_at&d=asc">▲</a> <a href="/?s=created_at&d=desc">▼</a>
-    - @urls.each do |url|
-      %tr{ class: is_highlighted?(url) ? 'highlighted' : '' }
-        %td.value
-          %input{ type: "text", value: short_url(url), class: 'short_url', size: 31 }
-        %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
-        %td.value.center= url.clicks
-        %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
+      %td.label Short URL
+      %td.label Full URL
+      %td.label Clicks
+      %td.label Shortened at
+    %tr.highlighted
+      %td.value
+        %input{ type: "text", value: short_url(@highlight), class: 'short_url', size: 21 }
+      %td.value.fill <a href="#{@highlight.url}">#{truncate @highlight.url, 130}</a>
+      %td.value.center= @highlight.clicks
+      %td.value= @highlight.created_at.strftime("%Y-%m-%d %H:%M")
 
-  :javascript
-    $(document).ready(function() {
-      $('input.short_url').each(function(index) {
-        $(this).mouseup(function() { $(this).select(); });
-      });  
+%h2 Recently shortened
 
-      if (window.location.search == "") {
-        var pathname = window.location.pathname + '?s=created_at&d=desc';
-      } else {
-        var pathname = window.location.pathname + window.location.search;
-      }
+%table
+  %tr
+    %td.label(nowrap='nowrap') Short URL <a href="/?s=code&d=asc">▲</a> <a href="/?s=code&d=desc">▼</a>
+    %td.label(nowrap='nowrap') Full URL <a href="/?s=url&d=asc">▲</a> <a href="/?s=url&d=desc">▼</a>
+    %td.label(nowrap='nowrap') Clicks <a href="/?s=clicks&d=asc">▲</a> <a href="/?s=clicks&d=desc">▼</a>
+    %td.label(nowrap='nowrap') Shortened At <a href="/?s=created_at&d=asc">▲</a> <a href="/?s=created_at&d=desc">▼</a>
+  - @urls.each do |url|
+    %tr{ class: is_highlighted?(url) ? 'highlighted' : '' }
+      %td.value
+        %input{ type: "text", value: short_url(url), class: 'short_url', size: 31 }
+      %td.value.fill <a href="#{url.url}">#{truncate url.url, 130}</a>
+      %td.value.center= url.clicks
+      %td.value= url.created_at.strftime("%Y-%m-%d %H:%M")
 
-      $('#main table tr td.label a').each(function(index) {
-        if ($(this).attr('href') == pathname) {
-          $(this).addClass('highlight');
-        }
-      });
+:javascript
+  $(document).ready(function() {
+    $('input.short_url').each(function(index) {
+      $(this).mouseup(function() { $(this).select(); });
     });
-- else
-  %h1 Please enter your API key
-  
-  %p
-    Please enter your API key below to make sure only you can shorten URLs here.
-  
-  %form{ action: '/api/set', method: 'post' }
-    %p
-      %label{ for: 'api_key' } API Key
-      %input{ type: 'password', name: 'api_key', id: 'api_key' }
-    %p
-      %input{ type: 'submit', name: 'submit', id: 'submit', value: "Let me in" }
+
+    if (window.location.search == "") {
+      var pathname = window.location.pathname + '?s=created_at&d=desc';
+    } else {
+      var pathname = window.location.pathname + window.location.search;
+    }
+
+    $('#main table tr td.label a').each(function(index) {
+      if ($(this).attr('href') == pathname) {
+        $(this).addClass('highlight');
+      }
+    });
+  });

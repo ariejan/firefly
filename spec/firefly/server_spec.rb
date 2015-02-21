@@ -1,8 +1,30 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
 describe "Firefly" do
-  describe "/" do
-    it "should respond ok" do
+  describe "home page" do
+    it "should redirect when not logged in" do
+      get '/'
+      last_response.should be_redirect
+      follow_redirect!
+      last_response.should be_ok
+      last_request.url.should include '/login'
+    end
+
+    it "should redirect when invalid parameters" do
+      post '/api/set', { "api_key" => "not_the_right_key"}
+
+      get '/'
+      last_response.should be_redirect
+      follow_redirect!
+      last_response.should be_ok
+      last_request.url.should include '/login'
+    end
+
+    it "should be able to login" do
+      post '/api/set', { "api_key" => "test"}
+      follow_redirect!
+      last_response.should be_ok
+
       get '/'
       last_response.should be_ok
     end

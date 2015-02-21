@@ -1,0 +1,11 @@
+%h1 Please enter your API key
+
+%p
+  Please enter your API key below to make sure only you can shorten URLs here.
+
+%form{ action: '/api/set', method: 'post' }
+  %p
+    %label{ for: 'api_key' } API Key
+    %input{ type: 'password', name: 'api_key', id: 'api_key' }
+  %p
+    %input{ type: 'submit', name: 'submit', id: 'submit', value: "Let me in" }
