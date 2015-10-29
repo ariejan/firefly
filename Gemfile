@@ -4,7 +4,7 @@ gem 'sinatra', '~> 1.4'
 gem 'haml',    '~> 4.0'
 
 gem 'pg'       
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.20'
 gem 'sqlite3'
 
 gem 'activerecord', "= 4.2.4"
