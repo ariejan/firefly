@@ -10,7 +10,9 @@ Coveralls.wear!
 set :environment,   :test
 set :run,           false
 set :raise_errors,  true
-set :logging,       false
+set :logging,       nil
+
+ActiveRecord::Base.logger = nil
 
 module RSpecMixin
   include Rack::Test::Methods

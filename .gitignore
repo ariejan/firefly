@@ -1,5 +1,6 @@
 *.sqlite3
 *.sqlite3-journal
+*.db
 sinatra.log
 pkg
 .rvmrc
@@ -11,3 +12,4 @@ log/*
 config/database.yml
 config/firefly.yml
 .ruby-version
+coverage
