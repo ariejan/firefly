@@ -1,14 +1,13 @@
 language: ruby
 
 rvm:
-  - 1.9.2
-  - 1.9.3
-  - rbx-19mode
+  - 2.2.3
+  - 2.1.7
+  - 2.0.0-p647
   - ruby-head
 
 matrix:
   allow_failures:
-    - rvm: rbx-19mode
     - rvm: ruby-head
 
 env:
