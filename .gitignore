@@ -10,3 +10,4 @@ log/
 log/*
 config/database.yml
 config/firefly.yml
+.ruby-version
