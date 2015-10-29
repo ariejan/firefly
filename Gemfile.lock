@@ -65,8 +65,8 @@ GEM
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (>= 1.3, < 3)
-    sinatra-activerecord (1.7.0)
-      activerecord (>= 3.0)
+    sinatra-activerecord (2.0.9)
+      activerecord (>= 3.2)
       sinatra (~> 1.0)
     sqlite3 (1.3.11)
     term-ansicolor (1.3.2)
@@ -95,7 +95,7 @@ DEPENDENCIES
   rake (~> 10.4)
   rspec (~> 2.14)
   sinatra (~> 1.4)
-  sinatra-activerecord (= 1.7.0)
+  sinatra-activerecord (= 2.0.9)
   sqlite3
 
 BUNDLED WITH

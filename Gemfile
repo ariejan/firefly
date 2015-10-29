@@ -8,7 +8,7 @@ gem 'mysql2'
 gem 'sqlite3'
 
 gem 'activerecord', "= 4.2.4"
-gem 'sinatra-activerecord', '= 1.7.0'
+gem 'sinatra-activerecord', '= 2.0.9'
 
 group :development, :test do
   gem 'rake',               '~> 10.4'
