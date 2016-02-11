@@ -5,6 +5,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+ * Update gem dependencies
 
 ## [1.5.3] - 2011-05-05
 
