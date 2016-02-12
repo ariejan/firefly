@@ -8,6 +8,10 @@ gem 'hanami-model', '~> 0.5'
 
 gem 'sqlite3'
 
+group :development do
+  gem 'byebug'
+end
+
 group :test do
   gem 'minitest'
   gem 'capybara'

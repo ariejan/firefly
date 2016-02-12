@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
+    byebug (8.2.0)
     capybara (2.6.2)
       addressable
       mime-types (>= 1.16)
@@ -78,6 +79,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler
+  byebug
   capybara
   hanami (= 0.7.2)
   hanami-model (~> 0.5)
