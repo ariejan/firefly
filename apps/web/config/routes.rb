@@ -1,2 +1,1 @@
-# Configure your routes here
-# See: http://www.rubydoc.info/gems/hanami-router/#Usage
+get '/:code', to: 'items#resolver'
