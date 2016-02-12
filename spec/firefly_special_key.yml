@@ -1,4 +1,0 @@
-firefly:
-  hostname: 'test.host'
-  api_key: 'test#!'
-  session_secret: 'change-me'
