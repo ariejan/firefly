@@ -1,2 +1,1 @@
-# Configure your routes here
-# See: http://www.rubydoc.info/gems/hanami-router/#Usage
+get '/v1/shorten', to: 'items#create'
