@@ -2,6 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     addressable (2.4.0)
+    ansi (1.5.0)
+    builder (3.2.2)
     byebug (8.2.0)
     capybara (2.6.2)
       addressable
@@ -78,6 +80,11 @@ GEM
     mime-types (2.99)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
+    minitest-reporters (1.1.7)
+      ansi
+      builder
+      minitest (>= 5.0)
+      ruby-progressbar
     nenv (0.3.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -95,6 +102,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    ruby-progressbar (1.7.5)
     sequel (4.31.0)
     shellany (0.0.1)
     shotgun (0.9.1)
@@ -120,6 +128,7 @@ DEPENDENCIES
   hanami (= 0.7.2)
   hanami-model (~> 0.5)
   minitest
+  minitest-reporters
   rake
   sqlite3
 
