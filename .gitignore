@@ -1,2 +1,4 @@
 # Database files
 db/*
+
+.byebug_history
