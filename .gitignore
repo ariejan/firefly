@@ -1,4 +1,4 @@
 # Database files
-db/*
+db/*.sqlite
 
 .byebug_history
