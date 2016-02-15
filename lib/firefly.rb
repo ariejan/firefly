@@ -41,7 +41,6 @@ Hanami::Model.configure do
       repository ItemRepository
 
       attribute :id,         Integer
-      attribute :code,       String
       attribute :type,       String
       attribute :content,    String
       attribute :created_at, DateTime
