@@ -7,8 +7,13 @@ describe 'Shorten URL' do
     ItemRepository.clear
   end
 
+  it 'denies access without proper API token' do
+    get '/api/v1/shorten', token: 'no-token', url: url
+    last_response.status.must_equal 401
+  end
+
   it 'returns response in TXT format' do
-    get '/api/v1/shorten', token: 'abc', url: url
+    get '/api/v1/shorten', token: 'token', url: url
 
     last_response.status.must_equal 200
     last_response.header["Content-Type"].must_equal 'text/plain; charset=utf-8'
