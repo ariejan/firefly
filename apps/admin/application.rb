@@ -79,6 +79,9 @@ module Admin
       # Configure Rack middleware for this application
       #
       # middleware.use Rack::Protection
+      middleware.use Rack::Auth::Basic, "Protected Area" do |username, password|
+        username == ENV['ADMIN_USERNAME'] && password == ENV['ADMIN_PASSWORD']
+      end
 
       # Default format for the requests that don't specify an HTTP_ACCEPT header
       # Argument: A symbol representation of a mime type, default to :html
