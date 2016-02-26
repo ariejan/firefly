@@ -211,8 +211,10 @@ module Api
       #
       # See: http://www.rubydoc.info/gems/hanami-controller#Configuration
       controller.prepare do
-        # include MyAuthentication # included in all the actions
-        # before :authenticate!    # run an authentication before callback
+        before do |params|       # run an authentication before callback
+          halt 401, "API token not specified" if params.get(:token).nil?
+          halt 401, "API token invalid" unless params.get(:token) == ENV['FIREFLY_API_TOKEN']
+        end
       end
 
       # Configure the code that will yield each time Api::View is included
