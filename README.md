@@ -2,14 +2,14 @@
 
 FireFly is a simple URL shortener for personal (or enterprise) use.
 
+## Use Firefly right now
+
+Currently you should head over to the [1-5-stable][1-5-stable] branch to get started today.
+
 ## About Firefly 2.0
 
-Firefly 2.0 is currently in development, `master` may be unstable or 
-not even work at all. Check the [1-5-stable][1-5-stable]
-branch if you need an URL shortener today.
-
-The `master` branch contains the next version, 2.0.0-pre, of Firefly and is
-not suitable for any kind of serious use at this time.
+`master` is a work-in-progress for 2.0, but is at this time not ready for any kind of use. 
+A rewrite, using Hanami, is in the works to be the basis for 2.0, see pull request #55 for details.
 
 ## Background
 
