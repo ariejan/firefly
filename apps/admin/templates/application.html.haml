@@ -1,0 +1,16 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1"}/
+    %title Admin
+    = favicon
+    = stylesheet 'application'
+  %body
+    .container
+      = render partial: 'admin/navigation'
+
+      .main
+        = yield
+
+    = javascript 'jquery', 'bootstrap.min'

@@ -29,6 +29,8 @@ GEM
     guard-minitest (2.4.4)
       guard-compat (~> 1.2)
       minitest (>= 3.0)
+    haml (4.0.7)
+      tilt
     hanami (0.7.2)
       bundler (~> 1.6)
       dotenv (~> 2.0)
@@ -70,6 +72,8 @@ GEM
     http_router (0.11.2)
       rack (>= 1.0.0)
       url_mount (~> 0.2.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     listen (3.0.6)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9.7)
@@ -103,6 +107,7 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     ruby-progressbar (1.7.5)
+    sass (3.4.19)
     sequel (4.31.0)
     shellany (0.0.1)
     shotgun (0.9.1)
@@ -125,11 +130,14 @@ DEPENDENCIES
   capybara
   guard
   guard-minitest
+  haml
   hanami (= 0.7.2)
   hanami-model (~> 0.5)
+  launchy
   minitest
   minitest-reporters
   rake
+  sass
   sqlite3
 
 BUNDLED WITH

@@ -1,4 +1,12 @@
 # Database files
 db/*.sqlite
 
+*DS_Store
+
+# Byebug history
 .byebug_history
+
+# Generated files
+tmp/
+public/
+capybara-*.html
