@@ -1,0 +1,14 @@
+.row
+  .col-md-12.col-lg-8.col-md-offset-2
+    %h2 Make it short!
+    = form
+
+.row
+  .col-md-12.col-lg-8.col-md-offset-2
+    #recent
+      - items.each do |item|
+        .item[item]
+          .title= link_to item.content, item.content
+          .content= link_to item.content, item.content
+          .short= link_to item.short_url, item.short_url
+
