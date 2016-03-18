@@ -6,13 +6,15 @@ module Admin::Controllers::Items
 
     params do
       param :item do
-        param :content, presence: true
+        param :content, presence: true, format: URI.regexp(['http', 'https'])
       end
     end
 
     def call(params)
-      @item = ItemRepository.create_from_url(params[:item][:content])
-      redirect_to '/admin'
+      if params.valid?
+        @item = ItemRepository.create_from_url(params[:item][:content])
+        redirect_to '/admin'
+      end
     end
   end
 end
