@@ -38,4 +38,16 @@ describe 'dashboard' do
       assert page.has_link?(url)
     end
   end
+
+  it 'handles incorrect input correctly' do
+    basic_auth('admin', 'password')
+    visit '/admin'
+
+    url = 'skype:adevroom?call'
+
+    fill_in 'item-content', with: url
+    click_button 'Shorten'
+
+    assert page.has_text?("That does not look like a valid URL!")
+  end
 end
