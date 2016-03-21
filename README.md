@@ -17,6 +17,11 @@ This will start hanami in development mode, using a local Sqlite
 database for storage. Open [http://localhost:2300/admin](http://localhost:2300/admin) 
 and sign in with the development credentials: `admin` / `admin`.
 
+## Running tests
+
+Firefly 2 is fully tested. To run the test suite, simply run `rake test` in the
+root of the project or check [Travis](https://travis-ci.org/ariejan/firefly) for the current build status.
+
 ## Current status
 
 [![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly)
