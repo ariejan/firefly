@@ -8,7 +8,14 @@
     #recent
       - items.each do |item|
         .item[item]
-          .title= link_to item.content, item.content
-          .content= link_to item.content, item.content
-          .short= link_to item.short_url, item.short_url
+          .row
+            .col-xs-12
+              .title= link_to item.content, item.content
+              .content= link_to item.content, item.content
+          .row
+            .col-xs-8
+              .short= link_to item.short_url, item.short_url
+            .col-xs-4
+              .actions
+                = delete_link(item)
 
