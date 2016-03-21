@@ -8,9 +8,26 @@ shortening. Firefly 2 is a complete rewrite of the original project.
 Trying out Firefly is pretty straightforward. You will need to have
 Ruby (2.2 or better) installed.
 
+### Get Firefly 2
+
     git clone https://github.com/ariejan/firefly.git
     cd firefly
+
+### Install dependencies
+
     bundle install
+
+### Create and migrate the Sqlite3 database
+
+Firefly 2 is currently tested to work with sqlite. Support for other
+databases is welcome. The following will initialize a sqlite database
+in `db/firefly_development.sqlite`.
+
+    hanami db create
+    hanami db migrate
+
+### Run the server
+
     hanami server
 
 This will start hanami in development mode, using a local Sqlite 
@@ -19,8 +36,11 @@ and sign in with the development credentials: `admin` / `admin`.
 
 ## Running tests
 
-Firefly 2 is fully tested. To run the test suite, simply run `rake test` in the
-root of the project or check [Travis](https://travis-ci.org/ariejan/firefly) for the current build status.
+Firefly 2 is fully tested using Minitest. Running tests should be 
+easy and straightforward:
+
+    HANAMI_ENV=test hanami db prepare
+    rake test
 
 ## Current status
 
