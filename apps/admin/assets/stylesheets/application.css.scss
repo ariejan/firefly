@@ -1,6 +1,6 @@
 @import 'bootstrap';
 @import 'bootflat';
-// @import 'dashboard';
+@import "font-awesome";
 
 body {
     padding-top: 20px;
@@ -36,7 +36,6 @@ body {
         }
 
         .short {
-            margin-top: 1em;
         }
 
         .short,
@@ -47,6 +46,14 @@ body {
 
         .short a:hover {
             text-decoration: underline;
+        }
+
+        .actions {
+            text-align: right;
+
+            a {
+                color: $mediumgray-light;
+            }
         }
     }
 }

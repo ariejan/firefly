@@ -50,4 +50,29 @@ describe 'dashboard' do
 
     assert page.has_text?("That does not look like a valid URL!")
   end
+
+
+  describe 'deletion of an item' do
+    before do
+      @item = @items[2]
+    end
+
+    it 'works correctly' do
+      basic_auth('admin', 'password')
+      visit '/admin'
+
+      within('#recent') do
+        assert page.has_selector?('.item', count: 10)
+      end
+
+      within("#item_#{@item.id}") do
+        click_link "delete_item_#{@item.id}"
+      end
+
+      within('#recent') do
+        assert page.has_selector?('.item', count: 9)
+      end
+    end
+
+  end
 end
