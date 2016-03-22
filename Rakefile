@@ -6,6 +6,8 @@ require 'securerandom'
 Rake::TestTask.new do |t|
   t.pattern = 'spec/**/*_spec.rb'
   t.libs    << 'spec'
+  t.verbose = false
+  t.warning = false
 end
 
 task default: :test
