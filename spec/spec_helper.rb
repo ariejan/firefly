@@ -7,9 +7,9 @@ require 'coveralls'
 SimpleCov.formatter = Coveralls::SimpleCov::Formatter
 SimpleCov.start do
   add_filter '/spec/'
-  add_filter 'app/admin/application.rb'
-  add_filter 'app/web/application.rb'
-  add_filter 'app/api/application.rb'
+  add_filter '/apps/admin/application.rb'
+  add_filter '/apps/web/application.rb'
+  add_filter '/apps/api/application.rb'
 end
 
 require_relative '../config/environment'
