@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'bundler'
-gem 'rake'
+gem 'rake',         '10.5.0'
 gem 'hanami',       '0.7.2'
 gem 'hanami-model', '~> 0.5'
 
