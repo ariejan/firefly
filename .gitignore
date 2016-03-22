@@ -10,3 +10,5 @@ db/*.sqlite
 tmp/
 public/
 capybara-*.html
+
+coverage/
