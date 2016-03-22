@@ -44,7 +44,7 @@ easy and straightforward:
 
 ## Current status
 
-[![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly) [![Dependency Status](https://gemnasium.com/ariejan/firefly.svg)](https://gemnasium.com/ariejan/firefly)
+[![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly) [![Dependency Status](https://gemnasium.com/ariejan/firefly.svg)](https://gemnasium.com/ariejan/firefly) [![Coverage Status](https://coveralls.io/repos/github/ariejan/firefly/badge.svg?branch=master)](https://coveralls.io/github/ariejan/firefly?branch=master)
 
 
 Firefly 2 is still a work in progress. It's stable, but not yet feature
