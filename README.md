@@ -44,7 +44,8 @@ easy and straightforward:
 
 ## Current status
 
-[![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly)
+[![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly) [![Dependency Status](https://gemnasium.com/ariejan/firefly.svg)](https://gemnasium.com/ariejan/firefly)
+
 
 Firefly 2 is still a work in progress. It's stable, but not yet feature
 complete and currently _unreleased_. You are free to use and play 
