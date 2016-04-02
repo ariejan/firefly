@@ -28,6 +28,7 @@ exclude_paths:
 - config/
 - db/
 - spec/
+- apps/admin/assets/stylesheets/bootstrap/
 - apps/admin/assets/javascripts/jquery.js
 - apps/admin/assets/javascripts/jquery_ujs.js
 - apps/admin/assets/javascripts/bootstrap.js
