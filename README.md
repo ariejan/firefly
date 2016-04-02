@@ -3,6 +3,14 @@
 Firefly is an elegant solution for personal media hosting and URL
 shortening. Firefly 2 is a complete rewrite of the original project.
 
+## Current status
+
+[![Travis](https://img.shields.io/travis/ariejan/firefly.svg?style=flat-square)](https://travis-ci.org/ariejan/firefly) [![Gemnasium](https://img.shields.io/gemnasium/ariejan/firefly.svg?style=flat-square)](https://gemnasium.com/ariejan/firefly) [![Coveralls](https://img.shields.io/coveralls/ariejan/firefly.svg?style=flat-square)](https://coveralls.io/github/ariejan/firefly?branch=master) ![Made in Holland](https://img.shields.io/badge/made%20in-holland-orange.svg?style=flat-square)
+
+Firefly 2 is still a work in progress. It's stable, but not yet feature
+complete and currently _unreleased_. You are free to use and play 
+with `HEAD`, but do so at your own risk (e.g. make backups).
+
 ## Getting started
 
 Trying out Firefly is pretty straightforward. You will need to have
@@ -41,15 +49,6 @@ easy and straightforward:
 
     HANAMI_ENV=test hanami db prepare
     rake test
-
-## Current status
-
-[![Build Status](https://secure.travis-ci.org/ariejan/firefly.png?branch=master)](https://travis-ci.org/ariejan/firefly) [![Dependency Status](https://gemnasium.com/ariejan/firefly.svg)](https://gemnasium.com/ariejan/firefly) [![Coverage Status](https://coveralls.io/repos/github/ariejan/firefly/badge.svg?branch=master)](https://coveralls.io/github/ariejan/firefly?branch=master)
-
-
-Firefly 2 is still a work in progress. It's stable, but not yet feature
-complete and currently _unreleased_. You are free to use and play 
-with `HEAD`, but do so at your own risk (e.g. make backups).
 
 ## How to help
 
