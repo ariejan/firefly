@@ -5,7 +5,7 @@ shortening. Firefly 2 is a complete rewrite of the original project.
 
 ## Current status
 
-[![Travis](https://img.shields.io/travis/ariejan/firefly.svg?style=flat-square)](https://travis-ci.org/ariejan/firefly) [![Gemnasium](https://img.shields.io/gemnasium/ariejan/firefly.svg?style=flat-square)](https://gemnasium.com/ariejan/firefly) [![Coveralls](https://img.shields.io/coveralls/ariejan/firefly.svg?style=flat-square)](https://coveralls.io/github/ariejan/firefly?branch=master) ![Made in Holland](https://img.shields.io/badge/made%20in-holland-orange.svg?style=flat-square)
+[![Travis](https://img.shields.io/travis/ariejan/firefly.svg?style=flat-square)](https://travis-ci.org/ariejan/firefly) [![Gemnasium](https://img.shields.io/gemnasium/ariejan/firefly.svg?style=flat-square)](https://gemnasium.com/ariejan/firefly) [![Coveralls](https://img.shields.io/coveralls/ariejan/firefly.svg?style=flat-square)](https://coveralls.io/github/ariejan/firefly?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/ariejan/firefly.svg?style=flat-square)](https://codeclimate.com/github/ariejan/firefly) ![Made in Holland](https://img.shields.io/badge/made%20in-holland-orange.svg?style=flat-square)
 
 Firefly 2 is still a work in progress. It's stable, but not yet feature
 complete and currently _unreleased_. You are free to use and play 
