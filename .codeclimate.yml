@@ -1,0 +1,34 @@
+---
+engines:
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+  eslint:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+ratings:
+  paths:
+  - Gemfile.lock
+  - "**.inc"
+  - "**.js"
+  - "**.jsx"
+  - "**.module"
+  - "**.php"
+  - "**.py"
+  - "**.rb"
+exclude_paths:
+- config/
+- db/
+- spec/
+- apps/admin/assets/javascripts/jquery.js
+- apps/admin/assets/javascripts/jquery_ujs.js
+- apps/admin/assets/javascripts/bootstrap.js
+
