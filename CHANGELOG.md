@@ -6,6 +6,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 
  * Full rewrite of the entire application using Hanami. Clean code, fully tested.
+   * Shorten URLs
+   * Track clicks over time
 
 ## [1.5.3] - 2011-05-05
 
