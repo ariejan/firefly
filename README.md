@@ -48,13 +48,18 @@ easy and straightforward:
     HANAMI_ENV=test hanami db prepare
     rake test
 
-# How to help
+# How to contribute
 
-Your help is welcome! Check out the open list of [issues](https://github.com/ariejan/firefly/issues) to
-see what features and bugs are currently open, or open a 
-[new issue](https://github.com/ariejan/firefly/issues/new) to discuss your own ideas. [Pull requests](https://github.com/ariejan/firefly/pulls) are also very welcome!
+Your help is welcome! 
 
-If you need help (either with running Firefly or contributing, please hop by on [Gitter](https://gitter.im/ariejan/firefly) to chat.
+Check out the open list of [issues](https://github.com/ariejan/firefly/issues) to
+see what features and bugs are currently open. If you're just starting out with Ruby
+and/or Hanami, check out the [beginner friendly](https://github.com/ariejan/firefly/issues?utf8=%E2%9C%93&q=is%3Aissue+is%3Aopen+label%3A%22beginner+friendly%22) issues, which are great for warming up your skills. 
+
+Feel free to open a 
+[new issue](https://github.com/ariejan/firefly/issues/new) to discuss your own ideas, or a [pull request](https://github.com/ariejan/firefly/pulls) if you've already got something to show.
+
+If you need any help, please hop by on [Gitter](https://gitter.im/ariejan/firefly) to chat.
 
 # Contributor Covenant Code of Conduct
 
