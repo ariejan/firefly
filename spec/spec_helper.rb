@@ -17,6 +17,8 @@ require 'minitest/autorun'
 require 'minitest/reporters'
 require 'byebug'
 
+require 'mocha/mini_test'
+
 Minitest::Reporters.use!
 
 Hanami::Application.preload!
