@@ -4,7 +4,7 @@ module Admin::Controllers::Dashboard
 
     expose :items
 
-    def call(params)
+    def call(_params)
       @items = ItemRepository.recent(10).all
     end
   end
