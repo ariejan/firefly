@@ -16,9 +16,10 @@
             .col-xs-8
               .short= link_to item.short_url, item.short_url
             .col-xs-4
-              .statistics
-                %i.fa.fa-line-chart.fa-lg
-                = item.number_of_clicks
-              .actions
-                = delete_link(item)
+              %ul.meta
+                %li.statistics
+                  %i.fa.fa-line-chart.fa-lg
+                  = item.number_of_clicks
+                %li.actions
+                  = delete_link(item)
 
