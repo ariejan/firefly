@@ -5,7 +5,7 @@ shortening. Firefly 2 is a complete rewrite of the original project.
 
 ## Current status
 
-[![Travis](https://img.shields.io/travis/ariejan/firefly.svg?style=flat-square)](https://travis-ci.org/ariejan/firefly) [![Gemnasium](https://img.shields.io/gemnasium/ariejan/firefly.svg?style=flat-square)](https://gemnasium.com/ariejan/firefly) [![Coveralls](https://img.shields.io/coveralls/ariejan/firefly.svg?style=flat-square)](https://coveralls.io/github/ariejan/firefly?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/ariejan/firefly.svg?style=flat-square)](https://codeclimate.com/github/ariejan/firefly) ![Made in Holland](https://img.shields.io/badge/made%20in-holland-orange.svg?style=flat-square)
+[![Travis](https://img.shields.io/travis/ariejan/firefly.svg?style=flat-square)](https://travis-ci.org/ariejan/firefly) [![Gemnasium](https://img.shields.io/gemnasium/ariejan/firefly.svg?style=flat-square)](https://gemnasium.com/ariejan/firefly) [![Coveralls](https://img.shields.io/coveralls/ariejan/firefly.svg?style=flat-square)](https://coveralls.io/github/ariejan/firefly?branch=master) [![Code Climate](https://img.shields.io/codeclimate/github/ariejan/firefly.svg?style=flat-square)](https://codeclimate.com/github/ariejan/firefly) [![Gitter](https://img.shields.io/gitter/room/ariejan/firefly.svg?style=flat-square)](https://gitter.im/ariejan/firefly) ![Made in Holland](https://img.shields.io/badge/made%20in-holland-orange.svg?style=flat-square)
 
 Firefly 2 is still a work in progress. It's stable, but not yet feature
 complete and currently _unreleased_. You are free to use and play 
@@ -56,7 +56,9 @@ Your help is welcome! Check out the open list of [issues](https://github.com/ari
 see what features and bugs are currently open, or open a 
 [new issue](https://github.com/ariejan/firefly/issues/new) to discuss your own ideas. 
 
-[Pull requests](https://github.com/ariejan/firefly/pulls) are very welcome! 
+[Pull requests](https://github.com/ariejan/firefly/pulls) are very welcome!
+
+If you need help (either with running Firefly or contributing, please hop by on [Gitter](https://gitter.im/ariejan/firefly) to chat.
 
 ## Code of Conduct
 
