@@ -15,4 +15,9 @@ describe Web::Controllers::Items::Resolver do
     response[0].must_equal 301
     response[1]['Location'].must_equal 'https://devroom.io'
   end
+
+  it 'records as a click' do
+    ClickRepository.expects(:register_for).with(@item).once
+    action.call(Hash[code: @code])
+  end
 end
