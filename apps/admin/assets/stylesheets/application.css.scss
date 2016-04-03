@@ -48,11 +48,19 @@ body {
             text-decoration: underline;
         }
 
-        .actions {
+        ul.meta {
             text-align: right;
 
-            a {
+            li.statistics,
+            li.actions {
+                list-style: none;
+                display: inline-block;
+                margin-left: 0.8em;
                 color: $mediumgray-light;
+
+                a {
+                    color: $mediumgray-light;
+                }
             }
         }
     }

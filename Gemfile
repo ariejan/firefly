@@ -19,6 +19,7 @@ group :test do
   gem 'minitest-reporters'
   gem 'capybara'
   gem 'launchy'
+  gem 'mocha'
 
   gem 'guard'
   gem 'guard-minitest'

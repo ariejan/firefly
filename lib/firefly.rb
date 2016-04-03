@@ -46,6 +46,15 @@ Hanami::Model.configure do
       attribute :created_at, DateTime
       attribute :updated_at, DateTime
     end
+
+    collection :clicks do
+      entity Click
+      repository ClickRepository
+
+      attribute :id,         Integer
+      attribute :item_id,    Integer
+      attribute :created_at, DateTime
+    end
   end
 end.load!
 

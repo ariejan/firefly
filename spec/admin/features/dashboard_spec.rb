@@ -60,6 +60,17 @@ describe 'dashboard' do
     assert page.has_text?("Please enter a valid URL")
   end
 
+  it 'shows item statistics' do
+    @item = @items[3]
+    ClickRepository.register_for(@item, 3)
+
+    basic_auth('admin', 'password')
+    visit '/admin'
+
+    within("#item_#{@item.id} .statistics") do
+      assert page.has_text?("3")
+    end
+  end
 
   describe 'deletion of an item' do
     before do
