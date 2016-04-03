@@ -2,8 +2,6 @@ module Api::Controllers::Items
   class Create
     include Api::Action
 
-    # TODO: Validate params
-
     def call(params)
       self.format = :text
 
