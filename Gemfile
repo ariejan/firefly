@@ -16,7 +16,6 @@ group :development do
 end
 
 group :test do
-  gem 'rspec'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'capybara'
