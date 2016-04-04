@@ -10,6 +10,7 @@ SimpleCov.start do
   add_filter '/apps/admin/application.rb'
   add_filter '/apps/web/application.rb'
   add_filter '/apps/api/application.rb'
+  add_filter '/config/sidekiq.rb'
 end
 
 require_relative '../config/environment'

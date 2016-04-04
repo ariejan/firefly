@@ -1,6 +1,6 @@
 class Item
   include Hanami::Entity
-  attributes :type, :content, :created_at, :updated_at
+  attributes :type, :content, :title, :created_at, :updated_at
 
   def short_url
     "#{protocol}://#{domain}/#{code}"
@@ -16,6 +16,10 @@ class Item
 
   def number_of_clicks
     ClickRepository.clicks_for(self)
+  end
+
+  def get_title
+    title || content
   end
 
   private
