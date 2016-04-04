@@ -14,6 +14,9 @@ gem 'redis'
 gem 'rqrcode'
 gem 'sidekiq'
 
+# Required for Sidekiq web dashboard
+gem 'sinatra', require: false
+
 group :development do
   gem 'byebug'
 end
