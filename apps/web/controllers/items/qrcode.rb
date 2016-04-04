@@ -8,7 +8,6 @@ module Web::Controllers::Items
     	self.format = :png
 
       @item = ItemRepository.find_by_code(params[:code])
-      ClickRepository.register_for(@item)      
       @qr = RQRCode::QRCode.new(@item.short_url)
 
       self.body = @qr.as_png(size: 240).to_s
