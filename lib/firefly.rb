@@ -43,6 +43,7 @@ Hanami::Model.configure do
       attribute :id,         Integer
       attribute :type,       String
       attribute :content,    String
+      attribute :title,      String
       attribute :created_at, DateTime
       attribute :updated_at, DateTime
     end
