@@ -9,7 +9,10 @@ gem 'haml'
 gem 'sass'
 
 gem 'sqlite3'
+gem 'redis'
+
 gem 'rqrcode'
+gem 'sidekiq'
 
 group :development do
   gem 'byebug'
