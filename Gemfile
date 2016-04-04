@@ -9,6 +9,7 @@ gem 'haml'
 gem 'sass'
 
 gem 'sqlite3'
+gem 'rqrcode'
 
 group :development do
   gem 'byebug'
