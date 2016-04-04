@@ -2,6 +2,15 @@ module Admin::Views::Dashboard
   class Index
     include Admin::View
 
+    def qrcode_link(item)
+      # link_to routes.item_qrcode_path(id: item.id),
+      link_to "/admin/items/#{item.id}.png",
+        id: "item_qrcode_#{item.id}",
+        :'data-method' => 'get' do
+          i "", class: 'fa fa-picture-o fa-lg'
+        end
+    end
+
     def delete_link(item)
       # link_to routes.item_path(id: item.id),
       link_to "/admin/items/#{item.id}",

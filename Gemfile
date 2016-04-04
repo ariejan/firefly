@@ -9,12 +9,14 @@ gem 'haml'
 gem 'sass'
 
 gem 'sqlite3'
+gem 'rqrcode'
 
 group :development do
   gem 'byebug'
 end
 
 group :test do
+  gem 'rspec'
   gem 'minitest'
   gem 'minitest-reporters'
   gem 'capybara'

@@ -82,6 +82,18 @@ describe 'dashboard' do
         assert page.has_selector?('.item', count: 9)
       end
     end
+  end
 
+  it 'links to png QR code' do
+    basic_auth('admin', 'password')
+    visit '/admin'
+
+    within("#item_#{@items[7].id}") do
+      click_link "item_qrcode_#{@items[7].id}"
+    end
+
+    assert page.status_code.must_equal 200
+    
+    assert page.has_css? "img[src*='/admin/items/#{@items[7].id}.png']"
   end
 end

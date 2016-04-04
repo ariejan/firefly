@@ -17,5 +17,6 @@
               .short= link_to item.short_url, item.short_url
             .col-xs-4
               .actions
+                = qrcode_link(item)
                 = delete_link(item)
 
