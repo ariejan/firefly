@@ -2,7 +2,6 @@ require 'spec_helper'
 require 'sidekiq/testing'
 
 Sidekiq::Testing.fake!
-# Sidekiq::Testing.inline!
 
 describe LinkHtmlTitleWorker do
   before :each do
