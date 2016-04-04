@@ -24,4 +24,20 @@ describe 'Shorten URL' do
     last_response.body.must_equal item.short_url
   end
 
+  it 'returns error with no url' do
+    get '/api/v1/shorten', token: 'token'
+
+    last_response.status.must_equal 400
+    last_response.header["Content-Type"].must_equal 'text/plain; charset=utf-8'
+    last_response.body.must_equal 'Invalid parameters'
+  end
+
+  it 'returns error with invalid url' do
+    get '/api/v1/shorten', token: 'token', url: 'skype:adevroom'
+
+    last_response.status.must_equal 400
+    last_response.header["Content-Type"].must_equal 'text/plain; charset=utf-8'
+    last_response.body.must_equal 'Invalid parameters'
+  end
+
 end
