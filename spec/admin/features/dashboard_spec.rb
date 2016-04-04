@@ -104,7 +104,5 @@ describe 'dashboard' do
     end
 
     assert page.status_code.must_equal 200
-    
-    assert page.has_css? "img[src*='/admin/items/#{@items[7].id}.png']"
   end
 end
