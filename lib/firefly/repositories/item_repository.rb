@@ -16,7 +16,11 @@ class ItemRepository
       item = query.where(content: url).first
       item ||= Item.new(type: 'url', content: url)
 
-      persist(item)
+      if created_item = persist(item)
+        LinkHtmlTitleWorker.perform_async(created_item.id)
+      end
+
+      created_item
     end
   end
 end
