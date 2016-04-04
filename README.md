@@ -1,3 +1,4 @@
+
 Firefly is an elegant solution for personal media hosting and URL
 shortening. Firefly 2 is a complete rewrite of the original project.
 
@@ -11,8 +12,12 @@ with `HEAD`, but do so at your own risk (e.g. make backups).
 
 # Getting started
 
-Trying out Firefly is pretty straightforward. You will need to have
-Ruby (2.2 or better) installed.
+Firefly is a modern ruby web application. The following you 
+will need:
+
+ * Ruby 2.2 or 2.3, we suggest using [rbenv](https://github.com/rbenv/rbenv)
+ * Redis, see your system's package manager
+ * Foreman, `gem install foreman`
 
 ## Get Firefly 2
 
@@ -31,19 +36,29 @@ in `db/firefly_development.sqlite`.
 
     hanami db create
     hanami db migrate
+    
+## Start redis server
 
-## Run the server
+If your system is not running redis out of the box as a service, you should
+start it manually (do this in a separate terminal):
 
-    hanami server
+    redis-server
+
+## Run Firefly
+
+    foreman start
 
 This will start hanami in development mode, using a local Sqlite 
-database for storage. Open [http://localhost:2300/admin](http://localhost:2300/admin) 
+database for storage. It will also start a Sidekiq worker for
+asynchronously processing data (like links and images).d
+
+Open [http://localhost:2300/admin](http://localhost:2300/admin) 
 and sign in with the development credentials: `admin` / `admin`.
 
 # Running tests
 
-Firefly 2 is fully tested using Minitest. Running tests should be 
-easy and straightforward:
+Firefly 2 is fully tested using Minitest. Running tests should 
+alwasy be easy and straightforward:
 
     HANAMI_ENV=test hanami db prepare
     rake test
