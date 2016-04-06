@@ -23,3 +23,7 @@ require 'mocha/mini_test'
 Minitest::Reporters.use!
 
 Hanami::Application.preload!
+
+def url_item(url = 'http://test.host/test')
+  CreateItemFromURL.new(url).call.item
+end

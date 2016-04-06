@@ -7,7 +7,7 @@ describe Admin::Controllers::Dashboard::Index do
 
   before do
     ItemRepository.clear
-    @item = ItemRepository.create_from_url('http://test.host')
+    @item = url_item('http://test.host')
   end
 
   it 'is successful' do

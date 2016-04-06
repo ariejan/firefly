@@ -11,8 +11,8 @@ module Api::Controllers::Items
       self.format = :text
 
       if params.valid?
-        item = ItemRepository.create_from_url(params[:url])
-        self.body = item.short_url
+        result = CreateItemFromURL.new(params[:url]).call
+        self.body = result.item.short_url
       else
         self.status = 400
         self.body   = "Invalid parameters"
