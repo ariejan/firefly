@@ -8,7 +8,7 @@ describe Item do
     @item  = ItemRepository.create(Item.new(type: 'url', content: 'http://nu.nl'))
     @code  = Base62.encode(@item.id)
 
-    ClickRepository.register_for(@item, 3)
+    3.times { RegisterClick.new(@item).call }
   end
 
   it '#short_url' do
@@ -33,11 +33,5 @@ describe Item do
 
   it '#number_of_clicks' do
     assert_equal 3, @item.number_of_clicks
-  end
-
-  it '#click!' do
-    assert_equal 3, @item.number_of_clicks
-    @item.click!
-    assert_equal 4, @item.number_of_clicks
   end
 end
