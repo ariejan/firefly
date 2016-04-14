@@ -12,3 +12,7 @@ public/
 capybara-*.html
 
 coverage/
+
+# Ruby config
+.ruby-version
+.ruby-gemset
