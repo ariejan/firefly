@@ -30,8 +30,4 @@ describe Item do
   it '#code' do
     @item.code.must_equal(@code)
   end
-
-  it '#number_of_clicks' do
-    assert_equal 3, @item.number_of_clicks
-  end
 end
