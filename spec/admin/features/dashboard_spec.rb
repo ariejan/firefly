@@ -62,7 +62,7 @@ describe 'dashboard' do
 
   it 'shows item statistics' do
     @item = @items[3]
-    ClickRepository.register_for(@item, 3)
+    3.times { RegisterClick.new(@item).call }
 
     basic_auth('admin', 'password')
     visit '/admin'

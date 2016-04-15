@@ -2,6 +2,10 @@ module Admin::Views::Dashboard
   class Index
     include Admin::View
 
+    def number_of_clicks(item)
+      ClickRepository.count_for(item)
+    end
+
     def qrcode_link(item)
       # link_to routes.item_qrcode_path(id: item.id),
       link_to "/admin/items/#{item.id}.png",

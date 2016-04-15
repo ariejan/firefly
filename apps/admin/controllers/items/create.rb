@@ -12,7 +12,9 @@ module Admin::Controllers::Items
 
     def call(params)
       if params.valid?
-        @item = ItemRepository.create_from_url(params[:item][:content])
+        result = CreateItemFromURL.new(params[:item][:content]).call
+        @item = result.item
+
         redirect_to '/admin'
       end
     end

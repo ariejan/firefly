@@ -22,7 +22,10 @@ describe Web::Controllers::Items::Resolver do
   end
 
   it 'records as a click' do
-    ClickRepository.expects(:register_for).with(@item).once
+    register_click = mock('register_click')
+    register_click.expects(:call).once
+    RegisterClick.expects(:new).with(@item).once.returns(register_click)
+
     action.call(Hash[code: @code])
   end
 end

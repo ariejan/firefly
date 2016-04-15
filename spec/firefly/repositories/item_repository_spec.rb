@@ -3,14 +3,12 @@ require 'spec_helper'
 describe ItemRepository do
   before do
     ItemRepository.clear
+
+    @item1 = url_item("http://test.host/1")
+    @item2 = url_item("http://test.host/2")
   end
 
   describe '.recent' do
-    before do
-      @item1 = ItemRepository.create_from_url("http://test.host/1")
-      @item2 = ItemRepository.create_from_url("http://test.host/2")
-    end
-
     it 'returns n most recent URLs' do
       result = ItemRepository.recent(1).all
       result.must_equal [@item2]
@@ -20,22 +18,16 @@ describe ItemRepository do
     end
   end
 
-  describe '.create_from_url' do
-    let(:url) { 'https://ariejan.net/about' }
-
-    it 'creates a new item' do
-      item = ItemRepository.create_from_url(url)
-
-      item.id.wont_be_nil
-      item.type.must_equal 'url'
-      item.content.must_equal url
+  describe '.find_by_content' do
+    it 'returns an item with known content' do
+      result = ItemRepository.find_by_content(@item2)
+      result.must_equal @item2
     end
+  end
 
-    it 'duplicate items' do
-      item = ItemRepository.create_from_url(url)
-      duplicate = ItemRepository.create_from_url(url)
-
-      duplicate.id.must_equal(item.id)
+  describe '.count' do
+    it 'returns number of items' do
+      ItemRepository.count.must_equal(2)
     end
   end
 end

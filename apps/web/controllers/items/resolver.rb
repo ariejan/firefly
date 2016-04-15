@@ -6,7 +6,7 @@ module Web::Controllers::Items
 
     def call(params)
       @item = ItemRepository.find_by_code(params[:code])
-      ClickRepository.register_for(@item)
+      RegisterClick.new(@item).call
       redirect_to @item.content, status: 301
     end
   end

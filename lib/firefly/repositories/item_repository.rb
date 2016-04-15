@@ -11,16 +11,13 @@ class ItemRepository
     end
   end
 
-  def self.create_from_url(url)
-    transaction do
-      item = query.where(content: url).first
-      item ||= Item.new(type: 'url', content: url)
+  def self.count
+    query.count
+  end
 
-      if created_item = persist(item)
-        LinkHtmlTitleWorker.perform_async(created_item.id)
-      end
-
-      created_item
-    end
+  def self.find_by_content(item)
+    query do
+      where(content: item.content, type: item.type)
+    end.first
   end
 end

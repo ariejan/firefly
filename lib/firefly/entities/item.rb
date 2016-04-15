@@ -10,14 +10,6 @@ class Item
     Base62.encode(id)
   end
 
-  def click!
-    ClickRepository.register_for(self)
-  end
-
-  def number_of_clicks
-    ClickRepository.clicks_for(self)
-  end
-
   def get_title
     title || content
   end
