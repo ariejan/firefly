@@ -6,7 +6,7 @@ describe 'dashboard' do
 
     @items = []
     10.times do |n|
-      @items << ItemRepository.create(Item.new(type: 'url', content: "https://devroom.io/page-#{n}"))
+      @items << url_item("https://devroom.io/page-#{n}", age: n)
     end
 
     basic_auth('admin', 'password')

@@ -8,12 +8,7 @@ gem 'hanami-model', '~> 0.5'
 gem 'haml'
 gem 'sass'
 
-case ENV['DB']
-when 'mysql'
-  gem 'mysql'
-else
-  gem 'sqlite3'
-end
+gem 'pg'
 
 gem 'redis'
 

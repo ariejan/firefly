@@ -24,6 +24,18 @@ Minitest::Reporters.use!
 
 Hanami::Application.preload!
 
-def url_item(url = 'http://test.host/test')
-  CreateItemFromURL.new(url).call.item
+puts "Running tests against #{ENV['DB']}."
+
+def url_item(url = 'http://test.host/test', opts = {})
+  options = {
+    age: 0
+  }.merge!(opts)
+
+  params = {
+    type: 'url',
+    content: url,
+    created_at: Time.now - options[:age] * 3600
+  }
+
+  ItemRepository.create(Item.new(params))
 end
