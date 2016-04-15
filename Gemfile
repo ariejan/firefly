@@ -10,7 +10,7 @@ gem 'sass'
 
 case ENV['DB']
 when 'mysql'
-  gem 'mysql2'
+  gem 'mysql'
 else
   gem 'sqlite3'
 end
