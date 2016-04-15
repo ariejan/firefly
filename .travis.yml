@@ -4,6 +4,7 @@ cache: bundler
 install: bundle install --jobs=3 --retry=3 --without production
 
 before_script:
+  - cp gemfiles/Gemfile.$DB Gemfile
   - cp .env.test.$DB .env.test
 
 script:
