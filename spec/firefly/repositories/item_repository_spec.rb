@@ -4,8 +4,8 @@ describe ItemRepository do
   before do
     ItemRepository.clear
 
-    @item1 = url_item("http://test.host/1", created_at: Date.parse("2015-02-24").to_time)
-    @item2 = url_item("http://test.host/2", created_at: Date.parse("2015-07-05").to_time)
+    @item1 = url_item("http://test.host/1", age: 2)
+    @item2 = url_item("http://test.host/2", age: 1)
   end
 
   describe '.recent' do

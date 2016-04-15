@@ -26,9 +26,14 @@ Hanami::Application.preload!
 
 def url_item(url = 'http://test.host/test', opts = {})
   options = {
-    type: 'url',
-    content: url
+    age: 0
   }.merge!(opts)
 
-  ItemRepository.create(Item.new(options))
+  params = {
+    type: 'url',
+    content: url,
+    created_at: Time.now - options[:age] * 3600
+  }
+
+  ItemRepository.create(Item.new(params))
 end
