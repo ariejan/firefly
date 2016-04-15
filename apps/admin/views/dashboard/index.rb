@@ -28,7 +28,7 @@ module Admin::Views::Dashboard
     def form
       form_for :item, '/admin/items' do
         div class: 'input-group input-group-lg' do
-          text_field :content, class: 'form-control', placeholder: 'What can I shorten for you today?'
+          text_field :content, class: 'form-control', placeholder: 'What can I shorten for you today?', autofocus: true
           span class: 'input-group-btn' do
             submit 'Shorten', class: 'btn btn-search', :"data-disable-with" => "Shortening..."
           end
