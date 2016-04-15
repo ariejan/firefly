@@ -9,6 +9,7 @@ rvm:
 env:
   - DB=sqlite
   - DB=mysql
+  - DB=postgresql
 
 before_install:
   - cp gemfiles/Gemfile.$DB Gemfile
