@@ -24,6 +24,11 @@ Minitest::Reporters.use!
 
 Hanami::Application.preload!
 
-def url_item(url = 'http://test.host/test')
-  CreateItemFromURL.new(url).call.item
+def url_item(url = 'http://test.host/test', opts = {})
+  options = {
+    type: 'url',
+    content: url
+  }.merge!(opts)
+
+  ItemRepository.create(Item.new(options))
 end
