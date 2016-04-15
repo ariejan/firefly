@@ -3,6 +3,10 @@ sudo: false
 cache: bundler
 install: bundle install --jobs=3 --retry=3 --without production
 
+before_script:
+  - mysql -e 'create database firefly_test'
+
+
 script:
   - 'HANAMI_ENV=test bundle exec hanami db create'
   - 'HANAMI_ENV=test bundle exec hanami db migrate'
@@ -12,6 +16,10 @@ rvm:
   - 2.2.4
   - 2.3.0
   - ruby-head
+
+env:
+  - DB=sqlite     FIREFLY_DATABASE_URL=sqlite://db/firefly_test.sqlite
+  - DB=mysql      FIREFLY_DATABASE_URL=mysql://root@localhost/firefly_test
 
 matrix:
   allow_failures:

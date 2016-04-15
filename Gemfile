@@ -8,7 +8,13 @@ gem 'hanami-model', '~> 0.5'
 gem 'haml'
 gem 'sass'
 
-gem 'sqlite3'
+case ENV['DB']
+when 'mysql'
+  gem 'mysql2'
+else
+  gem 'sqlite3'
+end
+
 gem 'redis'
 
 gem 'rqrcode'
