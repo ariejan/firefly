@@ -24,6 +24,8 @@ Minitest::Reporters.use!
 
 Hanami::Application.preload!
 
+puts "Running tests against #{ENV['DB']}."
+
 def url_item(url = 'http://test.host/test', opts = {})
   options = {
     age: 0
