@@ -10,7 +10,9 @@ module Admin::Views::Dashboard
       # link_to routes.item_qrcode_path(id: item.id),
       link_to "/admin/items/#{item.id}.png",
         id: "item_qrcode_#{item.id}",
-        :'data-method' => 'get' do
+        :'data-toggle' => 'lightbox',
+        :'data-title' => item.title,
+        :'data-footer' => item.short_url do
           i "", class: 'fa fa-picture-o fa-lg'
         end
     end
