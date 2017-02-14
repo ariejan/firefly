@@ -1,4 +1,6 @@
 
+[![Join the chat at https://gitter.im/ariejan/firefly](https://badges.gitter.im/ariejan/firefly.svg)](https://gitter.im/ariejan/firefly?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Firefly is an elegant solution for personal media hosting and URL
 shortening. Firefly 2 is a complete rewrite of the original project.
 
