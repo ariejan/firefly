@@ -1,0 +1,6 @@
+test: &test
+  adapter: postgresql
+  database: firefly_test
+
+cucumber:
+  <<: *test

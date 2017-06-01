@@ -1,44 +1,32 @@
 source 'https://rubygems.org'
 
-gem 'bundler'
-gem 'rake'
-gem 'hanami',       '0.7.2'
-gem 'hanami-model', '~> 0.5'
-
-gem 'haml'
-gem 'sass'
-
-case ENV['DB']
-when 'mysql'
-  gem 'mysql'
-else
-  gem 'sqlite3'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
 end
 
-gem 'redis'
 
-gem 'rqrcode'
-gem 'sidekiq'
+gem 'rails', '~> 5.1.1'
+gem 'pg', '~> 0.18'
 
-# Required for Sidekiq web dashboard
-gem 'sinatra', require: false
+gem 'puma', '~> 3.7'
+
+gem 'sass-rails', '~> 5.0'
+gem 'uglifier', '>= 1.3.0'
+
+gem 'turbolinks', '~> 5'
+
+group :development, :test do
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails', '~> 3.5'
+end
 
 group :development do
-  gem 'byebug'
+  gem 'web-console', '>= 3.3.0'
+  gem 'listen', '>= 3.0.5', '< 3.2'
 end
 
 group :test do
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'capybara'
-  gem 'launchy'
-  gem 'mocha'
-
-  gem 'guard'
-  gem 'guard-minitest'
-  gem 'coveralls', require: false
-end
-
-group :production do
-  # gem 'puma'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
 end

@@ -1,26 +1,16 @@
 language: ruby
-sudo: false
-cache: bundler
+dist: trusty
 
 rvm:
-  - 2.2.4
-  - 2.3.0
+  - 2.4.1
 
-env:
-  - DB=sqlite
-  - DB=mysql
-  - DB=postgresql
+addons:
+  postgresql: "9.6"
 
-before_install:
-  - cp gemfiles/Gemfile.$DB Gemfile
-
-install: bundle install --jobs=3 --retry=3 --without production
+services:
+  - postgresql
 
 before_script:
-  - cp .env.test.$DB .env.test
-
-script:
-  - 'HANAMI_ENV=test bundle exec hanami db create'
-  - 'HANAMI_ENV=test bundle exec hanami db migrate'
-  - 'bundle exec rake test'
+  - psql -c 'create database firefly_test;' -U postgres
+  - cp config/database.travis.yml config/database.yml
 

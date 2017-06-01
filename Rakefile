@@ -1,19 +1,6 @@
-require 'rake'
-require 'hanami/rake_tasks'
-require 'rake/testtask'
-require 'securerandom'
+# Add your own tasks in files placed in lib/tasks ending in .rake,
+# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
-Rake::TestTask.new do |t|
-  t.pattern = 'spec/**/*_spec.rb'
-  t.libs    << 'spec'
-  t.verbose = false
-  t.warning = false
-end
+require_relative 'config/application'
 
-task default: :test
-task spec: :test
-
-desc "Generate a session secret or other secure token"
-task :secret do
-  puts SecureRandom.hex(32)
-end
+Rails.application.load_tasks

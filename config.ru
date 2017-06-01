@@ -1,8 +1,5 @@
-require './config/environment'
-require 'sidekiq/web'
+# This file is used by Rack-based servers to start the application.
 
-map '/admin/sidekiq' do
-  use Sidekiq::Web
-end
+require_relative 'config/environment'
 
-run Hanami::Container.new
+run Rails.application
