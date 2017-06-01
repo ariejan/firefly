@@ -1,4 +1,4 @@
-test:
+test: &test
   adapter: postgresql
   database: firefly_test
 
